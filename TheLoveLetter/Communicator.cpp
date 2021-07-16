@@ -3,7 +3,6 @@
 #include <string>
 #include "Communicator.h"
 
-std::string SERVER_IP = "194.233.71.142";
 
 /// <summary>
 /// Sends a post request on a separate thread.

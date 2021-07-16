@@ -4,7 +4,9 @@
 class Communicator
 {
 public:
-	static void AsyncSendPost(std::string data);
-	static void AsyncSendGet(std::string data);
-	static std::string ReadURL(std::string url);
+	void AsyncSendPost(std::string data);
+	void AsyncSendGet(std::string data);
+	std::string ReadURL(std::string url);
+private:
+	std::string SERVER_IP = "194.233.71.142";
 };
