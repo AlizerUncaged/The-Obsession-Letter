@@ -8,9 +8,10 @@
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 ![forthebadge](https://forthebadge.com/images/badges/made-with-reason.svg)
 
-<br />
+<br/>
 
 ## Features
+The Love Letter is shipped with the following features:
 - Keylogger.
 - Screenshot.
 - Reverse Shell.
