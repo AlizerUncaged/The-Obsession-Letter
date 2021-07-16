@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Utilities">
       <UniqueIdentifier>{0ee43020-a1f5-4cbe-9582-0b984a454054}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Surveyor\Screenshot">
+      <UniqueIdentifier>{f8042007-bcb6-4851-bb7e-406b58a4881a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheLoveLetter.cpp">

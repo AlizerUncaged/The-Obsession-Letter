@@ -10,11 +10,4 @@
 
 <br/>
 
-## Features
-The Love Letter is shipped with the following features:
-- Keylogger.
-- Screenshot.
-- Reverse Shell.
-- File uploader.
-
 The all-around tool for stalking ❤️
