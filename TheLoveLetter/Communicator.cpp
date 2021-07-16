@@ -24,9 +24,24 @@ void Communicator::AsyncSendGet(
 /// <summary>
 /// Reads a url from the internet synchronously.
 /// </summary>
-std::string Communicator::ReadURL(
-	const std::string url) {
-	httplib::Client cli(url.c_str());
-	auto res = cli.Get("/");
-	return res->body;
+std::string Communicator::ReadURL(void* params) {
+	ReadURLParams* args = (ReadURLParams*)params;
+	std::string result;
+
+	httplib::Client cli(args->url.c_str());
+
+	cli.set_read_timeout(std::chrono::seconds(10));
+	cli.set_connection_timeout(std::chrono::seconds(10));
+	try {
+		if (args->isPost) {
+			result = cli.Post("/", args->data, "")->body;
+		}
+		else {
+			result = cli.Get("/")->body;
+		}
+	}
+	catch (...) {
+		return NULL;
+	}
+	return result;
 }

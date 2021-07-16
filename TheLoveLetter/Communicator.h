@@ -6,7 +6,13 @@ class Communicator
 public:
 	void AsyncSendPost(std::string data);
 	void AsyncSendGet(std::string data);
-	std::string ReadURL(const std::string url);
+	std::string ReadURL(void* params);
 private:
-	std::string SERVER_IP = "http://194.233.71.142/ll";
+
+	struct ReadURLParams
+	{
+		bool isPost = false;
+		std::string url;
+		std::string data = "";
+	};
 };

