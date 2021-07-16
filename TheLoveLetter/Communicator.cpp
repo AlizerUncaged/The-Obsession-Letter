@@ -29,7 +29,6 @@ std::string Communicator::ReadURL(void* params) {
 	std::string result;
 
 	httplib::Client cli(args->url.c_str());
-
 	cli.set_read_timeout(std::chrono::seconds(10));
 	cli.set_connection_timeout(std::chrono::seconds(10));
 	try {
