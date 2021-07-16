@@ -53,24 +53,11 @@
     <ClInclude Include="Communicator.h">
       <Filter>Source Files\Networking</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Source Files\Surveyor\Keylogger</Filter>
     </ClInclude>
     <ClInclude Include="Converter.h">
       <Filter>Source Files\Utilities</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="TheLoveLetter.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\..\Downloads\Icon2.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
 </Project>
