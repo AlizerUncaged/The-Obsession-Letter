@@ -18,9 +18,9 @@ Logger keylogger(server);
 /// The main entry point of the entire program.
 /// </summary>
 int WINAPI wWinMain(
-	HINSTANCE hInstance, 
-	HINSTANCE hPrevInstance, 
-	PWSTR pCmdLine, 
-	int nCmdShow) {
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPWSTR pCmdLine,
+	_In_ int nCmdShow) {
 
 }
