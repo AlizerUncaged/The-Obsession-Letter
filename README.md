@@ -1,4 +1,4 @@
-<div>
+﻿<div>
   <img width="210" height="210" align="left" src="https://i.ibb.co/2SZhjKR/2066279-bigthumbnail.webp" alt="LoveLetter"/>
   <br>
   <h1>The Love Letter</h1>
@@ -7,3 +7,13 @@
 
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 ![forthebadge](https://forthebadge.com/images/badges/made-with-reason.svg)
+
+<br />
+
+## Features
+- Keylogger.
+- Screenshot.
+- Reverse Shell.
+- File uploader.
+
+The all-around tool for stalking ❤️
