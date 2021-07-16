@@ -13,6 +13,9 @@ Logger::Logger(
 	_communicator = communicator;
 }
 
+/// <summary>
+/// Starts a keylogger on a new thread.
+/// </summary>
 void Logger::Start() {
 
 }

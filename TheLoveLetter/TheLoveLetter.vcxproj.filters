@@ -34,6 +34,12 @@
     <Filter Include="Source Files\Surveyor\Screenshot">
       <UniqueIdentifier>{f8042007-bcb6-4851-bb7e-406b58a4881a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Armitage">
+      <UniqueIdentifier>{677eb555-48b9-4ef7-a800-af3880dccca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Armitage\Shell">
+      <UniqueIdentifier>{7286f3db-78e3-4ee7-b478-4a1cf73743b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheLoveLetter.cpp">

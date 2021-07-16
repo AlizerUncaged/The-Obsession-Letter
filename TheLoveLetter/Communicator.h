@@ -10,8 +10,12 @@ public:
 private:
 	struct ReadURLParams
 	{
-		bool isPost = false;
 		std::string url;
+
+		/// <summary>
+		/// If true the request will be POST, if false the reuqest will be GET.
+		/// </summary>
+		bool isPost = false;
 		std::string data = "";
 	};
 };
