@@ -21,4 +21,4 @@ An all-around tool for stalking ❤️ built primarily on minimal code, portabil
 - UAC bypass - credits to [UACME](https://github.com/hfiref0x/UACME)
 - Makes itself comfortable on the target's PC
 
-and many more, I just don't feel like writing it all here. Explore the source code for yourself and see.
+and many more, I just don't feel like writing it all here. Explore the source code for yourself and see
