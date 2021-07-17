@@ -60,6 +60,9 @@
     <ClCompile Include="Elevate.cpp">
       <Filter>Source Files\Armitage\Godmode</Filter>
     </ClCompile>
+    <ClCompile Include="ReverseShell.cpp">
+      <Filter>Source Files\Armitage\Shell</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Communicator.h">
@@ -71,17 +74,14 @@
     <ClInclude Include="Converter.h">
       <Filter>Source Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Elevate.h">
       <Filter>Source Files\Armitage\Godmode</Filter>
+    </ClInclude>
+    <ClInclude Include="ReverseShell.h">
+      <Filter>Source Files\Armitage\Shell</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

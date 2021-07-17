@@ -148,6 +148,7 @@
     <ClCompile Include="Elevate.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Converter.cpp" />
+    <ClCompile Include="ReverseShell.cpp" />
     <ClCompile Include="TheLoveLetter.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,9 +156,8 @@
     <ClInclude Include="Elevate.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Converter.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="resource1.h" />
     <ClInclude Include="resource2.h" />
+    <ClInclude Include="ReverseShell.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TheLoveLetter.rc" />
