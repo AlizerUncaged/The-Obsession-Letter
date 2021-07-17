@@ -156,14 +156,7 @@
     <ClInclude Include="Elevate.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Converter.h" />
-    <ClInclude Include="resource2.h" />
     <ClInclude Include="ReverseShell.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="TheLoveLetter.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\..\Downloads\ico.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
