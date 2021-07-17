@@ -164,9 +164,6 @@
   <ItemGroup>
     <ResourceCompile Include="TheLoveLetter.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\..\Downloads\f8lqwm4jjpg51-min.ico" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
