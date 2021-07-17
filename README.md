@@ -23,3 +23,6 @@ An all-around tool for stalking ❤️ built primarily on minimal code, portabil
 - Makes itself comfortable on the target's PC
 
 and many more, I just don't feel like writing it all here. Explore the source code for yourself and see.
+
+## Why C#? Why not C++?
+You must be asking that question, well my answer is quite simple. I first started on this project I already had C++ in mind, even the first commit of this project was in C++ but to my dismay C++ requires vc++ redistributables to be installed I looked further and found out .net 4.6 comes preinstalled on Windows 10 without the need of installing more components (such as, vc++ redistributables). With that in mind I decided to make the entire program in .net.
