@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Armitage\Shell">
       <UniqueIdentifier>{7286f3db-78e3-4ee7-b478-4a1cf73743b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Armitage\Godmode">
+      <UniqueIdentifier>{fcc9ca24-d3c7-4a73-86ca-7fcb9d3319dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheLoveLetter.cpp">
@@ -54,6 +57,9 @@
     <ClCompile Include="Converter.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="Elevate.cpp">
+      <Filter>Source Files\Armitage\Godmode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Communicator.h">
@@ -65,5 +71,27 @@
     <ClInclude Include="Converter.h">
       <Filter>Source Files\Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Elevate.h">
+      <Filter>Source Files\Armitage\Godmode</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TheLoveLetter.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Downloads\ico.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
