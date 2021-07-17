@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.Armitage.Auto_Elevate
+namespace Client.Armitage.UAC
 {
     public class ICMLuaUtil
     {

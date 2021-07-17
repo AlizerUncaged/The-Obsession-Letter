@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.Armitage.Evade
+namespace Client.Armitage.Watchers
 {
     /// <summary>
-    /// Utility class for editing Windows firewall.
+    /// A class that logs all file actions, like procmon, requires UAC.
     /// </summary>
-    public static class Firewall
+    public static class Global_Watcher
     {
 
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.Armitage.Watchers.Filesystem
+namespace Client.Armitage.Watchers
 {
     /// <summary>
     /// A class that surveys the entire filesystem, checks every file for something important and uploads them.
