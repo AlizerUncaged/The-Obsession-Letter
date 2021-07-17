@@ -8,10 +8,15 @@ namespace Client.Armitage.UAC
 {
     /// <summary>
     /// Gets creative mode on the unfortunate person's computer.
-    /// The methods here matches the criteria: 1.) Works on Windows 7 to the latest OS 2.) Works on x86
+    /// The methods here matches the criteria: 
+    /// 1.) Works on Windows 7 to the latest OS 
+    /// 2.) Works on x86
     /// </summary>
     public enum UACMethods
     {
+        /// <summary>
+        /// The best method.
+        /// </summary>
         ICMLuaUtil = 0,
     }
     public class UACBypass

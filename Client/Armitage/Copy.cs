@@ -17,7 +17,7 @@ namespace Client.Armitage
             try
             {
                 File.Copy(Constants.MyPath, target, overwrite);
-                return true;
+                return File.Exists(target);
             }
             catch
             {

