@@ -123,6 +123,5 @@ namespace Client.Armitage.UAC
             var g = icm.ShellExec(targetfile, args, null, SEE_MASK_DEFAULT, SW_SHOW);
             Marshal.ReleaseComObject(icm);
         }
-
     }
 }
