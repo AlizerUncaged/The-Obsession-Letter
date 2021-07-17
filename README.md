@@ -18,7 +18,7 @@ An all-around tool for stalking ❤️ built primarily on minimal code, portabil
 - A smart event-based screenshot
 - Windows activity logger (like [procmon](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon))
 - **Looting via file upload - faster and less buggier than email**
-- UAC bypass - credits to [UACME](https://github.com/hfiref0x/UACME) using methods 41, 43, 53 and 59
+- UAC bypass - credits to [UACME](https://github.com/hfiref0x/UACME)
 - Makes itself comfortable on the target's PC
 
 and many more, I just don't feel like writing it all here. Explore the source code for yourself and see.
