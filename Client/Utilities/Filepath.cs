@@ -15,5 +15,6 @@ namespace Client.Utilities
                        .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
                        .ToLowerInvariant();
         }
+
     }
 }

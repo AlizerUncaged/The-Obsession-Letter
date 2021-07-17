@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Client.Armitage.UAC
 {
@@ -33,9 +32,9 @@ namespace Client.Armitage.UAC
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                MessageBox.Show(ex.ToString());
+
             }
             return false;
 
