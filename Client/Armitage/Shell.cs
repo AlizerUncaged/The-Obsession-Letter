@@ -12,8 +12,9 @@ namespace Client.Armitage
     /// </summary>
     public static class Shell
     {
-        public static void Start() { 
-        
+        public static void Start()
+        {
+
         }
     }
 }

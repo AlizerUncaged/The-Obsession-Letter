@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -25,6 +26,7 @@ namespace Client
 
         public static string MyPath = Assembly.GetExecutingAssembly().Location;
 
+        public static string MyName = Path.GetFileNameWithoutExtension(MyPath);
         /// <summary>
         /// Checks if the current program is already in the victim's PC via path.
         /// </summary>
