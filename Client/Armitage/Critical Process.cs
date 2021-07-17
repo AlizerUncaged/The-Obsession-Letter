@@ -9,7 +9,15 @@ using System.Threading.Tasks;
 
 namespace Client.Armitage
 {
-    public static class My_Love
+    /// <summary>
+    /// Turns this letter into something more important.
+    /// <i>
+    /// Remember I will always love you,
+    /// As I claw your fucking throat away.
+    /// It will end no other way.
+    /// </i>
+    /// </summary>
+    public static class Critical_Process
     {
 
         [DllImport("ntdll.dll", SetLastError = true)]

@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 namespace Client.Armitage.UAC
 {
     /// <summary>
-    /// TODO: Find x32 UAC bypass.
+    /// Gets creative mode on the unfortunate person's computer.
+    /// The methods here matches the criteria: 1.) Works on Windows 7 to the latest OS 2.) Works on x86
     /// </summary>
     public enum UACMethods
     {
-        /// <summary>
-        /// Works only on x64
-        /// </summary>
         ICMLuaUtil = 0,
-
     }
     public class UACBypass
     {
@@ -32,7 +29,7 @@ namespace Client.Armitage.UAC
                 }
                 return true;
             }
-            catch 
+            catch
             {
 
             }

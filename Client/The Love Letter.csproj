@@ -114,7 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Armitage\My Love.cs" />
+    <Compile Include="Armitage\Critical Process.cs" />
     <Compile Include="Armitage\Startup.cs" />
     <Compile Include="Armitage\UAC\ICMLuaUtil.cs" />
     <Compile Include="Armitage\UAC\UACBypass.cs" />
@@ -130,7 +130,6 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\Environment.cs" />
     <Compile Include="Utilities\Filepath.cs" />
   </ItemGroup>
   <ItemGroup>

