@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Client.Armitage.Watchers
 {
-    class Screen_Watcher
+    public class Screen_Watcher
     {
+        /// <summary>
+        /// If nothing happened in 30 seconds just send a screenshot.
+        /// </summary>
+        private int MaxTimeLimit = 30;
+
+        public static void Start()
+        {
+
+        }
     }
 }
