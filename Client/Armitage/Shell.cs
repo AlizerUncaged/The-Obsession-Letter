@@ -8,16 +8,12 @@ using System.Threading.Tasks;
 namespace Client.Armitage
 {
     /// <summary>
-    /// A class that opens UDP port bind to CMD.
+    /// A class that spawns a meterpreter shell on a separate process.
     /// </summary>
-    public class Shell
+    public static class Shell
     {
-        private UdpClient _server_connect;
-
         public static void Start() { 
         
         }
-
-
     }
 }

