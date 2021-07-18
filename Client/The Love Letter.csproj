@@ -158,7 +158,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Icon.ico" />
-    <Content Include="Resources\Letters\DiscordMessage.txt" />
     <EmbeddedResource Include="Resources\ShellCode.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

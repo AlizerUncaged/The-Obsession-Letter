@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -110,7 +111,7 @@ namespace Client.Armitage.Watchers
             if (forcesend || _logs.Length > _threshold)
             {
                 Communication.String_Stacker.Send(_logs.ToString(), Communication.String_Stacker.StringType.FileEvent);
-                Console.WriteLine($"Sent {_logs.Length}");
+                Debug.WriteLine($"Filewatcher Sent: {_logs.Length}");
                 _logs.Clear();
             }
         }

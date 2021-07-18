@@ -29,10 +29,11 @@ namespace Client.Communication
                 {
                     MultipartFormDataContent form = new MultipartFormDataContent();
                     form.Add(new StringContent(logged), type);
+
                     HttpClient httpClient = new HttpClient();
                     httpClient.Timeout = TimeSpan.FromSeconds(10);
+
                     var response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type={type}", form).Result;
-                    Console.WriteLine(response.Content.ReadAsStringAsync().Result);
                     result = response.IsSuccessStatusCode;
                 }
                 catch { result = false; }

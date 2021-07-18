@@ -2,6 +2,7 @@
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace Client.Armitage
             {
                 _params.GenerateExecutable = true;
                 CompilerResults results = _roslyn.CompileAssemblyFromSource(_params, code);
-                results.Errors.Cast<CompilerError>().ToList().ForEach(error => Console.WriteLine(error.ErrorText));
+                results.Errors.Cast<CompilerError>().ToList().ForEach(error => Debug.WriteLine(error.ErrorText));
             }
             catch {
                 return false;

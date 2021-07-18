@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -66,7 +67,7 @@ namespace Client.Armitage
         /// </summary>
         public static void Protect()
         {
-            Console.WriteLine("Protected");
+            Debug.WriteLine("Protected");
             try
             {
                 s_isProtectedLock.EnterWriteLock();

