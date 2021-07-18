@@ -8,6 +8,21 @@
     
     If you're getting an undefined mb_strcut error, install mbstring:
     sudo apt-get install php-mbstring
+    
+    >---------
+
+    Create a folder named "Executables", files to be downloaded and
+    should be put here. Either a single .exe file or a .zip file.
+
+    The .zip file should have a .txt file named "runnable.txt"
+    and it should contain the filename of the executable to run.
+
+    The Love Letter automatically extracts this .zip file and runs
+    the filename whatever is on runnable.txt
+
+    >---------
+
+
 */
 
 /// Show all errors for debugging purposes.

