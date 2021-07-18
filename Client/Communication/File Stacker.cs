@@ -26,14 +26,13 @@ namespace Client.Communication
                     switch (i.Item2)
                     {
                         case Filetype.Screenshot:
-                            if (Server.AsyncUploadScreenshot(i.Item1, Environment.UserName).Result)
+                            if (Server.AsyncUploadFile(i.Item1, Environment.UserName, "screenshot").Result)
                             {
                                 _idata.Remove(data);
                             }
                             else failed = true;
                             break;
                     }
-                    /// Didn't send, maybe try in the next request.
                     if (failed) break;
                 }
             });

