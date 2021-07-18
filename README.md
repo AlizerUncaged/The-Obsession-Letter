@@ -11,7 +11,8 @@
 <br/>
 
 ## What is The Love Letter?
-An all-around tool for stalking ❤️ built primarily on minimal code, portability and a single executable (and the least includes as possible)
+An all-around tool for afk stalking ❤️ built primarily on minimal code, portability and a single executable (and the least includes as possible)
+
 **Server-sided PHP file included**
 
 ## What do I offer?
