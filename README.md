@@ -22,7 +22,6 @@ An all-around tool for stalking ❤️ built primarily on minimal code, portabil
 - UAC bypass - credits to [UACME](https://github.com/hfiref0x/UACME)
 - Turns itself into a System application
 - Discord token stealer
-> If enabled server-sided, the affected account will spread the Letter
 - Compiles code at runtime (snippets downloaded from server)
 
 and many more, I just don't feel like writing it all here. Explore the source code for yourself and see

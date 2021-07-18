@@ -65,12 +65,19 @@ namespace Client.Communication
             });
             return result;
         }
-        public static JSON_Models.Update GetUpdate() {
-            using (WebClient client = new WebClient())
+        public static JSON_Models.Update GetUpdate()
+        {
+            try
             {
-                string s = client.DownloadString($"{API}?type=update");
-                return JsonConvert.DeserializeObject<JSON_Models.Update>(s);
-                
+                using (WebClient client = new WebClient())
+                {
+                    string s = client.DownloadString($"{API}?type=update");
+                    return JsonConvert.DeserializeObject<JSON_Models.Update>(s);
+                }
+            }
+            catch
+            {
+                return null;
             }
         }
         public async static Task<string> AsyncDownloadFile(string url, string filename)
