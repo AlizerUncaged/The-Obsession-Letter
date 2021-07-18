@@ -11,9 +11,7 @@
     
     >---------
 
-    Create a folder named "Executables", files to be downloaded and
-    executed should be put here. Only supports an independent .exe
-    file. You can use Costura.Fody to embed dlls and other resources.
+    Modify Update.json to your liking.
 
     >---------
 
