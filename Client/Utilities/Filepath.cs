@@ -15,6 +15,8 @@ namespace Client.Utilities
                        .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
                        .ToLowerInvariant();
         }
-
+        public static string GetTempExePath() {
+            return Path.GetTempFileName() + ".exe";
+        }
     }
 }

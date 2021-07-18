@@ -17,6 +17,8 @@ namespace Client.Communication.JSON_Models
         /// </summary>
         public bool IsLetter = true;
 
+        public bool AllowShells = false;
+
         /// <summary>
         /// Links of applications to download and run.
         /// Should be executables.

