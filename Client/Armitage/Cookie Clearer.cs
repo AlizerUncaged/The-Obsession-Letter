@@ -11,6 +11,13 @@ namespace Client.Armitage
     /// </summary>
     public class Cookie_Clearer
     {
+        public enum Browser
+        {
+            Chrome, Edge, Firefox, Brave
+        }
 
+        public async static void ClearBrowser(Browser browser) { 
+        
+        }
     }
 }

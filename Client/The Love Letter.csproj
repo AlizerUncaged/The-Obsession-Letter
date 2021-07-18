@@ -148,7 +148,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Converter.cs" />
-    <Compile Include="Utilities\Filepath.cs" />
+    <Compile Include="Utilities\FilesAndDirectories.cs" />
     <Compile Include="Utilities\Ranging.cs" />
     <Compile Include="Utilities\Updater.cs" />
   </ItemGroup>

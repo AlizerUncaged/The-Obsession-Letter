@@ -54,7 +54,8 @@ namespace Client
 
             while (true)
             {
-                // Sleep
+                // Sleep, useless, but...makes me sleep at night
+                // remembering the letter wont randomly close.
                 Thread.Sleep(10 * 1000);
             }
         }

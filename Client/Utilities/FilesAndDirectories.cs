@@ -7,8 +7,21 @@ using System.Threading.Tasks;
 
 namespace Client.Utilities
 {
-    public static class Filepath
+    public static class FilesAndDirectories
     {
+        public static void DeleteDirectory(string path)
+        {
+            DirectoryInfo di = new DirectoryInfo(path);
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+        }
         public static string NormalizePath(string path)
         {
             return Path.GetFullPath(new Uri(path).LocalPath)

