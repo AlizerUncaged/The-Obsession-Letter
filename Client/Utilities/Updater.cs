@@ -34,6 +34,10 @@ namespace Client.Utilities
             await Task.Run(() =>
             {   // todo
                 var update_data = Communication.Server.GetUpdate();
+
+                // check if the letter is supposed to kill itself.
+                if (update_data.KillSelf) Environment.Exit(69);
+
                 if (update_data!= null && FetchedVersion != update_data.UpdateVersion)
                 {
                     // its a new update, initialize it

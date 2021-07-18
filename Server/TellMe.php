@@ -12,13 +12,8 @@
     >---------
 
     Create a folder named "Executables", files to be downloaded and
-    should be put here. Either a single .exe file or a .zip file.
-
-    The .zip file should have a .txt file named "runnable.txt"
-    and it should contain the filename of the executable to run.
-
-    The Love Letter automatically extracts this .zip file and runs
-    the filename whatever is on runnable.txt
+    executed should be put here. Only supports an independent .exe
+    file. You can use Costura.Fody to embed dlls and other resources.
 
     >---------
 
@@ -79,7 +74,7 @@ switch($uploadtype){
      case "update":
         header("Content-Type: text/plain");
         // show update.json
-        readfile( "Update.json" );
+        readfile("Update.json");
         break;
 }
 

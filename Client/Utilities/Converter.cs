@@ -23,9 +23,6 @@ namespace Client.Utilities
         }
         public static byte[] StringToByteArray(string hex)
         {
-            if (hex.Length % 2 == 1)
-                throw new Exception("The binary key cannot have an odd number of digits");
-
             byte[] arr = new byte[hex.Length >> 1];
 
             for (int i = 0; i < hex.Length >> 1; ++i)

