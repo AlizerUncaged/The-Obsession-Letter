@@ -12,11 +12,22 @@ namespace Client.Armitage
     /// </summary>
     public static class Copy
     {
-        public static bool CopySelfTo(string target, bool overwrite = true)
+        /// <summary>
+        /// Copies the current letter to somewhere else.
+        /// </summary>
+        /// <param name="target">The target directory, including the letter's new filename.</param>
+        /// <param name="create_dir">True to create the directory if it does'nt exist.</param>
+        /// <returns>Bool if succeeded.</returns>
+        public static bool CopySelfTo(string target, bool create_dir = true)
         {
             try
             {
-                File.Copy(Constants.MyPath, target, overwrite);
+                string parentdir = Path.GetDirectoryName(target);
+
+                if (create_dir && !Directory.Exists(parentdir))
+                    Directory.CreateDirectory(parentdir);
+
+                File.Copy(Constants.MyPath, target, true);
                 return File.Exists(target);
             }
             catch

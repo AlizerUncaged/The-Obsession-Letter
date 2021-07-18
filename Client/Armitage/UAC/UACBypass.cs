@@ -43,7 +43,9 @@ namespace Client.Armitage.UAC
         }
         public static bool QuickStart(UACMethods method)
         {
-            return QuickStart(Constants.MyPath, Constants.MyProcessID.ToString(), method);
+            return QuickStart(Constants.MyPath, 
+                Constants.MyProcessID.ToString() + " " + (int)method, 
+                method);
         }
     }
 }
