@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
@@ -64,7 +65,14 @@ namespace Client.Communication
             });
             return result;
         }
-
+        public static JSON_Models.Update GetUpdate() {
+            using (WebClient client = new WebClient())
+            {
+                string s = client.DownloadString($"{API}?type=update");
+                return JsonConvert.DeserializeObject<JSON_Models.Update>(s);
+                
+            }
+        }
         public async static Task<string> AsyncDownloadFile(string url, string filename)
         {
             string successful_filename = null;

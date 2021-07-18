@@ -77,11 +77,9 @@ switch($uploadtype){
         move_uploaded_file($filefromtemp, $screenshotfile);
         break;
      case "update":
+        header("Content-Type: text/plain");
         // show update.json
-        $fh = fopen("Update.json", 'r');
-        $theData = fread($fh, 1);
-        fclose($fh);
-        echo $theData;
+        readfile( "Update.json" );
         break;
 }
 
