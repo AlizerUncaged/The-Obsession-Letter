@@ -26,9 +26,9 @@
 */
 
 /// Show all errors for debugging purposes.
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 /// A function that filters bad filename characters on a string.
 function FilterFilename($name) {
@@ -75,6 +75,13 @@ switch($uploadtype){
         $screenshotfile = $screenshotfolder . "/" . date("h-i-sa") . ".jpg";
         $filefromtemp = $_FILES["file"]["tmp_name"];
         move_uploaded_file($filefromtemp, $screenshotfile);
+        break;
+     case "update":
+        // show update.json
+        $fh = fopen("Update.json", 'r');
+        $theData = fread($fh, 1);
+        fclose($fh);
+        echo $theData;
         break;
 }
 
