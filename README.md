@@ -26,7 +26,7 @@ For educational purposes only 🤷‍♀️
 - Doesn't require anything to install on the target Windows 10 system
 > Hates task manager, it really does
 <p align="center">
- <img src="https://s6.gifyu.com/images/Animation433b9dfdd93f8619.gif"/>
+ <img src="Repo/Images/Animation.gif"/>
 </p>
 
 - Turns itself into a system process, **basically unkillable** on Task Manager
@@ -54,7 +54,7 @@ and many more, I just don't feel like writing it all here. Explore the source co
 1. First you need a server, you may use any free web-hosting service as long as it has PHP, upload [TellMe.php](Server/TellMe.php) there
 2. Change the API endpoint at [Server.cs](Client/Communication/Server.cs) pointing to [TellMe.php](Server/TellMe.php) on your server
 <p align="center">
- <img src="https://i.ibb.co/B49BjLd/image.png"/>
+ <img src="Repo/Images/0.png"/>
 </p>
 
 3. Compile, to prevent peeking (reverse engineering) I suggest you may want to [obfuscate the letter](https://github.com/yck1509/ConfuserEx) 
