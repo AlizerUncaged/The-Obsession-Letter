@@ -12,7 +12,7 @@ namespace Client.Armitage.UAC
     public enum UACMethods
     {
         /// <summary>
-        /// Only works on 64-bit...
+        /// The best bypass :)
         /// </summary>
         ICMLuaUtil = 0,
 
