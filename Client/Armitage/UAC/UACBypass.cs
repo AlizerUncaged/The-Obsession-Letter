@@ -27,7 +27,6 @@ namespace Client.Armitage.UAC
                 {
                     case UACMethods.ICMLuaUtil:
                         return ucmCMLuaUtilShellExecMethod.BypassUAC(execpath, args);
-                        break;
                 }
             }
             catch
