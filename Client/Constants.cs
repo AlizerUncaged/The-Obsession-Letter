@@ -16,6 +16,7 @@ namespace Client
     public static class Constants
     {
         public static string Title = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
+
         public static string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
         public static string MMCFolder = System.IO.Path.GetFullPath(AppDataFolder + @"\Microsoft\MMC");

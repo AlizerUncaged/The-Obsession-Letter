@@ -25,4 +25,6 @@ An all-around tool for afk stalking ❤️ built primarily on minimal code, port
 - Discord token stealer
 - Compiles code at runtime (snippets downloaded from server)
 
-and many more, I just don't feel like writing it all here. Explore the source code for yourself and see
+and many more, I just don't feel like writing it all here. Explore the source code for yourself and see.
+
+For educational purposes only 🤷‍♀️

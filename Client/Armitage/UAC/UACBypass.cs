@@ -16,6 +16,7 @@ namespace Client.Armitage.UAC
     {
         /// <summary>
         /// The best method.
+        /// And the only one you'll ever need.
         /// </summary>
         ICMLuaUtil = 0,
     }

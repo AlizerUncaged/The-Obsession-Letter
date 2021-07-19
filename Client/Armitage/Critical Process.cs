@@ -82,7 +82,7 @@ namespace Client.Armitage
                 /// Protect Shutdown so it won't be a bluescreen.
                 SystemEvents.SessionEnding += UserLoggingOut;
                 SystemEvents.SessionEnded += UserLoggingOut;
-                SystemEvents.SessionSwitch += UserLoggingOut;
+                SystemEvents.SessionSwitch += UserChanged;
             }
             finally
             {
@@ -90,6 +90,17 @@ namespace Client.Armitage
             }
         }
 
+        /// <summary>
+        /// Gets called whenever the user is changed.
+        /// </summary>
+        private static void UserChanged(object sender, SessionSwitchEventArgs e)
+        {
+            Protect();
+        }
+
+        /// <summary>
+        /// Gets called when the user logged out.
+        /// </summary>
         private static void UserLoggingOut(object sender, object e)
         {
             Unprotect();
