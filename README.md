@@ -56,6 +56,7 @@ and many more, I just don't feel like writing it all here. Explore the source co
 <p align="center">
  <img src="https://i.ibb.co/B49BjLd/image.png"/>
 </p>
+
 1. Compile, to prevent peeking (reverse engineering) I suggest you may want to [obfuscate the letter](https://github.com/yck1509/ConfuserEx) 
 1. Now all you need is to gain senpai's trust and run the program on his laptop, goodluck!
 
