@@ -34,3 +34,7 @@ and many more, I just don't feel like writing it all here. Explore the source co
 1. Now all you need is to gain senpai's trust and run the program on his laptop
 <br/>
 For educational purposes only 🤷‍♀️
+
+# License
+The Love Letter is licensed under the MIT License
+<img height="50" align="right" src="https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg" alt="LoveLetter"/>
