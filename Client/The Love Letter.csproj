@@ -120,7 +120,7 @@
   <ItemGroup>
     <Compile Include="Armitage\Backdoor.cs" />
     <Compile Include="Armitage\Compiler.cs" />
-    <Compile Include="Armitage\Cookie Clearer.cs" />
+    <Compile Include="Armitage\Cookies\Cookie Clearer.cs" />
     <Compile Include="Armitage\Cookies\DiscordToken.cs" />
     <Compile Include="Armitage\Critical Process.cs" />
     <Compile Include="Armitage\Startup.cs" />
