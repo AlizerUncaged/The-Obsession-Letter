@@ -28,8 +28,38 @@ namespace Client.Utilities
                        .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
                        .ToLowerInvariant();
         }
-        public static string GetTempExePath() {
+        public static string GetTempExePath()
+        {
             return Path.GetTempFileName() + ".exe";
+        }
+
+        public static string GetRandomSystem32Executable()
+        {
+            return GetRandomFileFromDir(Environment.SystemDirectory, new string[] { ".exe" });
+        }
+        /// <summary>
+        /// Gets a random filename from a directory, not recursive
+        /// </summary>
+        /// <param name="dir">The directory name</param>
+        /// <param name="extensions">Allowed extensions</param>
+        public static string GetRandomFileFromDir(string dir, string[] extensions)
+        {
+            try
+            {
+                var di = new DirectoryInfo(dir);
+
+                // hopefully this wont crash considering the number of
+                // files on the directoru
+                var rgFiles = di.GetFiles("*.*")
+                         .Where(f => extensions.Contains(f.Extension
+                                                           .ToLower())).ToArray();
+
+
+                return Path.GetFileName(rgFiles[Constants.Rand.Next(rgFiles.Length)].FullName);
+
+            }
+            catch { }
+            return null;
         }
     }
 }

