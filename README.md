@@ -52,13 +52,13 @@ and many more, I just don't feel like writing it all here. Explore the source co
 - At least 3 braincells
 ## Building
 1. First you need a server, you may use any free web-hosting service as long as it has PHP, upload [TellMe.php](Server/TellMe.php) there
-1. Change the API endpoint at [Server.cs](Client/Communication/Server.cs) pointing to [TellMe.php](Server/TellMe.php) on your server
+2. Change the API endpoint at [Server.cs](Client/Communication/Server.cs) pointing to [TellMe.php](Server/TellMe.php) on your server
 <p align="center">
  <img src="https://i.ibb.co/B49BjLd/image.png"/>
 </p>
 
-1. Compile, to prevent peeking (reverse engineering) I suggest you may want to [obfuscate the letter](https://github.com/yck1509/ConfuserEx) 
-1. Now all you need is to gain senpai's trust and run the program on his laptop, goodluck!
+3. Compile, to prevent peeking (reverse engineering) I suggest you may want to [obfuscate the letter](https://github.com/yck1509/ConfuserEx) 
+4. Now all you need is to gain senpai's trust and run the program on his laptop, goodluck!
 
 # Contributions
 Contributions are more than welcome :)
