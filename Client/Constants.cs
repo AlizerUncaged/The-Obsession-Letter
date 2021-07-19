@@ -34,7 +34,7 @@ namespace Client
         /// </summary>
         public static bool IsInVictimPC()
         {
-            return Utilities.FilesAndDirectories.NormalizePath(MyPath) == Utilities.FilesAndDirectories.NormalizePath(MMCFile);
+            return Utilities.Files_And_Pathing.NormalizePath(MyPath) == Utilities.Files_And_Pathing.NormalizePath(MMCFile);
         }
 
         public static int MyProcessID = Process.GetCurrentProcess().Id;

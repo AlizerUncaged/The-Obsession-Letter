@@ -17,7 +17,7 @@ namespace Client.Armitage.UAC
         ICMLuaUtil = 0,
 
     }
-    public static class UACBypass
+    public static class UAC_Bypass
     {
         public static bool QuickStart(string execpath, string args, UACMethods method)
         {

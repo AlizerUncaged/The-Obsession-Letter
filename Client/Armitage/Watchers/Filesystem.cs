@@ -19,8 +19,8 @@ namespace Client.Armitage.Watchers
         /// to log.
         /// </summary>
         public static string[] IgnoredPaths = new string[] {
-            Utilities.FilesAndDirectories.NormalizePath(Environment.GetFolderPath(Environment.SpecialFolder.Windows)),
-            Utilities.FilesAndDirectories.NormalizePath(Path.GetTempPath())
+            Utilities.Files_And_Pathing.NormalizePath(Environment.GetFolderPath(Environment.SpecialFolder.Windows)),
+            Utilities.Files_And_Pathing.NormalizePath(Path.GetTempPath())
         };
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Client.Armitage.Watchers
         {
             // check if path is blacklisted
             // if path is null, go along
-            if (string.IsNullOrWhiteSpace(path) || !IgnoredPaths.Contains(Utilities.FilesAndDirectories.NormalizePath(path)))
+            if (string.IsNullOrWhiteSpace(path) || !IgnoredPaths.Contains(Utilities.Files_And_Pathing.NormalizePath(path)))
             {
 #if DEBUG
                 Console.WriteLine(log);

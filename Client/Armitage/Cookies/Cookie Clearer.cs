@@ -16,8 +16,8 @@ namespace Client.Armitage.Cookies
             Chrome, Edge, Firefox, Brave
         }
 
-        public async static void ClearBrowser(Browser browser) { 
-        
+        public async static void ClearBrowser(Browser browser) {
+            await Task.Run(() => { });
         }
     }
 }
