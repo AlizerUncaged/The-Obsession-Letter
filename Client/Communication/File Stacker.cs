@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Client.Communication
 {
+    /// <summary>
+    /// A class that stacks file requests to the server incase it didn't get sent.
+    /// </summary>
     public static class File_Stacker
     {
         public enum Filetype

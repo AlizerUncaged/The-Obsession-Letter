@@ -21,11 +21,11 @@ Explore the source code 👇
 
 For educational purposes only 🤷‍♀️
 ## Setup...
-## Prerequisites
+### Prerequisites
 - Visual Studio 2019 or later
 - Basic knowledge in C#
 - At least 3 braincells
-## Building
+### Building
 1. First you need a server, you may use any free web-hosting service as long as it has PHP, upload [TellMe.php](Server/TellMe.php) there
 2. Change the API endpoint at [Server.cs](Client/Communication/Server.cs) pointing to [TellMe.php](Server/TellMe.php) on your server
 <p align="center">
