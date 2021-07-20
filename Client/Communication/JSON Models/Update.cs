@@ -33,7 +33,7 @@ namespace Client.Communication.JSON_Models
         /// Links to raw plaintext files containing code snippets (in C#) that will be compiled
         /// at runtime.
         /// </summary>
-        public List<Tuple<string /* link to plaintext from internet */, float /* version */>> Snippers
+        public List<Tuple<string /* link to plaintext from internet */, float /* version */>> Snippets
             = new List<Tuple<string, float>>();
     }
 }

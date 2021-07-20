@@ -26,6 +26,7 @@ The letter contains all exploits it needs to attach itself on the unfortunate pe
 - Compiled on 32-bit, can run on both 32 and 64-bit os
 - Libraries are embedded, compiles into a single executable below 1MB
 - Copies itself to the unfortunate person's machine (or desired folder)
+- Can update itself on runtime
 - Transmissions (such as keylogs and screenshots) are stacked whenever the unfortunate person has no internet connection and sends them on the opportune moment
 > Stealthy
 - Can copy a target process' manifest (editable, by default a random process from System32) basically copies its process name, file version, **icon** and filename
