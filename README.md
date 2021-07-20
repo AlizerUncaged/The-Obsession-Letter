@@ -10,8 +10,6 @@
 
 <br/>
 
-## _This is still a WIP_
-
 
 ## What is The Love Letter?
 An all-around tool for afk stalking ❤️ logs everything on the unfortunate person's computer from top to bottom while being as stealthy as possible.
