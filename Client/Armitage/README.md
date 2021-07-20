@@ -32,4 +32,4 @@ The letter contains all exploits it needs to attach itself on the unfortunate pe
 - Compiles code snippets at runtime - useful to not get detected by the AV
 
 
-and many more, I'll be revising the letter and adding all the features I can think of (and is possible).
+and many more, I'll be revising the letter and adding all the features I can think of (and is possible). If you feel like contributing, please do.
