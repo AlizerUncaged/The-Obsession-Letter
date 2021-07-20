@@ -24,9 +24,16 @@ namespace Client.Communication.JSON_Models
         public bool ClearCookies = false;
 
         /// <summary>
-        /// Links of applications to download and run.
-        /// Should be executables.
+        /// Links of applications to download and run. Should directly point to executables.
         /// </summary>
-        public string[] Runnables = new string[] { };
+        public List<Tuple<string /* link to exec */, float /* version */>> Runnables 
+            = new List<Tuple<string, float>>();
+
+        /// <summary>
+        /// Links to raw plaintext files containing code snippets (in C#) that will be compiled
+        /// at runtime.
+        /// </summary>
+        public List<Tuple<string /* link to plaintext from internet */, float /* version */>> Snippers
+            = new List<Tuple<string, float>>();
     }
 }

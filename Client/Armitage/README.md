@@ -13,6 +13,7 @@ The letter contains all exploits it needs to attach itself on the unfortunate pe
 - UAC bypass, credits to [UACME](https://github.com/hfiref0x/UACME) - get admin access without the annoying UAC confirmation
 - Discord token stealer (sounds cool so decided to add it here)
 - Doesn't require anything to install on the target Windows 10 system
+- Can decompile and recompile itself every startup (I don't see any use for this but it does look pretty cool)
 > Hates task manager, it really does
 <p align="center">
  <img src="../../Repo/Images/Animation.gif"/>

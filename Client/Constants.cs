@@ -15,6 +15,13 @@ namespace Client
     /// </summary>
     public static class Constants
     {
+
+        //----------- Editable
+
+        public static bool RecompileSelfEveryStart = false;
+
+        //-----------
+
         public static Random Rand = new Random(DateTime.Now.Second);
 
         public static string Title = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
