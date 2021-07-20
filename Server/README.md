@@ -1,5 +1,5 @@
 <div>
-  <img width="220" align="right" src="../Repo/Images/2.gif" alt="LoveLetter"/>
+  <img width="150" align="right" src="../Repo/Images/2.gif" alt="LoveLetter"/>
   <br>
   <h1>⚙️ Configuration</h1>
   <p>Update.json is being fetched by the client to check for any server commands. You can update it to your liking.</p>
@@ -51,7 +51,7 @@ If true, it will clear all cookies and cache of ~~supported~~ popular browsers.
 
 > - Runnables ```runnables```
 
-Contains direct links and versions of executables to be downloaded and executed. Whenever an executable is updated please increment ```item2``` (it's named that way due to how Tuples behave in C#). Ex.
+Contains direct links and versions of executables to be downloaded and executed. Whenever an executable is updated please increment ```item2``` (it's named that way due to how Tuples behave in C#) doing so will trigger the letter to redownload the executable, else ignored. Ex.
 
 ```json
   "runnables": [
