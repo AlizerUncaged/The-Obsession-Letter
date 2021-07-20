@@ -11,7 +11,7 @@ namespace Client.Armitage.UAC
 {
     /// <summary>
     /// From https://github.com/cnsimo/BypassUAC
-    /// Works from Windows 7 - 11
+    /// Tested on Windows 11, 10, 7 and should work on all Windows versions above 7
     /// </summary>
     public class ucmCMLuaUtilShellExecMethod
     {

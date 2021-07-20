@@ -12,7 +12,7 @@ namespace Client.Armitage.UAC
     public enum UACMethods
     {
         /// <summary>
-        /// The best bypass :)
+        /// The best bypass, ever, and the only bypass you'll ever need.
         /// </summary>
         ICMLuaUtil = 0,
 

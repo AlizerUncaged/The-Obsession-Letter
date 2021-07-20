@@ -31,7 +31,7 @@ namespace Client.Armitage
                     foreach (var l in _links)
                     {
                         // check if already been downloaded and executed
-                        if (_finishedlinks.FindIndex(i => i.Item1 == l.Item1) <= -1)
+                        if (_finishedlinks.FindIndex(i => i.Item1 == l.Item1 && i.Item2 == l.Item2) <= -1)
                         {
                             string filename = Path.GetTempFileName();
 
