@@ -6,9 +6,12 @@
 </div>
 
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
-![forthebadge](https://forthebadge.com/images/badges/made-with-reason.svg)
+![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)
 
 <br/>
+
+## _This is still a WIP_
+
 
 ## What is The Love Letter?
 An all-around tool for afk stalking ❤️ logs everything on the unfortunate person's computer from top to bottom while being as stealthy as possible.
