@@ -15,7 +15,7 @@
 An all-around tool for afk stalking ❤️ logs everything on the unfortunate person's computer from top to bottom while being as stealthy as possible.
 
 Explore the source code 👇
-> [**Server-sided PHP file included**](Server/TellMe.php)
+> [**Server-sided Code**](Server/)
 
 > [**The Letter's Contents (Features)**](Client/Armitage/README.md)
 
