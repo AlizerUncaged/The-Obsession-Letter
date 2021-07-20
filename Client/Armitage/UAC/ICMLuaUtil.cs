@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Client.Armitage.UAC
 {
     /// <summary>
-    /// From https://github.com/hfiref0x/UACME
+    /// From https://github.com/cnsimo/BypassUAC
     /// Works from Windows 7 - 11
     /// </summary>
     public class ucmCMLuaUtilShellExecMethod

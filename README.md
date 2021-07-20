@@ -41,3 +41,10 @@ Contributions are more than welcome :) I'd be more than happy if you star this r
 # License
 The Love Letter is licensed under the MIT License
 <img height="50" align="right" src="https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg" alt="LoveLetter"/>
+# Credits
+Projects I ~~stole code from~~ referenced
+
+- [UACME](https://github.com/hfiref0x/UACME)
+- [Discord Token Grabber](https://github.com/wodxgod/Discord-Token-Grabber)
+- [Critical Process](https://github.com/CnAoKip/CriticalProcess)
+- [WMI Code Creator](https://www.microsoft.com/en-ph/download/details.aspx?id=8572)

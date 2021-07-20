@@ -10,7 +10,7 @@ The letter contains all exploits it needs to attach itself on the unfortunate pe
 - A smart interval and event-based screenshot
 - Windows activity logger (like [procmon](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon))
 - **Looting via file upload - faster and less buggier than email**
-- UAC bypass, credits to [UACME](https://github.com/hfiref0x/UACME) - get admin access without the annoying UAC confirmation
+- UAC bypass, credits to - get admin access without the annoying UAC confirmation
 - Discord token stealer (sounds cool so decided to add it here)
 - Doesn't require anything to install on the target Windows 10 system
 - Can decompile and recompile itself every startup (I don't see any use for this but it does look pretty cool)

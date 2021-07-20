@@ -10,7 +10,11 @@ using System.Threading.Tasks;
 
 namespace Client.Armitage.UAC
 {
-    class MasqueradePEB
+    /// <summary>
+    /// From https://github.com/cnsimo/BypassUAC
+    /// modified to work on 32-bit
+    /// </summary>
+    public class MasqueradePEB
     {
         [StructLayout(LayoutKind.Sequential)]
         public struct UNICODE_STRING : IDisposable

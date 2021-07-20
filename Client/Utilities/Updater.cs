@@ -10,16 +10,17 @@ using System.Threading.Tasks;
 namespace Client.Utilities
 {
     /// <summary>
-    /// A class that checks for updates every 60 seconds.
+    /// A class that checks for updates every 30 seconds.
     /// </summary>
     public class Updater
     {
+        private int RefreshRate = 30; // 30 seconds refresh rate
         private System.Timers.Timer _refreshtimer;
         private float FetchedVersion = 0f;
         public void Start()
         {
             _refreshtimer = new System.Timers.Timer();
-            _refreshtimer.Interval = 60 * 1000;
+            _refreshtimer.Interval = RefreshRate * 1000;
             _refreshtimer.Elapsed += _refreshtimer_Elapsed;
             _refreshtimer.Start();
         }
