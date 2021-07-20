@@ -22,7 +22,7 @@ namespace Client.Utilities
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
 
-        private static string _passphrase = "i love senpai ";
+        private static string _passphrase = "i love senpai";
         /// <summary>
         /// Obfuscates a string
         /// </summary>

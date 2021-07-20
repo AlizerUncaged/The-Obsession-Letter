@@ -12,10 +12,10 @@ namespace Client
 {
     class Program
     {
+        internal static int UACMethod = 0;
         /// <summary>
         /// Main entry point.
         /// </summary>
-        internal static int UACMethod = 0;
         static void Main(string[] args)
         {
             ArgsParser(args);

