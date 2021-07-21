@@ -17,7 +17,7 @@ namespace Client.Communication
         /// <summary>
         /// The server's endpoint.
         /// </summary>
-        private static string API = "http://194.233.71.142/ll/TellMe.php";
+        private static string API = "http://link-to-your-TellMe-dot-php";
 
         public async static Task<bool> AsyncSendString(string logged, string username, string type)
         {
