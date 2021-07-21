@@ -9,10 +9,22 @@
 ## The Reverse Shell 🐚
 The Love Letter [when enabled] spawns a reverse shell that opens a TCP port and listens for incoming cmd.exe commands from the server. The controller is written on .NET 5.0 and can run on any supported operating system 🖥️
 
-## 🤖 We can speak Discord
-The controller can be binded with a Discord bot, all you need is pass the token on the ```config.json``` file and the Discord bot will use Discord chat as shell, for multiple clients all you have to do is prefix the command with the index of the client, ex: ```0 shutdown /s```, the bot will be able to print the client index and their username and PC info every new instance
+# Mediums
+The letter can be controlled by many mediums, all of which requires to run the console first.
 
-## ⚙️ Configuration ```config.json```
+## - 🐱‍💻 Console
+The console program itself is the main controller for the shells and contains everything you need for managing the bots.
+
+## - 🤖 Discord
+The controller can be binded with a Discord bot, all you need is pass the token on the ```config.json``` file and the Discord bot will use Discord chat as shell, for multiple clients all you have to do is prefix the command with the index of the client, ex: ```0 shutdown /s```, the bot will be able to print the client index and their username and PC info every new instance.
+
+For helpm just do ```l!help```.
+
+## - ~~🌐 Panel~~
+~~I'm not sure if I'm gonna add this, that would be a lot of work.~~
+
+
+# ⚙️ Configuration ```config.json```
 > - Interface ```Interface```
 
 Which IP to listen to, for public IP you may use 0.0.0.0 or localhost.
