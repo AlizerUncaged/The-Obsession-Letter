@@ -18,6 +18,8 @@ Which IP to listen to, for public IP you may use 0.0.0.0 or localhost.
 
 The port where connection request from the letter will go to, default is 30000. This is the same port the letter listens for commands.
 
+The interface and port can be changed during runtime on the [server's config.json](../Server/)
+
 ## ❓ FAQs
 ### Why not use a meterpreter shell?
 > Metasploit's shells get detected due to them being widely used.

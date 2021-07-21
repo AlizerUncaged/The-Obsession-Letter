@@ -43,9 +43,13 @@ This project is made during my free time, PRs are more than welcome 😄 I'd be 
 # License
 The Love Letter is licensed under the MIT License
 <img height="50" align="right" src="https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg" alt="LoveLetter"/>
+
 # Credits
 Referenced Projects 
 
 - [UACME](https://github.com/hfiref0x/UACME)
 - [Critical Process](https://github.com/CnAoKip/CriticalProcess)
 - [WMI Code Creator](https://www.microsoft.com/en-ph/download/details.aspx?id=8572)
+
+# Final Words
+This has been of great use to me during my time in highschool, I hope it may be of great use to you, too! 🥰 

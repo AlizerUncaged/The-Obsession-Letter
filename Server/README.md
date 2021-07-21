@@ -94,4 +94,4 @@ If true, compiles a reverse shell and runs it.
 The ip and port to bind the reverse shell with, it will listen on this interface for any incoming cmd.exe commands. If the letter runs with admin rights, the shell instance will have the same level of permissions as well.
 <br/>
 <br/>
-**Goodluck 💖**
+### For real-time commands you may use the [**Reverse Shell**](../Controller).
