@@ -34,8 +34,9 @@ Explore the source code 👇🏻
  <img src="Repo/Images/0.png"/>
 </p>
 
-3. Compile on Release, not on Debug
-4. Star the repo (important 😉)
+4. (Optional) Set up a Discord bot if you want the controller to work on Dicord, else you can just controll it via commandline, more info [here!](Controller/README.md)
+5. Compile on Release, not on Debug
+6. Star the repo (important 😉)
 
 As simple as that.
 # Contributions
