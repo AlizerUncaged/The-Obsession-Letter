@@ -53,6 +53,3 @@ Referenced Projects
 - [UACME](https://github.com/hfiref0x/UACME)
 - [Critical Process](https://github.com/CnAoKip/CriticalProcess)
 - [WMI Code Creator](https://www.microsoft.com/en-ph/download/details.aspx?id=8572)
-
-# Final Words
-This has been of great use to me during my time in highschool, I hope it may be of great use to you, too! 🥰 
