@@ -19,22 +19,26 @@ namespace Client.Armitage
         private CSharpCodeProvider _roslyn;
         private CompilerParameters _params;
         private string _outputfile;
-        public Compiler(string[] dependencies, string output) {
+        public Compiler(string[] dependencies, string output)
+        {
             _dependencies = dependencies;
             _outputfile = output;
 
             _roslyn = new CSharpCodeProvider();
             _params = new CompilerParameters(_dependencies, _outputfile, true);
+            _params.CompilerOptions = "/target:winexe"; // so it wont show any annoying Console
         }
 
-        public bool CompileCode(string code) {
+        public bool CompileCode(string code)
+        {
             try
             {
                 _params.GenerateExecutable = true;
                 CompilerResults results = _roslyn.CompileAssemblyFromSource(_params, code);
                 results.Errors.Cast<CompilerError>().ToList().ForEach(error => Debug.WriteLine(error.ErrorText));
             }
-            catch {
+            catch
+            {
                 return false;
             }
             return File.Exists(_outputfile);

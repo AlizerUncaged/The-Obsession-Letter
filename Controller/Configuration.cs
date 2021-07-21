@@ -21,6 +21,10 @@ namespace Controller
 
         public int Port = 30000;
 
+        public bool DiscordAPIEnabled = false;
+
+        public string DiscordAPIBotToken = "";
+
         public static void LoadConfig(string path = "config.json")
         {
             if (!File.Exists(path))

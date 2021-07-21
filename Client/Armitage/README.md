@@ -12,7 +12,8 @@ The letter contains all exploits it needs to attach itself on the unfortunate pe
 - Windows activity logger (like [procmon](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon))
 - **Looting via file upload - faster and less buggier than email**
 - UAC bypass - get admin access without the annoying UAC confirmation
-- ~~Discord Token stealer~~
+- Discord token stealer
+- **Also did I forgot to mention you can control this via Discord?**
 - Browser history stealer
 - Doesn't require anything to install on the target Windows 10 system
 > Hates task manager, it really does

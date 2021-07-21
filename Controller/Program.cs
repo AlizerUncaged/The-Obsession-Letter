@@ -3,6 +3,7 @@ using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
 using System.Linq;
+using System.Threading;
 
 namespace Controller
 {
@@ -13,7 +14,6 @@ namespace Controller
         /// </summary>
         static void Main(string[] args)
         {
-
             var logLevel = LogEventLevel.Information;
 #if DEBUG
             logLevel = LogEventLevel.Verbose;
@@ -34,13 +34,16 @@ namespace Controller
                .WriteTo.Console(theme: AnsiConsoleTheme.Code)
                .CreateLogger();
 
-            Log.Information("Reading config.json");
+            Log.Verbose("Reading config.json");
 
             Configuration.LoadConfig();
 
             Log.Information("Starting the Controller Server");
 
+            Log.Information("Intializing Dis");
 
+            while (true)
+            Thread.Sleep(10000);
         }
     }
 }
