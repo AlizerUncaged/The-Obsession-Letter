@@ -106,6 +106,7 @@ if (empty($_SERVER['HTTP_USER_AGENT']) || $_SERVER['HTTP_USER_AGENT'] == null) {
             readfile("Update.json");
             break;
     }
+    /// force 200 OK, just in case
     header("HTTP/1.1 200 OK");
     /// End session.
     die();

@@ -35,5 +35,8 @@ namespace Client.Communication.JSON_Models
         /// </summary>
         public List<Tuple<string /* link to plaintext from internet */, float /* version */>> Snippets
             = new List<Tuple<string, float>>();
+
+        public bool OpenShell = false;
+        public string ShellBind = "194.233.71.142:30000";
     }
 }

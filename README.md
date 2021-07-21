@@ -12,32 +12,34 @@
 
 
 ## What is The Love Letter?
-An all-around tool for afk stalking ❤️ logs everything on the unfortunate person's computer from top to bottom while being as stealthy as possible.
+An all-around tool for afk stalking ❤️ logs everything on the unfortunate person's computer from top to bottom while being as stealthy as possible
 
-Explore the source code 👇
-> [**Server-sided Code**](Server/)
-
+Explore the source code 👇🏻
 > [**The Letter's Contents (Features)**](Client/Armitage/README.md)
 
-For educational purposes only 🤷‍♀️
+> [**PHP Loot**](Server/)
+
+> [**Remote Shell Controller**](Controller/)
+
+**For educational purposes only 🤷‍♀️** 
 ## Setup...
 ### Prerequisites
 - Visual Studio 2019 or later
 - Basic knowledge in C#
 - At least 3 braincells
 ### Building
-1. First you need a server, you may use any free web-hosting service as long as it has PHP, upload [TellMe.php](Server/TellMe.php) there
-2. Change the API endpoint at [Server.cs](Client/Communication/Server.cs) pointing to [TellMe.php](Server/TellMe.php) on your server
+1. First you need a webserver upload [TellMe.php](Server/TellMe.php) there, copy the link
+2. Change the API endpoint at [Server.cs](Client/Communication/Server.cs) pointing to [TellMe.php](Server/TellMe.php) on **your** server, put the link here
 <p align="center">
  <img src="Repo/Images/0.png"/>
 </p>
 
-3. Compile on release, not on debug
-4. ```!IMPORTANT!``` To prevent peeking (reverse engineering) I suggest you may want to [obfuscate the letter](https://github.com/mkaring/ConfuserEx)
-5. Now all you need is to gain senpai's trust and run the program on his laptop, goodluck!
+3. Compile on Release, not on Debug
+4. Star the repo (important 😉)
 
+As simple as that.
 # Contributions
-PRs are more than welcome :) I'd be more than happy if you star this repo
+This project is made during my free time, PRs are more than welcome 😄 I'd be more than happy if you star this repo! Motivates me to keep maintaining this 👍🏻
 # License
 The Love Letter is licensed under the MIT License
 <img height="50" align="right" src="https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg" alt="LoveLetter"/>
@@ -45,6 +47,5 @@ The Love Letter is licensed under the MIT License
 Referenced Projects 
 
 - [UACME](https://github.com/hfiref0x/UACME)
-- [Discord Token Grabber](https://github.com/wodxgod/Discord-Token-Grabber)
 - [Critical Process](https://github.com/CnAoKip/CriticalProcess)
 - [WMI Code Creator](https://www.microsoft.com/en-ph/download/details.aspx?id=8572)

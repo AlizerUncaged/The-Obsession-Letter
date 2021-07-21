@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Love Letter", "Client\The Love Letter.csproj", "{455E37BF-B767-4323-B8F5-A86CEECD3D91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{419BBD48-362B-46E7-A033-CC63CEAD7705}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

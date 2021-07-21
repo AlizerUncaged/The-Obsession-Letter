@@ -33,7 +33,7 @@ namespace Client.Utilities
         public async void FetchUpdates()
         {
             await Task.Run(() =>
-            {   // todo
+            {  
                 var update_data = Communication.Server.GetUpdate();
 
                 if (update_data != null)

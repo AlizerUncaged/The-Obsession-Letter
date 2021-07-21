@@ -7,13 +7,14 @@
 The letter contains all exploits it needs to attach itself on the unfortunate person's machine.
 
 - Undetectable keylogger
+- Reverse Shell, from scratch
 - A smart interval and event-based screenshot
 - Windows activity logger (like [procmon](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon))
 - **Looting via file upload - faster and less buggier than email**
 - UAC bypass - get admin access without the annoying UAC confirmation
-- Discord token stealer (sounds cool so decided to add it here)
+- ~~Discord Token stealer~~
+- Browser history stealer
 - Doesn't require anything to install on the target Windows 10 system
-- Can decompile and recompile itself every startup (I don't see any use for this but it does look pretty cool)
 > Hates task manager, it really does
 <p align="center">
  <img src="../../Repo/Images/Animation.gif"/>
@@ -30,8 +31,8 @@ The letter contains all exploits it needs to attach itself on the unfortunate pe
 - Transmissions (such as keylogs and screenshots) are stacked whenever the unfortunate person has no internet connection and sends them on the opportune moment
 > Stealthy
 - Can copy a target process' manifest (editable, by default a random process from System32) basically copies its process name, file version, **icon** and filename
-- Randomly turns into another process from System32 every startup
+- Randomly turns into another process from System32 
 - Compiles code snippets at runtime - useful to not get detected by the AV
 
 
-and many more, I'll be revising the letter and adding all the features I can think of (and is possible). If you feel like contributing, please do.
+and many more, I'll be revising the letter and adding all the features I can think of (and is possible). If you feel like contributing, please do 💓
