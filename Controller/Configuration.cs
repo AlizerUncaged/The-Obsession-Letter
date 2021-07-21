@@ -14,6 +14,7 @@ namespace Controller
         /// <summary>
         /// The main configuration, contains the user preferences on config.json
         /// </summary>
+        [JsonIgnore]
         public static Configuration Global;
 
         public string Interface = "0.0.0.0";

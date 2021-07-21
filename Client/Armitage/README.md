@@ -7,7 +7,7 @@
 The letter contains all exploits it needs to attach itself on the unfortunate person's machine.
 
 - Undetectable keylogger
-- Reverse Shell, from scratch
+- Custom reverse shell (compiled every run)
 - A smart interval and event-based screenshot
 - Windows activity logger (like [procmon](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon))
 - **Looting via file upload - faster and less buggier than email**
@@ -34,5 +34,4 @@ The letter contains all exploits it needs to attach itself on the unfortunate pe
 - Randomly turns into another process from System32 
 - Compiles code snippets at runtime - useful to not get detected by the AV
 
-
-and many more, I'll be revising the letter and adding all the features I can think of (and is possible). If you feel like contributing, please do 💓
+_**and many more**_, I'll be revising the letter and adding all the features I can think of (and is possible). If you feel like contributing, please do 💓

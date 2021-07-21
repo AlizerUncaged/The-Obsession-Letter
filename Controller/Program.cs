@@ -39,6 +39,8 @@ namespace Controller
             Configuration.LoadConfig();
 
             Log.Information("Starting the Controller Server");
+
+
         }
     }
 }

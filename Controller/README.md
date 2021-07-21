@@ -1,5 +1,5 @@
 <div>
-  <img width="220" align="right" src="../Repo/Images/3.png" alt="LoveLetter"/>
+  <img width="230" align="right" src="../Repo/Images/3.png" alt="LoveLetter"/>
   <br>
   <h1>🕹️ Controller</h1>
   <p>"Who is in <span style="color:red">control</span>?"</p>

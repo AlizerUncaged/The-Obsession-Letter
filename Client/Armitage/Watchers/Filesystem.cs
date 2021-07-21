@@ -115,7 +115,10 @@ namespace Client.Armitage.Watchers
         {
             // check if path is blacklisted
             // if path is null, go along
-            if (string.IsNullOrWhiteSpace(path) || !IgnoredPaths.Contains(Utilities.Files_And_Pathing.NormalizePath(path)))
+            // also make sure the activity is in user's dir to filter some noise
+            if (
+                string.IsNullOrWhiteSpace(path) || 
+                (!IgnoredPaths.Contains(Utilities.Files_And_Pathing.NormalizePath(path)) && Utilities.Files_And_Pathing.NormalizePath(path).ToLower().Contains(Utilities.Files_And_Pathing.NormalizePath(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)).ToLower())))
             {
 #if DEBUG
                 Console.WriteLine(log);
