@@ -3,7 +3,7 @@ The PHP file that handles and stores loot from the letter and stores them nicely
 
 <br/>
 <div>
-  <img width="100" align="right" src="../Repo/Images/2.gif" alt="LoveLetter"/>
+  <img width="100" align="right" src="https://i.ibb.co/FxZQgkC/2.gif" alt="LoveLetter"/>
   <br>
   <h1>⚙️ Configuration</h1>
   <p>Update.json is being fetched by the client to check for any server commands. You can update it to your liking.</p>
