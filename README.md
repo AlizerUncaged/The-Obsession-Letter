@@ -30,7 +30,7 @@ Explore the source code 👇🏻
 - At least 3 braincells
 ### Building
 1. First you need a webserver upload [TellMe.php](Server/TellMe.php) there, copy the link
-1. Configure ```update.json```, [more info here](Server/), don't forget to change ShellBind to your own server, you may change it on [the update class](<Communication/JSON Models/Update.cs>) 
+1. Configure ```update.json```, [more info here](Server/), don't forget to change ShellBind to your own server, you may change it on [the update class](<Client/Communication/JSON Models/Update.cs>) 
 <p align="center">
  <img src="Repo/Images/4.png"/>
 </p> 
