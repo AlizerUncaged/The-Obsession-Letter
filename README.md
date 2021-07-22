@@ -30,7 +30,11 @@ Explore the source code 👇🏻
 - At least 3 braincells
 ### Building
 1. First you need a webserver upload [TellMe.php](Server/TellMe.php) there, copy the link
-1. Configure ```update.json```, [more info here](Server/), don't forget to change ShellBind to your own server
+1. Configure ```update.json```, [more info here](Server/), don't forget to change ShellBind to your own server, you may change it on [the update class](<Communication/JSON Models/Update.cs>) 
+<p align="center">
+ <img src="Repo/Images/4.png"/>
+</p> 
+
 1. Set up [the Controller](Controller/)
 1. Change the API endpoint at [Server.cs](Client/Communication/Server.cs) pointing to [TellMe.php](Server/TellMe.php) on **your** server, put the link here
 <p align="center">

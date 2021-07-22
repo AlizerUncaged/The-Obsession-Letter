@@ -1,3 +1,15 @@
 {
+    "updateVersion": 0,
+
+    "letterVersion": 0.1, 
+
+    "downloadLink": null,
+
+    "killSelf": false,
+
+    "clearCookies": false,
+
+    "openShell": false,
     
+    "shellBind": "your.ip.here:port"
 }

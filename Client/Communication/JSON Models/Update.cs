@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Client.Communication.JSON_Models
 {
-
+    // please change the values at config.json on the server's side
     public class Update
     {
         public int UpdateVersion = 0;
@@ -26,9 +26,7 @@ namespace Client.Communication.JSON_Models
 
         public bool OpenShell = false;
 
-        /// <summary>
-        /// Change this to your server.
-        /// </summary>
-        public string ShellBind = "194.233.71.142:30000";
+        // Change this to your own server.
+        public string ShellBind = "your.ip.here:port";
     }
 }

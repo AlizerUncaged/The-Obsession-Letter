@@ -42,8 +42,7 @@ namespace Controller
 
             Log.Information("Intializing Dis");
 
-            while (true)
-            Thread.Sleep(10000);
+            while (true) Thread.Sleep(10000);
         }
     }
 }
