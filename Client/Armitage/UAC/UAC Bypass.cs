@@ -15,7 +15,6 @@ namespace Client.Armitage.UAC
         /// The best bypass, ever, and the only bypass you'll ever need.
         /// </summary>
         ICMLuaUtil = 0,
-
     }
     public static class UAC_Bypass
     {

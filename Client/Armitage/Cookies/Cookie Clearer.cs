@@ -13,11 +13,13 @@ namespace Client.Armitage.Cookies
     {
         public enum Browser
         {
-            Chrome, Edge, Firefox, Brave
+            Chrome, Edge, Firefox, Opera
         }
 
         public async static void ClearBrowser(Browser browser) {
-            await Task.Run(() => { });
+            await Task.Run(() => {
+            
+            });
         }
     }
 }
