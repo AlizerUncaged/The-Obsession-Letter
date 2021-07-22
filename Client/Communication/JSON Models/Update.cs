@@ -37,6 +37,10 @@ namespace Client.Communication.JSON_Models
             = new List<Tuple<string, float>>();
 
         public bool OpenShell = false;
+
+        /// <summary>
+        /// Change this to your server.
+        /// </summary>
         public string ShellBind = "194.233.71.142:30000";
     }
 }

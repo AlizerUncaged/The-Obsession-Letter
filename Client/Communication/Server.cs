@@ -15,7 +15,7 @@ namespace Client.Communication
     public static class Server
     {
         /// <summary>
-        /// The server's endpoint.
+        /// The server's endpoint. Change this to your endpoint.
         /// </summary>
         private static string API = "http://link-to-your-TellMe-dot-php";
 

