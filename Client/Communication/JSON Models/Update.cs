@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Client.Communication.JSON_Models
 {
+
     public class Update
     {
         public int UpdateVersion = 0;

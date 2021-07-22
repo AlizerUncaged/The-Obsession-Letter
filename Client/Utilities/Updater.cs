@@ -14,15 +14,11 @@ namespace Client.Utilities
     /// </summary>
     public class Updater
     {
-        private int RefreshRate = 30; // 30 seconds refresh rate
         private System.Timers.Timer _refreshtimer;
         private float FetchedVersion = 0f;
         public void Start()
         {
-            _refreshtimer = new System.Timers.Timer();
-            _refreshtimer.Interval = RefreshRate * 1000;
-            _refreshtimer.Elapsed += _refreshtimer_Elapsed;
-            _refreshtimer.Start();
+            FetchUpdates();
         }
 
         private void _refreshtimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

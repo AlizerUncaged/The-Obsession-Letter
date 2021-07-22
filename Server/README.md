@@ -9,6 +9,7 @@ The PHP file that handles and stores loot from the letter and stores them nicely
   <p>Update.json is being fetched by the client to check for any server commands. You can update it to your liking.</p>
 </div>
 
+This config only gets initialized everytime the letter is run, for controlling on runtime, please see [the Controller]("../Controller/")
 ## Sample 
 ```json
 {
