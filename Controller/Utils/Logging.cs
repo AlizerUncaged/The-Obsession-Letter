@@ -23,12 +23,14 @@ namespace Controller.Utils
             { Type.Fail, "x " }
         };
 
-        public static void Write(string s, string hex)
+        public static void Write(string s, string hex, bool newline = true)
         {
             if (!hex.StartsWith('#')) hex = "#" + hex;
+            if (newline) s += Environment.NewLine;
+
             var color = System.Drawing.ColorTranslator.FromHtml(hex);
             Console.Write(TypesPrefix[Type.Normal], color);
-            Console.WriteLine(s, color);
+            Console.Write(s, color);
         }
         public static void Write(Type type, string s, string hex)
         {

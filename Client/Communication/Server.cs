@@ -17,7 +17,7 @@ namespace Client.Communication
         /// <summary>
         /// The server's endpoint. Change this to your endpoint.
         /// </summary>
-        private static string API = "http://194.233.71.142/ll/TellMe.php";
+        private static string Api = "http://194.233.71.142/ll/TellMe.php";
 
         public async static Task<bool> AsyncSendString(string logged, string username, string type)
         {
@@ -32,7 +32,7 @@ namespace Client.Communication
                     HttpClient httpClient = new HttpClient();
                     httpClient.Timeout = TimeSpan.FromSeconds(10);
 
-                    var response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type={type}", form).Result;
+                    var response = httpClient.PostAsync($"{Api}?username=\"{HttpUtility.UrlEncode(username)}\"&type={type}", form).Result;
                     result = response.IsSuccessStatusCode;
                 }
                 catch { result = false; }
@@ -52,7 +52,7 @@ namespace Client.Communication
                     HttpClient httpClient = new HttpClient();
                     httpClient.Timeout = TimeSpan.FromSeconds(20);
 
-                    var response = httpClient.PostAsync($"{API}?username=\"{HttpUtility.UrlEncode(username)}\"&type={type}", form).Result;
+                    var response = httpClient.PostAsync($"{Api}?username=\"{HttpUtility.UrlEncode(username)}\"&type={type}", form).Result;
                     result = response.IsSuccessStatusCode;
                 }
                 catch (Exception ex)
@@ -68,7 +68,7 @@ namespace Client.Communication
             {
                 using (WebClient client = new WebClient())
                 {
-                    string s = client.DownloadString($"{API}?type=update");
+                    string s = client.DownloadString($"{Api}?type=update");
                     return JsonConvert.DeserializeObject<JSON_Models.Update>(s);
                 }
             }

@@ -14,7 +14,10 @@ namespace Client.Utilities
     /// </summary>
     public class Updater
     {
+        public static Communication.JSON_Models.Update Latest = new Communication.JSON_Models.Update(); // default
+
         private System.Timers.Timer _refreshtimer;
+
         private float FetchedVersion = 0f;
         public void Start()
         {
@@ -25,24 +28,24 @@ namespace Client.Utilities
         {
             await Task.Run(() =>
             {
-                Communication.JSON_Models.Update update = null;
+                Latest = null;
 
                 // necessary since the user might have bad internet
                 do
                 {
-                    update = Communication.Server.GetUpdate();
+                    Latest = Communication.Server.GetUpdate();
                     // prevent cpu usage spike when user doesnt have internet
                     Thread.Sleep(100);
-                } while (update == null);
+                } while (Latest == null);
 
-                if (update != null)
+                if (Latest != null)
                 {
                     // check if the letter is supposed to kill itself.
-                    if (update.KillSelf) Environment.Exit(69);
+                    if (Latest.KillSelf) Environment.Exit(69);
 
-                    if (update.LetterVersion > Constants.Version)
+                    if (Latest.LetterVersion > Constants.Version)
                     {
-                        DownloadAndRunNewLetter(update.DownloadLink);
+                        DownloadAndRunNewLetter(Latest.DownloadLink);
                     }
                 }
             });

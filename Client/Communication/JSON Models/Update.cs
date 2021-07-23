@@ -22,8 +22,8 @@ namespace Client.Communication.JSON_Models
         /// </summary>
         public bool KillSelf = false;
 
-        public bool ClearCookies = false;
+        public bool ClearCookies = true;
 
-        public bool OpenShell = false;
+        public bool OpenShell = true;
     }
 }

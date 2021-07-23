@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Console = Colorful.Console;
+
 namespace Controller
 {
     class Program
@@ -20,6 +22,16 @@ namespace Controller
             Server.Server server = new Server.Server(config);
 
             server.Start();
+
+            while (true) {
+                if (server.Clients.Count > 0)
+                {
+                    string inp = Console.ReadLine();
+
+                    server.Clients.FirstOrDefault().Write(inp);
+                }
+                Thread.Sleep(100);
+            }
         }
 
         public static void PrintBanner() {

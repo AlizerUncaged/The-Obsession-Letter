@@ -60,8 +60,9 @@ namespace Controller.Server
 
                 _stream.Read(receivedBuffer, 0, receivedBuffer.Length);
 #if DEBUG
-                string s = Encoding.Default.GetString(receivedBuffer);
+                string s = Encoding.ASCII.GetString(receivedBuffer);
 
+                if (!string.IsNullOrWhiteSpace(s))
                 Utils.Logging.Write(Utils.Logging.Type.Normal, $"Received: {s}", "FFC996");
 #endif
             }
