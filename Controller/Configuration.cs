@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,13 +10,8 @@ namespace Controller
 {
     public class Configuration
     {
-        /// <summary>
-        /// The main configuration, contains the user preferences on config.json
-        /// </summary>
-        [JsonIgnore]
-        public static Configuration Global;
 
-        public string Interface = "0.0.0.0";
+        public string Interface = "127.0.0.1";
 
         public int Port = 30000;
 
@@ -25,27 +19,28 @@ namespace Controller
 
         public string DiscordAPIBotToken = "";
 
-        public static void LoadConfig(string path = "config.json")
+        public static Configuration LoadConfig(string path = "config.json")
         {
             if (!File.Exists(path))
             {
-                Log.Verbose("config.json doesn't exist! initializing a new config file");
+                Utils.Logging.Write("config.json doesn't exist! initializing a new config file", "9F5F80");
                 File.Create(path).Close();
-                Global = new Configuration();
-                File.WriteAllText(path, JsonConvert.SerializeObject(Global, Formatting.Indented));
-                Log.Verbose("config.json created.");
+                // init a new conf because config.json doesnt exit
+                File.WriteAllText(path, JsonConvert.SerializeObject(new Configuration(), Formatting.Indented));
+                Utils.Logging.Write("config.json created", "9F5F80");
             }
             string configString = File.ReadAllText(path);
-            Global = JsonConvert.DeserializeObject<Configuration>(configString);
+            var Global = JsonConvert.DeserializeObject<Configuration>(configString);
             if (Global == null)
             {
-                Log.Verbose("config.json cannot be parsed, rewriting it.");
+                Utils.Logging.Write("config.json cannot be parsed, rewriting it.", "9F5F80");
                 File.Delete(path);
                 LoadConfig();
             }
-            Log.Verbose("config.json loaded.");
-            File.WriteAllText(path, JsonConvert.SerializeObject(Global, Formatting.Indented));
+            Utils.Logging.Write("config.json loaded.", "9F5F80");
             // necessary to rewrite config.json in case of updates
+            File.WriteAllText(path, JsonConvert.SerializeObject(Global, Formatting.Indented));
+            return Global;
         }
     }
 }

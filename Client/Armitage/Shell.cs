@@ -23,8 +23,10 @@ namespace Client.Armitage
         /// <summary>
         /// Starts listening for commands from the controller.
         /// </summary>
-        public static void Start() { 
-        
+        public static void Start() {
+            // start reading from remote endpoint
+
+            IPAddress ip = IPAddress.Parse("127.0.0.1");
         }
         public static void ContinuousReading() {
             while (true) {

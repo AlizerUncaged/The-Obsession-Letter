@@ -11,5 +11,5 @@
 
     "openShell": false,
     
-    "shellBind": "your.ip.here:port"
+    "shellBind": "127.0.0.0:3000"
 }

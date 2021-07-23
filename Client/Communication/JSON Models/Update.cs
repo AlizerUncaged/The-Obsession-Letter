@@ -25,8 +25,5 @@ namespace Client.Communication.JSON_Models
         public bool ClearCookies = false;
 
         public bool OpenShell = false;
-
-        // Change this to your own server.
-        public string ShellBind = "your.ip.here:port";
     }
 }

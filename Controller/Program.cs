@@ -1,10 +1,7 @@
-﻿using Serilog;
-using Serilog.Events;
-using Serilog.Sinks.SystemConsole.Themes;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-
 namespace Controller
 {
     class Program
@@ -12,37 +9,24 @@ namespace Controller
         /// <summary>
         /// Main entry point.
         /// </summary>
-        static void Main(string[] args)
-        {
-            var logLevel = LogEventLevel.Information;
-#if DEBUG
-            logLevel = LogEventLevel.Verbose;
-#endif
-            if (args.Contains("--verbose"))
-            {
-                logLevel = LogEventLevel.Verbose;
-            }
-            else if (args.Contains("--errors-only"))
-            {
-                logLevel = LogEventLevel.Error;
-            }
+        static void Main(string[] args) {
 
-            Log.Logger = new LoggerConfiguration()
-               .MinimumLevel.Is(logLevel)
-               .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-               .Enrich.FromLogContext()
-               .WriteTo.Console(theme: AnsiConsoleTheme.Code)
-               .CreateLogger();
+            PrintBanner();
 
-            Log.Verbose("Reading config.json");
+            var config = Configuration.LoadConfig();
 
-            Configuration.LoadConfig();
+            Utils.Logging.Write("Starting Controller Server...", "FF8474");
 
-            Log.Information("Starting the Controller Server");
+            Server.Server server = new Server.Server(config);
 
-            Log.Information("Intializing Dis");
+            server.Start();
+        }
 
-            while (true) Thread.Sleep(10000);
+        public static void PrintBanner() {
+
+            var banner = Properties.Resources.Banner;
+
+            Utils.Logging.Write(banner + Environment.NewLine, "FFC996", "583D72");
         }
     }
 }

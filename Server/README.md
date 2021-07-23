@@ -42,13 +42,8 @@ Put this to true whenever you want to remotely switch of all letters.
 
 If true, it will clear all cookies and cache of ~~supported~~ popular browsers.
 
-> - Open Shell? ```OpenShell```
 
-If true, compiles a reverse shell and runs it.
-
-> - Shell Bind Interface ```ShellBind```
-
-The ip and port to bind the reverse shell with, it will listen on this interface for any incoming cmd.exe commands. If the letter runs with admin rights, the shell instance will have the same level of permissions as well.
 <br/>
 <br/>
+
 ### For real-time commands you may use the [**Reverse Shell**](../Controller).
