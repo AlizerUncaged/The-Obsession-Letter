@@ -45,13 +45,13 @@ namespace Controller.Server
             }
             catch (Exception ex)
             {
-                Utils.Logging.Write(Utils.Logging.Type.Success, $"An error occured while binding", "583D72");
+                Utils.Logging.Write(Utils.Logging.Type.Error, $"An error occured while binding");
 
                 return;
             }
             finally
             {
-                Utils.Logging.Write(Utils.Logging.Type.Success, $"Server listening on {_conf.Interface}:{_conf.Port}", "FF8474");
+                Utils.Logging.Write(Utils.Logging.Type.Success, $"Server listening on {_conf.Interface}:{_conf.Port}");
 
                 while (true)
                 {
@@ -61,7 +61,7 @@ namespace Controller.Server
 
                         Client parsed_client = new Client(client);
 
-                        Utils.Logging.Write(Utils.Logging.Type.Success, $"New Shell! at {parsed_client.EndPoint.Address}:{parsed_client.EndPoint.Port}", "FF8474");
+                        Utils.Logging.Write(Utils.Logging.Type.Success, $"New Shell! at {parsed_client.EndPoint.Address}:{parsed_client.EndPoint.Port}");
 
                         parsed_client.StartRead();
 
@@ -84,7 +84,7 @@ namespace Controller.Server
 
                 Clients.Remove(client);
 
-                Utils.Logging.Write(Utils.Logging.Type.Success, $"Removed {_conf.Interface}:{_conf.Port}", "FF8474");
+                Utils.Logging.Write(Utils.Logging.Type.Success, $"Removed {_conf.Interface}:{_conf.Port}");
             }
         }
     }

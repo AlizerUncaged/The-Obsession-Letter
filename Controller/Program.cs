@@ -8,37 +8,41 @@ namespace Controller
 {
     class Program
     {
+        private static Thread _inputthread;
         /// <summary>
         /// Main entry point.
         /// </summary>
-        static void Main(string[] args) {
+        static void Main(string[] args)
+        {
+            _inputthread = new Thread(ParseInput);
+
+            _inputthread.Start();
 
             PrintBanner();
 
             var config = Configuration.LoadConfig();
 
-            Utils.Logging.Write("Starting Controller Server...", "FF8474");
+            Utils.Logging.Write("Starting Controller Server...");
 
             Server.Server server = new Server.Server(config);
 
             server.Start();
 
-            while (true) {
-                if (server.Clients.Count > 0)
-                {
-                    string inp = Console.ReadLine();
-
-                    server.Clients.FirstOrDefault().Write(inp);
-                }
-                Thread.Sleep(100);
+        }
+        private static void ParseInput()
+        {
+            while (true)
+            {
+                var inp = Console.ReadLine();
             }
         }
-
-        public static void PrintBanner() {
+        public static void PrintBanner()
+        {
 
             var banner = Properties.Resources.Banner;
 
-            Utils.Logging.Write(banner + Environment.NewLine, "FFC996", "583D72");
+            Utils.Logging.Write(banner + Environment.NewLine, "FF8474", "583D72");
+            Utils.Logging.Write($"{Environment.NewLine}    >>>[Github] https://github.com/AlizerUncaged/The-Love-Letter {String.Concat(Enumerable.Repeat(Environment.NewLine, 2))}", "FF8474", "583D72");
         }
     }
 }

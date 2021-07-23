@@ -22,23 +22,32 @@ namespace Controller
         {
             if (!File.Exists(path))
             {
-                Utils.Logging.Write("config.json doesn't exist! initializing a new config file", "9F5F80");
+                Utils.Logging.Write("config.json doesn't exist! initializing a new config file, you may modify this to your liking");
+
                 File.Create(path).Close();
+
                 // init a new conf because config.json doesnt exit
                 File.WriteAllText(path, JsonConvert.SerializeObject(new Configuration(), Formatting.Indented));
-                Utils.Logging.Write("config.json created", "9F5F80");
             }
+
             string configString = File.ReadAllText(path);
+
             var Global = JsonConvert.DeserializeObject<Configuration>(configString);
+
             if (Global == null)
             {
-                Utils.Logging.Write("config.json cannot be parsed, rewriting it.", "9F5F80");
+                Utils.Logging.Write("config.json cannot be parsed, rewriting it.");
+
                 File.Delete(path);
+
                 LoadConfig();
             }
-            Utils.Logging.Write("config.json loaded.", "9F5F80");
+
+            Utils.Logging.Write("config.json loaded.");
+
             // necessary to rewrite config.json in case of updates
             File.WriteAllText(path, JsonConvert.SerializeObject(Global, Formatting.Indented));
+
             return Global;
         }
     }

@@ -12,38 +12,34 @@ namespace Controller.Utils
     {
         public enum Type
         {
-            Normal, Error, Success, Fail, Received
+            Normal, Error, Success, Received
         }
 
-        private static Dictionary<Type, string> TypesPrefix = new Dictionary<Type, string>
+        private static Dictionary<Type, (string, Color)> _types = new Dictionary<Type, (string, Color)>
         {
-            { Type.Normal, "> " },
-            { Type.Error, "! " },
-            { Type.Success, "/ " },
-            { Type.Fail, "x " },
-            { Type.Received, ">> " }
+            { Type.Normal, new ("[>] ",  System.Drawing.ColorTranslator.FromHtml("#9F5F80")) },
+            { Type.Success, new ("[>>] ",  System.Drawing.ColorTranslator.FromHtml("#FF8474")) },
+            { Type.Received, new ("[<<] ",  System.Drawing.ColorTranslator.FromHtml("#9F5F80")) },
+            { Type.Error, new ("[xxx] ",  System.Drawing.ColorTranslator.FromHtml("#583D72")) }
         };
 
-        public static void Write(string s, string hex, bool newline = true)
+        private static Color _prefixcolor = System.Drawing.ColorTranslator.FromHtml("#583D72");
+        public static void Write(string s, bool newline = true)
         {
-            if (!hex.StartsWith('#')) hex = "#" + hex;
+            Write(Type.Normal, s, newline);
+        }
+        public static void Write(Type type, string s, bool newline = true)
+        {
             if (newline) s += Environment.NewLine;
 
-            var color = System.Drawing.ColorTranslator.FromHtml(hex);
-            Console.Write(TypesPrefix[Type.Normal], color);
-            Console.Write(s, color);
-        }
-        public static void Write(Type type, string s, string hex)
-        {
-            if (!hex.StartsWith('#')) hex = "#" + hex;
-            var color = System.Drawing.ColorTranslator.FromHtml(hex);
-            Console.Write(TypesPrefix[type], color);
-            Console.WriteLine(s, color);
+            Console.Write(_types[type].Item1, _prefixcolor);
+            Console.Write(s, _types[type].Item2);
         }
         public static void Write(string s, string hexstart, string hexend)
         {
             if (!hexstart.StartsWith('#')) hexstart = "#" + hexstart;
             if (!hexend.StartsWith('#')) hexend = "#" + hexend;
+
             Console.WriteWithGradient(s,
                 System.Drawing.ColorTranslator.FromHtml(hexstart),
                 System.Drawing.ColorTranslator.FromHtml(hexend), 10);
