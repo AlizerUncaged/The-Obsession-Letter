@@ -25,6 +25,7 @@ For help just do ```l!help```.
 
 
 # ⚙️ Configuration ```config.json```
+
 > - Interface ```Interface```
 
 Which IP to listen to, for public IP you may use 0.0.0.0 or localhost.

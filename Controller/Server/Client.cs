@@ -63,7 +63,7 @@ namespace Controller.Server
                 string s = Encoding.ASCII.GetString(receivedBuffer);
 
                 if (!string.IsNullOrWhiteSpace(s))
-                Utils.Logging.Write(Utils.Logging.Type.Normal, $"Received: {s}", "FFC996");
+                Utils.Logging.Write(Utils.Logging.Type.Received, $"{s}", "583D72");
 #endif
             }
         }

@@ -12,7 +12,7 @@ namespace Controller.Utils
     {
         public enum Type
         {
-            Normal, Error, Success, Fail
+            Normal, Error, Success, Fail, Received
         }
 
         private static Dictionary<Type, string> TypesPrefix = new Dictionary<Type, string>
@@ -20,7 +20,8 @@ namespace Controller.Utils
             { Type.Normal, "> " },
             { Type.Error, "! " },
             { Type.Success, "/ " },
-            { Type.Fail, "x " }
+            { Type.Fail, "x " },
+            { Type.Received, ">> " }
         };
 
         public static void Write(string s, string hex, bool newline = true)

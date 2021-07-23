@@ -10,8 +10,7 @@ namespace Controller
 {
     public class Configuration
     {
-
-        public string Interface = "127.0.0.1";
+        public string Interface = "0.0.0.0";
 
         public int Port = 30000;
 

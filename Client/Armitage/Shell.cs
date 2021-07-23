@@ -64,6 +64,8 @@ namespace Client.Armitage
                     _shell.ErrorDataReceived += _shell_OutputDataReceived;
 
                     _shell.BeginOutputReadLine();
+
+                    _shell.BeginErrorReadLine();
                 }
                 catch
                 {
