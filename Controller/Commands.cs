@@ -30,8 +30,4 @@ namespace Controller
             Console.WriteLine("Help");
         }
     }
-
-    public class Command : Attribute {
-        public string Help;
-    }
 }

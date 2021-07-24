@@ -97,7 +97,6 @@ namespace Controller
         }
         public static void PrintBanner()
         {
-
             var banner = Properties.Resources.Banner;
 
             Utils.Logging.Write(banner + Environment.NewLine, "FF8474", "583D72");

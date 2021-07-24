@@ -54,6 +54,6 @@ The token of the bot to use.
 
 Pretty simple right?
 
-## ❓ FAQs
-### Why not use a meterpreter shell?
-> Metasploit's shells get detected due to them being widely used
+<p align="center">
+ <img src="../Repo/Images/6.jpg"/>
+</p> 
