@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using Console = Colorful.Console;
 
@@ -13,9 +14,11 @@ namespace Controller
         /// <summary>
         /// The index of the current client being in control.
         /// </summary>
-        private static Server.Client _activeclient;
+        public static Server.Client ActiveClient;
 
-        private static Server.Server _server;
+        public static Server.Server MainServer;
+
+        private static Commands _cmd = new Commands();
         /// <summary>
         /// Main entry point.
         /// </summary>
@@ -27,11 +30,11 @@ namespace Controller
 
             Utils.Logging.Write("Starting Controller Server...");
 
-            _server = new Server.Server(config);
+            MainServer = new Server.Server(config);
 
-            _server.SuccessfullyConnected += _server_SuccessfullyConnected;
+            MainServer.SuccessfullyConnected += _server_SuccessfullyConnected;
 
-            _server.Start();
+            MainServer.Start();
         }
 
         private static void _server_SuccessfullyConnected(object sender, EventArgs e)
@@ -57,11 +60,26 @@ namespace Controller
 
                 var input = Console.ReadLine();
 
-                Console.WriteLine(string.Empty);
+                var parsedinput = Utils.String.SplitCommandLine(input).ToArray();
 
-                while (_activeclient != null && _server.Clients.Contains(_activeclient)) { 
-                
+                Type thisType = _cmd.GetType();
+
+                MethodInfo theMethod = thisType.GetMethod(parsedinput[0], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+
+                if (theMethod != null) return; // the method doesnt exist
+
+                object[] parameters = null;
+
+                if (parsedinput.Length > 1) parameters = (object[])parsedinput.Skip(1).ToArray();
+
+                theMethod.Invoke(_cmd, parameters);
+
+                while (ActiveClient != null && MainServer.Clients.Contains(ActiveClient))
+                {
+
                 }
+
+                Console.WriteLine(string.Empty);
             }
         }
         public static void PrintBanner()
@@ -70,6 +88,7 @@ namespace Controller
             var banner = Properties.Resources.Banner;
 
             Utils.Logging.Write(banner + Environment.NewLine, "FF8474", "583D72");
+
             Utils.Logging.Write($"{Environment.NewLine}    >>>[Github] https://github.com/AlizerUncaged/The-Love-Letter {String.Concat(Enumerable.Repeat(Environment.NewLine, 2))}", "FF8474", "583D72");
         }
     }
