@@ -9,31 +9,59 @@ namespace Controller
     class Program
     {
         private static Thread _inputthread;
+
+        /// <summary>
+        /// The index of the current client being in control.
+        /// </summary>
+        private static Server.Client _activeclient;
+
+        private static Server.Server _server;
         /// <summary>
         /// Main entry point.
         /// </summary>
         static void Main(string[] args)
         {
-            _inputthread = new Thread(ParseInput);
-
-            _inputthread.Start();
-
             PrintBanner();
 
             var config = Configuration.LoadConfig();
 
             Utils.Logging.Write("Starting Controller Server...");
 
-            Server.Server server = new Server.Server(config);
+            _server = new Server.Server(config);
 
-            server.Start();
+            _server.SuccessfullyConnected += _server_SuccessfullyConnected;
 
+            _server.Start();
         }
+
+        private static void _server_SuccessfullyConnected(object sender, EventArgs e)
+        {
+            _inputthread = new Thread(ParseInput);
+
+            _inputthread.Start();
+        }
+
         private static void ParseInput()
         {
+            Console.ResetColor();
+
+            Console.Write("[!] To open help do ", Utils.Logging.GetTypeColor(Utils.Logging.Type.Normal));
+
+            Console.WriteLine($"> help", Utils.Logging.GetTypeColor(Utils.Logging.Type.Success));
+
+            Console.ForegroundColor = Utils.Logging.GetTypeColor(Utils.Logging.Type.Success);
+
             while (true)
             {
-                var inp = Console.ReadLine();
+                Console.Write("> ", Utils.Logging.GetTypeColor(Utils.Logging.Type.Error));
+
+                var input = Console.ReadLine();
+
+                Console.WriteLine(string.Empty);
+
+                while (_activeclient != null && _server.Clients.Contains(_activeclient)) { 
+                
+                }
             }
         }
         public static void PrintBanner()

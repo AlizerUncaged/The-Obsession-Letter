@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Console = Colorful.Console;
 
 namespace Controller.Server
 {
@@ -53,6 +54,8 @@ namespace Controller.Server
             {
                 Utils.Logging.Write(Utils.Logging.Type.Success, $"Server listening on {_conf.Interface}:{_conf.Port}");
 
+                ConnectedSuccessfully(EventArgs.Empty);
+
                 while (true)
                 {
                     try
@@ -80,12 +83,19 @@ namespace Controller.Server
             }
         }
         public void RemoveClient(ref Client client) {
+
             if (Clients.Contains(client)) {
 
                 Clients.Remove(client);
 
                 Utils.Logging.Write(Utils.Logging.Type.Success, $"Removed {_conf.Interface}:{_conf.Port}");
             }
+        }
+
+        public event EventHandler SuccessfullyConnected;
+        protected virtual void ConnectedSuccessfully(EventArgs e)
+        {
+            SuccessfullyConnected?.Invoke(this, e);
         }
     }
 }
