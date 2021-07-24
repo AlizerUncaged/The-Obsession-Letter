@@ -62,17 +62,30 @@ namespace Controller
 
                 var parsedinput = Utils.String.SplitCommandLine(input).ToArray();
 
-                Type thisType = _cmd.GetType();
+                Type commandtype = _cmd.GetType();
 
-                MethodInfo theMethod = thisType.GetMethod(parsedinput[0], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                if (parsedinput.Length <= 0) continue;
 
-                if (theMethod != null) return; // the method doesnt exist
+                var methods = commandtype.GetMethods().Where(m => m.GetCustomAttributes(typeof(Command), false).Length > 0 && m.Name.ToLower().Trim() == parsedinput[0].ToLower().Trim());
+               
+                if (methods.Count() <=0 ) continue; // the method doesnt exist
+
+                var targetmethod = methods.FirstOrDefault();
 
                 object[] parameters = null;
 
-                if (parsedinput.Length > 1) parameters = (object[])parsedinput.Skip(1).ToArray();
+                if (targetmethod.GetParameters().Count() >= 1 && parsedinput.Length > 1) parameters = (object[])parsedinput.Skip(1).ToArray();
 
-                theMethod.Invoke(_cmd, parameters);
+                try
+                {
+
+                    targetmethod.Invoke(_cmd, parameters);
+
+                }
+                catch (System.Reflection.TargetParameterCountException ex) {
+               
+                    Utils.Logging.Write(Utils.Logging.Type.Normal, $"Error, not enough or too many parameters! {Environment.NewLine}{targetmethod.GetCustomAttribute<Command>().Help}");
+                }
 
                 while (ActiveClient != null && MainServer.Clients.Contains(ActiveClient))
                 {
