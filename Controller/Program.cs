@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using Console = Colorful.Console;
@@ -55,12 +56,16 @@ namespace Controller
 
             Console.ForegroundColor = Utils.Logging.GetTypeColor(Utils.Logging.Type.Success);
 
+
+            string input = string.Empty;
+
             while (true)
             {
-
-                var input = Console.ReadLine();
+                if (input == string.Empty) input = Console.ReadLine();
 
                 var parsedinput = Utils.String.SplitCommandLine(input).ToArray();
+
+                input = string.Empty;
 
                 Type commandtype = _cmd.GetType();
 
@@ -83,22 +88,22 @@ namespace Controller
 
                 try
                 {
-
                     targetmethod.Invoke(_cmd, parameters);
-
                 }
                 catch (System.Reflection.TargetParameterCountException ex)
                 {
-
                     Utils.Logging.Write(Utils.Logging.Type.Normal, $"Error, not enough or too many parameters! {Environment.NewLine}{targetmethod.GetCustomAttribute<Command>().Help}");
                 }
 
 
-                while (MainServer.Clients.Contains(ActiveClient) && ActiveClient != null)
+                while (ActiveClient != null && MainServer.Clients.Contains(ActiveClient))
                 {
                     string clientinput = Console.ReadLine();
 
-                    ActiveClient.WriteCMD(clientinput);
+                    if (ActiveClient != null)
+                        ActiveClient.WriteCMD(clientinput);
+
+                    else break;
                 }
 
                 Console.WriteLine(string.Empty);

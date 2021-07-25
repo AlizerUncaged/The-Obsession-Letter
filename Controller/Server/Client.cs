@@ -36,6 +36,8 @@ namespace Controller.Server
             bytes.AddRange(Encoding.ASCII.GetBytes(cmd));
 
             Write(bytes.ToArray());
+
+            // wait for incoming
         }
 
         public void Write(byte[] bytes)
@@ -60,7 +62,7 @@ namespace Controller.Server
         {
             while (_keepreading && _client.Connected)
             {
-                while (!_stream.DataAvailable);
+                while (!_stream.DataAvailable) ;
 
                 byte[] receivedBuffer = new byte[_client.Available];
 
@@ -82,7 +84,15 @@ namespace Controller.Server
 
                             break;
                         case Message_Types.Exited:
-                            
+
+                            try
+                            {
+                                _keepreading = false;
+
+                                _client.Close();
+                            }
+                            catch { }
+
                             OnCMDExited(EventArgs.Empty);
 
                             break;
