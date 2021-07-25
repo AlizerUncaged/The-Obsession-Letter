@@ -42,6 +42,7 @@ namespace Controller.Utils
             if (newline) s += Environment.NewLine;
 
             Console.Write(GetTypePrefix(type), _prefixcolor);
+            Console.ResetColor();
             Console.Write(s, GetTypeColor(type));
         }
         public static void Write(string s, string hexstart, string hexend)
@@ -51,7 +52,7 @@ namespace Controller.Utils
 
             Console.WriteWithGradient(s,
                 System.Drawing.ColorTranslator.FromHtml(hexstart),
-                System.Drawing.ColorTranslator.FromHtml(hexend), 10);
+                System.Drawing.ColorTranslator.FromHtml(hexend));
         }
     }
 }

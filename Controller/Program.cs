@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -95,7 +96,6 @@ namespace Controller
                     Utils.Logging.Write(Utils.Logging.Type.Normal, $"Error, not enough or too many parameters! {Environment.NewLine}{targetmethod.GetCustomAttribute<Command>().Help}");
                 }
 
-
                 while (ActiveClient != null && MainServer.Clients.Contains(ActiveClient))
                 {
                     string clientinput = Console.ReadLine();
@@ -105,10 +105,9 @@ namespace Controller
 
                     else break;
                 }
-
-                Console.WriteLine(string.Empty);
             }
         }
+
         public static void PrintBanner()
         {
             var banner = Properties.Resources.Banner;
@@ -116,6 +115,9 @@ namespace Controller
             Utils.Logging.Write(banner + Environment.NewLine, "FF8474", "583D72");
 
             Utils.Logging.Write($"{Environment.NewLine}    >>>[Github] https://github.com/AlizerUncaged/The-Love-Letter {String.Concat(Enumerable.Repeat(Environment.NewLine, 2))}", "FF8474", "583D72");
+
+
+            Console.ResetColor();
         }
     }
 }
