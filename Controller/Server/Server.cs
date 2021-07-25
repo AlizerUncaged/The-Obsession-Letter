@@ -68,6 +68,8 @@ namespace Controller.Server
 
                         parsed_client.StartRead();
 
+                        parsed_client.CMDExited += Parsed_client_CMDExited;
+
                         Clients.Add(parsed_client);
                     }
                     catch (SocketException ex)
@@ -82,6 +84,16 @@ namespace Controller.Server
                 }
             }
         }
+
+        private void Parsed_client_CMDExited(object sender, EventArgs e)
+        {
+            var client = sender as Client;
+
+            Utils.Logging.Write(Utils.Logging.Type.Success, $"Shell {Clients.IndexOf(client)} has exited.");
+
+            Clients.Remove(client);
+        }
+
         public void RemoveClient(ref Client client) {
 
             if (Clients.Contains(client)) {

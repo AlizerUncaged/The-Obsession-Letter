@@ -29,14 +29,20 @@ namespace Controller.Server
             _stream = _client.GetStream();
         }
 
-        public void Write(string cmd)
+        public void WriteCMD(string cmd)
         {
-            Write(Encoding.Default.GetBytes(cmd));
+            List<byte> bytes = new List<byte>() { (byte)Command_Types.CMDCommand };
+
+            bytes.AddRange(Encoding.ASCII.GetBytes(cmd));
+
+            Write(bytes.ToArray());
         }
 
         public void Write(byte[] bytes)
         {
             _stream.Write(bytes);
+
+            _stream.Flush();
         }
 
         public void StartRead()
@@ -54,19 +60,42 @@ namespace Controller.Server
         {
             while (_keepreading && _client.Connected)
             {
-                while (!_stream.DataAvailable) ;
+                while (!_stream.DataAvailable);
 
                 byte[] receivedBuffer = new byte[_client.Available];
 
-                _stream.Read(receivedBuffer, 0, receivedBuffer.Length);
-#if DEBUG
-                string s = Encoding.ASCII.GetString(receivedBuffer);
+                int bytesreceived = _stream.Read(receivedBuffer, 0, receivedBuffer.Length);
 
-                if (!string.IsNullOrWhiteSpace(s))
+                if (bytesreceived > 0)
+                {
+                    var messagetype = (Message_Types)receivedBuffer.First();
 
-                Utils.Logging.Write(Utils.Logging.Type.Received, $"{s}");
-#endif
+                    receivedBuffer = receivedBuffer.Skip(1).ToArray();
+
+                    switch (messagetype)
+                    {
+                        case Message_Types.CMDMessage:
+                            string s = Encoding.ASCII.GetString(receivedBuffer);
+
+                            if (!string.IsNullOrWhiteSpace(s) && Program.ActiveClient == this)
+                                Utils.Logging.Write(Utils.Logging.Type.Received, $"{s}");
+
+                            break;
+                        case Message_Types.Exited:
+                            
+                            OnCMDExited(EventArgs.Empty);
+
+                            break;
+                    }
+                }
+
             }
+        }
+
+        public event EventHandler CMDExited;
+        protected virtual void OnCMDExited(EventArgs e)
+        {
+            CMDExited?.Invoke(this, e);
         }
     }
 }

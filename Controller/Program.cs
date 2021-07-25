@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading;
 using Console = Colorful.Console;
 
@@ -56,7 +57,6 @@ namespace Controller
 
             while (true)
             {
-                Console.Write("> ", Utils.Logging.GetTypeColor(Utils.Logging.Type.Error));
 
                 var input = Console.ReadLine();
 
@@ -67,8 +67,13 @@ namespace Controller
                 if (parsedinput.Length <= 0) continue;
 
                 var methods = commandtype.GetMethods().Where(m => m.GetCustomAttributes(typeof(Command), false).Length > 0 && m.Name.ToLower().Trim() == parsedinput[0].ToLower().Trim());
-               
-                if (methods.Count() <=0 ) continue; // the method doesnt exist
+
+                if (methods.Count() <= 0)
+                {
+                    Utils.Logging.Write(Utils.Logging.Type.Error, $"No such command exist.");
+
+                    continue;
+                } // the method doesnt exist
 
                 var targetmethod = methods.FirstOrDefault();
 
@@ -82,14 +87,18 @@ namespace Controller
                     targetmethod.Invoke(_cmd, parameters);
 
                 }
-                catch (System.Reflection.TargetParameterCountException ex) {
-               
+                catch (System.Reflection.TargetParameterCountException ex)
+                {
+
                     Utils.Logging.Write(Utils.Logging.Type.Normal, $"Error, not enough or too many parameters! {Environment.NewLine}{targetmethod.GetCustomAttribute<Command>().Help}");
                 }
 
-                while (ActiveClient != null && MainServer.Clients.Contains(ActiveClient))
-                {
 
+                while (MainServer.Clients.Contains(ActiveClient) && ActiveClient != null)
+                {
+                    string clientinput = Console.ReadLine();
+
+                    ActiveClient.WriteCMD(clientinput);
                 }
 
                 Console.WriteLine(string.Empty);

