@@ -11,6 +11,11 @@ namespace Controller.Server
 {
     public class Client
     {
+        /// <summary>
+        /// Contains information of the client.
+        /// </summary>
+        public List<string> Tags = new List<string>();
+
         private Thread _readthread;
 
         private TcpClient _client;

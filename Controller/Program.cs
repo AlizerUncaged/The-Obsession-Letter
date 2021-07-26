@@ -93,7 +93,7 @@ namespace Controller
                 }
                 catch (TargetParameterCountException ex)
                 {
-                    Utils.Logging.Write(Utils.Logging.Type.Normal, $"Error, not enough or too many parameters! {Environment.NewLine}{targetmethod.GetCustomAttribute<Command>().Help}");
+                    Utils.Logging.Write(Utils.Logging.Type.Normal, $"Error, not enough or too many parameters! {Environment.NewLine}{targetmethod.GetCustomAttribute<Command>().Usage}");
                 }
 
                 while (ActiveClient != null && MainServer.Clients.Contains(ActiveClient))
