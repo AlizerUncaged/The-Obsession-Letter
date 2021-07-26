@@ -12,6 +12,7 @@ namespace Controller
     public class Command : Attribute
     {
         public string Help;
+        public string Usage;
     }
     public enum Command_Types
     {

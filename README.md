@@ -10,8 +10,6 @@
 
 <br/>
 
-# **This is a work in progress, some features still don't work.**
-
 ## What is The Love Letter?
 An all-around tool for afk stalking ❤️ logs everything on the unfortunate person's computer from top to bottom while being as stealthy as possible, it contains the complete set of tools you need for stalking
 
@@ -47,8 +45,6 @@ Explore the source code 👇🏻
 8. **(Optional)** Got detected by AV? Use [an obfuscator](https://github.com/mkaring/ConfuserEx) or better yet, use wrappers
 
 As simple as that. You may also compile this as a DLL and inject on processes but that would be your choice.
-# Contributions
-This project is made during my free time, PRs are more than welcome 😄 I'd be more than happy if you star this repo! Motivates me to keep maintaining this 👍🏻
 # License
 The Love Letter is licensed under the MIT License
 <img height="50" align="right" src="https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg" alt="LoveLetter"/>

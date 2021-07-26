@@ -8,6 +8,14 @@ namespace Controller.Utils
 {
     public static class String
     {
+        public static string PadRight(string input, int length)
+        {
+            if (input.Length > length)
+                return input.Substring(0, length);
+            else
+                return input.PadRight(length, ' ');
+        }
+
         public static IEnumerable<string> SplitCommandLine(string commandLine)
         {
             bool inQuotes = false;
