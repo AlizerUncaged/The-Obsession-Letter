@@ -37,7 +37,7 @@ namespace Controller
             }
             catch { }
         }
-        [Command(Help = "Shows all active shells.", Usage = "list")]
+        [Command(Help = "Shows all open shells.", Usage = "list")]
         public void List()
         {
             var clonedclients = Program.MainServer.Clients.ToList();
