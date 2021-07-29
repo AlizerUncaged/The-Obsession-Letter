@@ -197,11 +197,13 @@ namespace Client
                         UseShellExecute = false
                     }
                 };
+
                 try
                 {
                     p.Start();
                 }
                 catch { }
+
             }
         }
     }

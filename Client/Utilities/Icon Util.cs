@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Client.Utilities
 {
+
     public static class Icon_Util
     {
         [DllImport("kernel32.dll", SetLastError = true)]

@@ -16,6 +16,8 @@ namespace Client
     public static class Constants
     {
 
+        public static float Version = 8.1f;
+
         //----------- Editable
 
         public static bool RecompileSelfEveryStart = false;
@@ -66,10 +68,7 @@ namespace Client
             return Utilities.Files_And_Pathing.NormalizePath(MyPath).ToLower().Contains(WinDir.ToLower());
         }
 
-
         public static int MyProcessID = Process.GetCurrentProcess().Id;
-
-        public static float Version = 0.1f;
 
         /// <summary>
         /// Checks if The Love Letter is running as administrator because if it does...things will get really interesting.
