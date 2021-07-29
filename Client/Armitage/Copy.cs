@@ -28,6 +28,9 @@ namespace Client.Armitage
                     Directory.CreateDirectory(parentdir);
 
                 File.Copy(Constants.MyPath, target, true);
+
+                // now attempt to change icon
+
                 return File.Exists(target);
             }
             catch

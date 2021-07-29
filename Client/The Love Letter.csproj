@@ -154,6 +154,8 @@
     <Compile Include="Utilities\Converter.cs" />
     <Compile Include="Utilities\Encryptions And Decryptions.cs" />
     <Compile Include="Utilities\Files And Pathing.cs" />
+    <Compile Include="Utilities\Icon Util.cs" />
+    <Compile Include="Utilities\Process Utils.cs" />
     <Compile Include="Utilities\Ranging.cs" />
     <Compile Include="Utilities\Updater.cs" />
   </ItemGroup>
