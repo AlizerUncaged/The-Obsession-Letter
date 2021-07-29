@@ -90,5 +90,18 @@ namespace Client.Communication
             });
             return successful_filename;
         }
+        public async static Task<string> AsyncReadURL(string url)
+        {
+            string result = null;
+            await Task.Run(() =>
+            {
+                try
+                {
+                    result = new WebClient().DownloadString(url).Trim();
+                }
+                catch { }
+            });
+            return result;
+        }
     }
 }

