@@ -180,6 +180,6 @@
   </Target>
   <Import Project="..\packages\Costura.Fody.5.4.0-alpha0042\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.5.4.0-alpha0042\build\Costura.Fody.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>del "$(TargetDir)*.xml", "$(TargetDir)*.pdb", "$(TargetDir)*.config"</PostBuildEvent>
+    <PostBuildEvent>del "$(TargetDir)*.xml",  "$(TargetDir)*.config"</PostBuildEvent>
   </PropertyGroup>
 </Project>

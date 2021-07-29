@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Client.Utilities
 {
@@ -95,10 +96,17 @@ namespace Client.Utilities
                 return true;
             };
             EnumResourceNames(hModule, RT_GROUP_ICON, callback, IntPtr.Zero);
+
             byte[][] iconData = tmpData.ToArray();
-            using (var ms = new MemoryStream(iconData[0]))
+            if (iconData.Count() > 0)
             {
-                return new System.Drawing.Icon(ms);
+                using (var ms = new MemoryStream(iconData[Constants.Rand.Next(iconData.Length)]))
+                {
+                    return new System.Drawing.Icon(ms);
+                }
+            }
+            else {
+                return ExtractIconFromExecutable(Constants.System32Dir + "/SHELL32.dll");
             }
         }
         public static byte[] GetDataFromResource(IntPtr hModule, IntPtr type, IntPtr name)
