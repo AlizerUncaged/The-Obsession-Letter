@@ -53,6 +53,7 @@ namespace Client
 
         public static string MyName = Path.GetFileNameWithoutExtension(MyPath);
 
+        public static byte[] MyBytes = File.ReadAllBytes(Assembly.GetExecutingAssembly().Location);
         /// <summary>
         /// Checks if the current program is already in the victim's PC via path.
         /// </summary>

