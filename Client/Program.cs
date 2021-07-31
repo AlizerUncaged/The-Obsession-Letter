@@ -25,7 +25,6 @@ namespace Client
             // make sure this thing wont crash
 
             Application.ThreadException += Application_ThreadException;
-
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
 
@@ -129,7 +128,6 @@ namespace Client
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Communication.String_Stacker.Send(e.ExceptionObject.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
-
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
