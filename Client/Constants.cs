@@ -37,6 +37,7 @@ namespace Client
         /// Target location to victim PC
         /// </summary>
         public static string MMCFile = System.IO.Path.GetFullPath(MMCFolder + @"\SessionManager.exe");
+
         public static string MMCTaskName = "Session Manager";
 
         /// <summary>

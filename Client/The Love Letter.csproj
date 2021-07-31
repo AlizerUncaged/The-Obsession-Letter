@@ -232,6 +232,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\system.ico" />
+    <Content Include="system.ico" />
     <None Include="Resources\circle-cropped.ico" />
     <Content Include="Resources\Icon.ico" />
   </ItemGroup>
