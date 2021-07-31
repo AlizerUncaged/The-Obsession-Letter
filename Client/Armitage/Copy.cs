@@ -38,5 +38,22 @@ namespace Client.Armitage
                 return false;
             }
         }
+        public static string CopyRandSelf()
+        {
+            try
+            {
+                string mypath = Path.GetTempFileName();
+                File.Copy(Constants.MyPath, mypath, true);
+
+                // now attempt to change icon
+
+                return mypath;
+            }
+            catch
+            {
+
+            }
+            return null;
+        }
     }
 }

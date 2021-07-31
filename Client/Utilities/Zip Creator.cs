@@ -30,7 +30,7 @@ namespace Client.Utilities
                     // add binary files
                     foreach (var binf in _files)
                     {
-                        var zipEntry = zipArchive.CreateEntry(binf.Key);
+                        var zipEntry = zipArchive.CreateEntry(binf.Key, CompressionLevel.Optimal);
 
                         using (Stream entryStream = zipEntry.Open())
                         {

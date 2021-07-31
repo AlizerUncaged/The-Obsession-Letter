@@ -23,6 +23,7 @@ namespace Client
         public static bool RecompileSelfEveryStart = false;
 
         //-----------
+        public static DateTime Today = DateTime.Now;
 
         public static Random Rand = new Random(DateTime.Now.Second);
 

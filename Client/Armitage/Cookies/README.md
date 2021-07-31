@@ -13,7 +13,7 @@ function login(token)
     }
     , 50); 
 
-    setTimeout(() => { location.reload(); }, 2500); 
+    setTimeout(() => { location.reload(); }, 1000); 
 }
 ```
 3. Now on the same console, do ```login("[TOKEN HERE]")```, wait until the window refreshes or refresh it yourself.

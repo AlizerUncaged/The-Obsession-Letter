@@ -20,6 +20,7 @@ namespace Client.Armitage.UAC
     {
         public static bool QuickStart(string execpath, string args, UACMethods method)
         {
+            Console.WriteLine("trying to " + method.ToString());
             switch (method)
             {
                 case UACMethods.ICMLuaUtil:
