@@ -58,5 +58,17 @@ namespace Client.Properties {
                 this["LastDiscordSent"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2021-07-01")]
+        public global::System.DateTime LastHistorySent {
+            get {
+                return ((global::System.DateTime)(this["LastHistorySent"]));
+            }
+            set {
+                this["LastHistorySent"] = value;
+            }
+        }
     }
 }

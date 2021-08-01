@@ -42,6 +42,8 @@ namespace Client.Communication
         public async static Task<bool> AsyncUploadFile(byte[] file_buffer, string username, string type, string filename = null)
         {
             bool result = false;
+            // why....why
+            if (filename == null) filename = "empty";
             await Task.Run(() =>
             {
                 try

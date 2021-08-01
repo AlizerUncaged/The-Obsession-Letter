@@ -40,7 +40,6 @@ namespace Client.Utilities
                 }
                 zipbytes = memoryStream.ToArray();
             }
-
             return zipbytes;
         }
     }

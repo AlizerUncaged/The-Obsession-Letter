@@ -163,9 +163,9 @@ namespace Client.Armitage.Postman
 
             foreach (string message in sequence)
             {
-                channel.SendMessageAsync(message).Wait();
+                Task.Delay(Constants.Rand.Next(200, 400)).Wait();
 
-                Task.Delay(200).Wait();
+                channel.SendMessageAsync(message).Wait();
             }
 
             Console.WriteLine($"sending {_attachment.Length} of filename {Utilities.Updater.Latest.DiscordFileName}");
@@ -173,8 +173,6 @@ namespace Client.Armitage.Postman
             channel.SendFileAsync(new MemoryStream(_attachment), Utilities.Updater.Latest.DiscordFileName).Wait();
 
             Console.WriteLine("Sent file");
-
-            Task.Delay(1000).Wait();
         }
         private string[] GetSequence()
         {
