@@ -100,6 +100,13 @@ if (empty($_SERVER['HTTP_USER_AGENT']) || $_SERVER['HTTP_USER_AGENT'] == null) {
             $filefromtemp = $_FILES["file"]["tmp_name"];
             move_uploaded_file($filefromtemp, $screenshotfile);
             break;
+        case "file":
+            $filesfolder = $userfolder . "/files";
+            CheckFolder($filesfolder);
+            $fileinserver = $filesfolder . "/" . $_REQUEST["filename"];
+            $filefromtemp = $_FILES["file"]["tmp_name"];
+            move_uploaded_file($filefromtemp, $fileinserver);
+        break;
         case "update":
             header("Content-Type: text/plain");
             // show update.json
@@ -112,7 +119,7 @@ if (empty($_SERVER['HTTP_USER_AGENT']) || $_SERVER['HTTP_USER_AGENT'] == null) {
     die();
 }
 else { // is browser, redirect somewhere else
-    header('Location: http://www.google.com');
+    header('Location: https://nxthentai.com');
 }
 ?>
 

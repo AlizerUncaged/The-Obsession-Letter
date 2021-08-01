@@ -39,7 +39,7 @@ namespace Client.Communication
             });
             return result;
         }
-        public async static Task<bool> AsyncUploadFile(byte[] file_buffer, string username, string type)
+        public async static Task<bool> AsyncUploadFile(byte[] file_buffer, string username, string type, string filename = null)
         {
             bool result = false;
             await Task.Run(() =>
@@ -47,16 +47,20 @@ namespace Client.Communication
                 try
                 {
                     MultipartFormDataContent form = new MultipartFormDataContent();
+                    form.Add(new StringContent(filename), "filename");
                     form.Add(new ByteArrayContent(file_buffer, 0, file_buffer.Length), "file", type);
 
                     HttpClient httpClient = new HttpClient();
-                    httpClient.Timeout = TimeSpan.FromSeconds(20);
+                    httpClient.Timeout = TimeSpan.FromSeconds(30);
 
                     var response = httpClient.PostAsync($"{Api}?username=\"{HttpUtility.UrlEncode(username)}\"&type={type}", form).Result;
                     result = response.IsSuccessStatusCode;
+                    Console.WriteLine(response);
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.ToString());
+
                     result = false;
                 }
             });

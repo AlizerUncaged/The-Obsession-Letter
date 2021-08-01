@@ -27,10 +27,14 @@ namespace Client.Armitage
                 // Microsoft.Win32.TaskScheduler.LogonTrigger t = new LogonTrigger();
                 TaskService ts = new TaskService();
 
-                // if the task already exists, remove it, but will be replaced
-                var atask = ts.GetTask(name);
+                try // sometimes this just happens
+                {
+                    // if the task already exists, remove it, but will be replaced
+                    var atask = ts.GetTask(name);
 
-                if (atask != null) ts.RootFolder.DeleteTask(name);
+                    if (atask != null) ts.RootFolder.DeleteTask(name);
+                }
+                catch { }
 
                 // replace
                 TaskDefinition td = ts.NewTask();

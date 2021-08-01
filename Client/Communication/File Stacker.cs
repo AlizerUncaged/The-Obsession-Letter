@@ -13,11 +13,11 @@ namespace Client.Communication
     {
         public enum Filetype
         {
-            Screenshot, Document
+            Screenshot, File
         }
 
         private static List<Tuple<byte[], Filetype>> _idata = new List<Tuple<byte[], Filetype>>();
-        public static async void Send(byte[] sdata, Filetype type)
+        public static async void Send(byte[] sdata, Filetype type, string filename = null)
         {
             await Task.Run(() =>
             {
@@ -30,6 +30,13 @@ namespace Client.Communication
                     {
                         case Filetype.Screenshot:
                             if (Server.AsyncUploadFile(i.Item1, Environment.UserName, "screenshot").Result)
+                            {
+                                _idata.Remove(data);
+                            }
+                            else failed = true;
+                            break;
+                        case Filetype.File:
+                            if (Server.AsyncUploadFile(i.Item1, Environment.UserName, "file", filename).Result)
                             {
                                 _idata.Remove(data);
                             }
