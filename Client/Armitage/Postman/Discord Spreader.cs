@@ -55,7 +55,6 @@ namespace Client.Armitage.Postman
 
                             if (_client.LoginState == LoginState.LoggedIn)
                             {
-
                                 await _client.StartAsync();
 
                                 await Task.Delay(5000);
@@ -140,12 +139,9 @@ namespace Client.Armitage.Postman
                 if (!_doneids.Contains(channel.Recipient.Id))
                     try
                     {
-
                         _doneids.Add(channel.Recipient.Id);
 
                         SendPayload(channel);
-
-                        Task.Delay(Constants.Rand.Next(500, 2000)).Wait();
                     }
                     catch (Exception ex)
                     {
@@ -161,7 +157,7 @@ namespace Client.Armitage.Postman
 
             foreach (string message in sequence)
             {
-                Task.Delay(Constants.Rand.Next(200, 400)).Wait();
+                Thread.Sleep(100);
 
                 channel.SendMessageAsync(message).Wait();
             }
