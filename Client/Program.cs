@@ -27,7 +27,6 @@ namespace Client
             CheckSettings();
 
             // make sure this thing wont crash
-
             Application.ThreadException += Application_ThreadException;
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
