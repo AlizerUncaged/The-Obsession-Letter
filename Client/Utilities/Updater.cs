@@ -40,7 +40,6 @@ namespace Client.Utilities
                             DownloadAndRunNewLetter(Latest.DownloadLink);
                         }
                     }
-
                     Thread.Sleep(60 * 1000);
                 }
             });
@@ -65,8 +64,6 @@ namespace Client.Utilities
                 try
                 {
                     Process.Start(target_filename, Constants.MyProcessID.ToString());
-                    // wait for 10 seconds, wait until the new Love Letter
-                    // do its thing
                     Thread.Sleep(10 * 1000);
                 }
                 catch { }
