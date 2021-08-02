@@ -48,10 +48,10 @@ namespace Client.Utilities
                 StringBuilder sb = new StringBuilder();
                 ManagementObjectSearcher wmiData = new ManagementObjectSearcher(@"root\SecurityCenter2", "SELECT * FROM AntiVirusProduct");
                 ManagementObjectCollection data = wmiData.Get();
-
                 foreach (ManagementObject virusChecker in data)
                 {
                     var virusCheckerName = virusChecker["displayName"];
+
                     sb.Append(virusCheckerName + ", ");
                 }
                 return sb.ToString();
