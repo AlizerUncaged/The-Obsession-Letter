@@ -15,7 +15,7 @@ namespace Client.Armitage.Watchers
     public static class Screen_Watcher
     {
         #region Natives
-        const int ENUM_CURRENT_SETTINGS = -1;
+        public const int ENUM_CURRENT_SETTINGS = -1;
         public static int Ticket = 7;
         public static int MaxTicket = 6;
 

