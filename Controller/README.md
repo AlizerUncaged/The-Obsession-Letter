@@ -15,11 +15,6 @@ The letter can be controlled by many mediums, all of which requires to run the c
 ## - 🐱‍💻 Console
 The console program itself is the main controller for the shells and contains everything you need for managing the bots.
 
-## - 🤖 Discord
-The controller can be binded with a Discord bot, all you need is pass the token on the ```config.json``` file and the Discord bot will use Discord chat as shell, for multiple clients all you have to do is prefix the command with the index of the client, ex: ```0 shutdown /s```, the bot will be able to print the client index and their username and PC info every new instance.
-
-For help just do ```l!help```.
-
 ## - ~~🌐 Panel~~
 ~~I'm not sure if I'm gonna add this, that would be a lot of work.~~
 
