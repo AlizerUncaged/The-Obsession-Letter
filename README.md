@@ -1,5 +1,5 @@
 ﻿﻿<div>
-  <img width="220" height="210" align="left" src="https://i.ibb.co/1XbwZfX/image-removebg-preview-5.png" alt="LoveLetter"/>
+  <img width="220" align="left" src="https://i.ibb.co/1XbwZfX/image-removebg-preview-7.png" alt="LoveLetter"/>
   <br>
   <h1>💌 The Love Letter</h1>
   <p>"Stalking is when two people go for a long romantic walk together but only one of them knows about it."</p>
