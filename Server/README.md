@@ -15,7 +15,7 @@ A redirector and IP logger, the usage is pretty simple a base64 format of the ta
 <br/>
 
 
-# Configuration
+# ⚙️ Configuration
 Update.json is being fetched by the client to check for any server commands. You can update it to your liking.
 This config gets initialized everytime the letter is run and then refreshed every 60 seconds, for controlling on runtime, please see [the Controller]("../Controller/")
 ## Sample 
