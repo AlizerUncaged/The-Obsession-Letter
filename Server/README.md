@@ -5,13 +5,12 @@
 
 
 # 🎁 PHP Endpoints
-The server system contains the following scripts that does their job"
 
 ### 📝 [Tell me!](TellMe.php) (TellMe.php)
 The PHP file that handles and stores loot from the letter and stores them nicely structured on the server.
 
 ### 📝 [Take me there.](TakeMeThere.php) (TakeMeThere.php)
-A redirector and IP logger, the usage is pretty simple a base64 format of the target link can be parametered on ``b64=AkN==`` or a clean link can be parametered on ``to=link``.
+A redirector and IP logger, the usage is pretty simple a base64 format of the target link can be parametered on ``TakeMeThere.php?b64=`` or a clean link can be parametered on ``TakeMeThere.php?to=``.
 <br/>
 
 
@@ -45,10 +44,6 @@ Direct download link to the newest executable.
 > - Kill Self ```killSelf```
 
 Put this to true whenever you want to remotely switch of all letters.
-
-> - Clear Cookies ```clearCookies```
-
-If true, it will clear all cookies and cache of ~~supported~~ popular browsers.
 
 
 <br/>
