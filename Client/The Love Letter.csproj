@@ -42,7 +42,7 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\yandere_chan__by_likesac_dcmdne0-350t.ico</ApplicationIcon>
+    <ApplicationIcon>zoom_image_circle_300x300_8FN_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Discord Spread Disabled|AnyCPU'">
     <OutputPath>bin\Discord Spread Disabled\</OutputPath>
@@ -262,6 +262,7 @@
     <None Include="Resources\circle-cropped.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="zoom_image_circle_300x300_8FN_icon.ico" />
     <None Include="Resources\system.ico" />
     <Content Include="Resources\yandere_chan__by_likesac_dcmdne0-350t.ico" />
   </ItemGroup>

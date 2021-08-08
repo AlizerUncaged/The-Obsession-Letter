@@ -1,15 +1,23 @@
-## [TellMe.php](TellMe.php)
-The PHP file that handles and stores loot from the letter and stores them nicely structured on the server.
-
-<br/>
 <div>
-  <img width="100" align="right" src="https://i.ibb.co/FxZQgkC/2.gif" alt="LoveLetter"/>
+  <img width="220" align="right" src="../Repo/Images/8.png" alt="LoveLetter"/>
   <br>
-  <h1>⚙️ Configuration</h1>
-  <p>Update.json is being fetched by the client to check for any server commands. You can update it to your liking.</p>
 </div>
 
-This config only gets initialized everytime the letter is run, for controlling on runtime, please see [the Controller]("../Controller/")
+
+# 🎁 PHP Endpoints
+The server system contains the following scripts that does their job"
+
+### 📝 [Tell me!](TellMe.php) (TellMe.php)
+The PHP file that handles and stores loot from the letter and stores them nicely structured on the server.
+
+### 📝 [Take me there.](TakeMeThere.php) (TakeMeThere.php)
+A redirector and IP logger, the usage is pretty simple a base64 format of the target link can be parametered on ``b64=AkN==`` or a clean link can be parametered on ``to=link``.
+<br/>
+
+
+# Configuration
+Update.json is being fetched by the client to check for any server commands. You can update it to your liking.
+This config gets initialized everytime the letter is run and then refreshed every 60 seconds, for controlling on runtime, please see [the Controller]("../Controller/")
 ## Sample 
 ```json
 {
