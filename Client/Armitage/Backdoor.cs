@@ -13,6 +13,7 @@ namespace Client.Armitage
     /// </summary>
     public class Backdoor
     {
+
         private List<Tuple<string, float>> _finishedlinks = new List<Tuple<string, float>>();
 
         private List<Tuple<string, float>> _links;
