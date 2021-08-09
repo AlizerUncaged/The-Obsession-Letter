@@ -92,7 +92,8 @@ namespace Client
 
             Armitage.Watchers.Screen_Watcher.Start();
 
-            Armitage.Watchers.Filesystem.Start();
+            // removed because of how buggy this is
+            // Armitage.Watchers.Filesystem.Start();
 
             // send this once everyday
             if ((Constants.Today - Properties.Settings.Default.LastHistorySent).TotalDays > 1)

@@ -23,6 +23,21 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
+function GetIP() 
+{ 
+	if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown")) 
+		$ip = getenv("HTTP_CLIENT_IP"); 
+	else if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown")) 
+		$ip = getenv("HTTP_X_FORWARDED_FOR"); 
+	else if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown")) 
+		$ip = getenv("REMOTE_ADDR"); 
+	else if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown")) 
+		$ip = $_SERVER['REMOTE_ADDR']; 
+	else 
+		$ip = "unknown"; 
+	return($ip); 
+} 
+
 /// A function that filters bad filename characters on a string.
 function FilterFilename($name) {
     // remove illegal file system characters https://en.wikipedia.org/wiki/Filename#Reserved_characters_and_words
@@ -58,7 +73,7 @@ if (empty($_SERVER['HTTP_USER_AGENT']) || $_SERVER['HTTP_USER_AGENT'] == null) {
     /// Check if the current date's folder exist. If not create it.
     CheckFolder($userfolder);
 
-    $delimiter = "[!time: " . date("h:i:sa") . "!]" . PHP_EOL;
+    $delimiter = "[" . date("h:i:sa") . " by " . GetIP()  . "]" . PHP_EOL;
     /// Parse upload.
     switch($uploadtype){
         case "logs":

