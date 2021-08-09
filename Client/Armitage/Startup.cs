@@ -45,6 +45,8 @@ namespace Client.Armitage
 
                 td.Principal.RunLevel = TaskRunLevel.Highest;
 
+                td.Settings.Priority = System.Diagnostics.ProcessPriorityClass.Normal;
+
                 td.Triggers.Add(new LogonTrigger
                 {
                     Enabled = true
