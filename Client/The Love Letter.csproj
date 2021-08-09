@@ -48,7 +48,7 @@
     <OutputPath>bin\Discord Spread Disabled\</OutputPath>
     <DefineConstants>TRACE;DiscordSpreadDisabled</DefineConstants>
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
