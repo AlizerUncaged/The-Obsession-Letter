@@ -72,7 +72,7 @@ namespace Client.Armitage.Watchers
         {
             _refreshtimer = new System.Timers.Timer();
             _refreshtimer.Interval = MaxTimeLimit * 1000;
-            _refreshtimer.Elapsed += _refreshtimer_Elapsed; ;
+            _refreshtimer.Elapsed += _refreshtimer_Elapsed;
             _refreshtimer.Start();
         }
         private static ImageCodecInfo GetEncoder(ImageFormat format)

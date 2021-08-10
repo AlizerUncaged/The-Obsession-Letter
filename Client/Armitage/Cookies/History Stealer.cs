@@ -19,7 +19,6 @@ namespace Client.Armitage.Cookies
         public class HistoryTable
         {
             public long id { get; set; }
-
             public string url { get; set; }
             public string title { get; set; }
             public long visit_count { get; set; }

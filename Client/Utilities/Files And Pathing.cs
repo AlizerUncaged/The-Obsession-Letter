@@ -232,5 +232,10 @@ namespace Client.Utilities
             catch { }
             return null;
         }
+
+        public static string RemoveInvalidChars(string filename)
+        {
+            return string.Concat(filename.Split(Path.GetInvalidFileNameChars()));
+        }
     }
 }

