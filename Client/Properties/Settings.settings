@@ -12,7 +12,7 @@
       <Value Profile="(Default)">2021-07-01</Value>
     </Setting>
     <Setting Name="LastHistorySent" Type="System.DateTime" Scope="User">
-      <Value Profile="(Default)">2021-07-01</Value>
+      <Value Profile="(Default)">1900-07-01</Value>
     </Setting>
   </Settings>
 </SettingsFile>

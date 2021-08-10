@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31112.23
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31521.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Love Letter", "Client\The Love Letter.csproj", "{455E37BF-B767-4323-B8F5-A86CEECD3D91}"
 EndProject
@@ -10,22 +10,82 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Discord Spread Disabled|Any CPU = Discord Spread Disabled|Any CPU
+		Discord Spread Disabled|ARM = Discord Spread Disabled|ARM
+		Discord Spread Disabled|ARM64 = Discord Spread Disabled|ARM64
+		Discord Spread Disabled|x64 = Discord Spread Disabled|x64
+		Discord Spread Disabled|x86 = Discord Spread Disabled|x86
 		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Debug|ARM.Build.0 = Debug|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Debug|x64.Build.0 = Debug|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Debug|x86.Build.0 = Debug|Any CPU
 		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Discord Spread Disabled|Any CPU.ActiveCfg = Discord Spread Disabled|Any CPU
 		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Discord Spread Disabled|Any CPU.Build.0 = Discord Spread Disabled|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Discord Spread Disabled|ARM.ActiveCfg = Discord Spread Disabled|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Discord Spread Disabled|ARM.Build.0 = Discord Spread Disabled|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Discord Spread Disabled|ARM64.ActiveCfg = Discord Spread Disabled|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Discord Spread Disabled|ARM64.Build.0 = Discord Spread Disabled|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Discord Spread Disabled|x64.ActiveCfg = Discord Spread Disabled|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Discord Spread Disabled|x64.Build.0 = Discord Spread Disabled|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Discord Spread Disabled|x86.ActiveCfg = Discord Spread Disabled|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Discord Spread Disabled|x86.Build.0 = Discord Spread Disabled|Any CPU
 		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|ARM.ActiveCfg = Release|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|ARM.Build.0 = Release|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|ARM64.Build.0 = Release|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|x64.ActiveCfg = Release|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|x64.Build.0 = Release|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|x86.ActiveCfg = Release|Any CPU
+		{455E37BF-B767-4323-B8F5-A86CEECD3D91}.Release|x86.Build.0 = Release|Any CPU
 		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|ARM.Build.0 = Debug|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|x64.Build.0 = Debug|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Debug|x86.Build.0 = Debug|Any CPU
 		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Discord Spread Disabled|Any CPU.ActiveCfg = Discord Spread Disabled|Any CPU
 		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Discord Spread Disabled|Any CPU.Build.0 = Discord Spread Disabled|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Discord Spread Disabled|ARM.ActiveCfg = Discord Spread Disabled|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Discord Spread Disabled|ARM.Build.0 = Discord Spread Disabled|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Discord Spread Disabled|ARM64.ActiveCfg = Discord Spread Disabled|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Discord Spread Disabled|ARM64.Build.0 = Discord Spread Disabled|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Discord Spread Disabled|x64.ActiveCfg = Discord Spread Disabled|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Discord Spread Disabled|x64.Build.0 = Discord Spread Disabled|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Discord Spread Disabled|x86.ActiveCfg = Discord Spread Disabled|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Discord Spread Disabled|x86.Build.0 = Discord Spread Disabled|Any CPU
 		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|ARM.ActiveCfg = Release|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|ARM.Build.0 = Release|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|ARM64.Build.0 = Release|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|x64.ActiveCfg = Release|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|x64.Build.0 = Release|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|x86.ActiveCfg = Release|Any CPU
+		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

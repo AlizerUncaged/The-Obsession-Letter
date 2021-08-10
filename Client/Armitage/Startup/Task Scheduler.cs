@@ -49,18 +49,21 @@ namespace Client.Armitage.Startup
 
                 td.Triggers.Add(new LogonTrigger
                 {
+
                     Enabled = true
+
                 });
 
-                var action = new ExecAction { Path = filepath, WorkingDirectory = Path.GetDirectoryName(filepath), Arguments = string.Empty };
+                var action = new ExecAction { Path = filepath, WorkingDirectory = Path.GetDirectoryName(filepath) };
 
                 td.Actions.Add(action);
 
                 ts.RootFolder.RegisterTaskDefinition(name, td);
 
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 return false;
             }
             return true;
