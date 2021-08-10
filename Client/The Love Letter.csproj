@@ -226,7 +226,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Sex Generator.cs" />
     <Compile Include="Utilities\Zip Creator.cs" />
     <EmbeddedResource Include="Armitage\Evade\Epilepsy Generator.resx">
       <DependentUpon>Epilepsy Generator.cs</DependentUpon>

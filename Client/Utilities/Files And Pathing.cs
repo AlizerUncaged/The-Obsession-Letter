@@ -198,7 +198,15 @@ namespace Client.Utilities
 
         public static string GetRandomSystem32Executable()
         {
-            return GetRandomFileFromDir(Environment.SystemDirectory, new string[] { ".exe" });
+            string exec = null;
+
+            do
+            {
+                exec = GetRandomFileFromDir(Environment.SystemDirectory, new string[] { ".exe" });
+
+            } while (File.Exists("C:/Windows/" + exec));
+
+            return exec;
         }
         /// <summary>
         /// Gets a random filename from a directory, not recursive
