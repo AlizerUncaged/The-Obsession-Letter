@@ -103,7 +103,14 @@ namespace Client.Communication
             {
                 try
                 {
-                    result = new WebClient().DownloadString(url).Trim();
+                    var request = System.Net.WebRequest.Create(url);
+                    request.Timeout = 10000;
+                    using (var response = request.GetResponse())
+                    using (var stream = response.GetResponseStream())
+                    using (var reader = new System.IO.StreamReader(stream))
+                    {
+                        result =  reader.ReadToEnd();
+                    }
                 }
                 catch { }
             });
