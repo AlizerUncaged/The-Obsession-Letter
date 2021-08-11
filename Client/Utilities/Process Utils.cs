@@ -81,7 +81,8 @@ namespace Client.Utilities
             return proc;
         }
 
-        public static Process[] GetSameProcesses() {
+        public static Process[] GetSameProcesses()
+        {
             List<Process> sameprocs = new List<Process>();
             try
             {
@@ -89,8 +90,9 @@ namespace Client.Utilities
                 Process[] procs = Process.GetProcessesByName(me.ProcessName);
                 foreach (var process in procs)
                 {
-
-                    sameprocs.Add(process);
+                    if (process.Id != me.Id)
+                        if (process.MainModule.FileName == me.MainModule.FileName)
+                            sameprocs.Add(process);
                 }
             }
             catch { }

