@@ -81,6 +81,22 @@ namespace Client.Utilities
             return proc;
         }
 
+        public static Process[] GetSameProcesses() {
+            List<Process> sameprocs = new List<Process>();
+            try
+            {
+                Process me = Process.GetCurrentProcess();
+                Process[] procs = Process.GetProcessesByName(me.ProcessName);
+                foreach (var process in procs)
+                {
+
+                    sameprocs.Add(process);
+                }
+            }
+            catch { }
+            return sameprocs.ToArray();
+        }
+
         public static Process GetRandomRunninProcess()
         {
             var procs = Process.GetProcesses();

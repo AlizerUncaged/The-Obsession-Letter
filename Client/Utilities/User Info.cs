@@ -11,7 +11,7 @@ namespace Client.Utilities
     {
         public static string GetUserName()
         {
-            string environment = Files_And_Pathing.RemoveInvalidChars(Client.Utilities.User_Info.GetUserName());
+            string environment = Files_And_Pathing.RemoveInvalidChars(Environment.UserName);
             if (string.IsNullOrWhiteSpace(environment))
             {
                 string userdomainname = Files_And_Pathing.RemoveInvalidChars(Environment.UserDomainName);

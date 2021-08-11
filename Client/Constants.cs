@@ -16,7 +16,7 @@ namespace Client
     public static class Constants
     {
 
-        public static float Version = 8.2f;
+        public static float Version = 8.3f;
 
         //----------- Editable
 

