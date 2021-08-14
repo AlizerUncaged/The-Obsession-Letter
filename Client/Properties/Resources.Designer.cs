@@ -19,7 +19,7 @@ namespace Client.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -101,6 +101,16 @@ namespace Client.Properties {
         internal static System.Drawing.Icon system {
             get {
                 object obj = ResourceManager.GetObject("system", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon yandere_chan__by_likesac_dcmdne0_350t {
+            get {
+                object obj = ResourceManager.GetObject("yandere_chan__by_likesac_dcmdne0_350t", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
