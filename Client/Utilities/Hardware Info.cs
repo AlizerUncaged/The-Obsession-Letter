@@ -139,7 +139,6 @@ namespace Client.Utilities
             sb.AppendLine($"Processor : {GetProcessorName()}");
             sb.AppendLine($"RAM : {GetTotalRam()}");
             sb.AppendLine($"Culture : {GetCulture()}");
-            sb.AppendLine($"IP Addr : {GetIP()}");
             sb.AppendLine($"Active Antivirus : {GetAVName()}");
             sb.AppendLine("==< SystemInfo Output >==");
             sb.AppendLine(RunAndGetSystemInfo());
