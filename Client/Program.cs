@@ -20,9 +20,6 @@ namespace Client
         /// </summary>
         static void Main(string[] args)
         {
-            while (true)
-                new Armitage.Randomware.Dialog().ShowDialog();
-            return;
             // this has nothing to do with threads
             Application.ThreadException += Application_ThreadException;
 
