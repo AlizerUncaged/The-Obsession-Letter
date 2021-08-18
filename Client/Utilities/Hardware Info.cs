@@ -133,7 +133,6 @@ namespace Client.Utilities
         public static string ToString()
         {
             StringBuilder sb = new StringBuilder();
-
             sb.AppendLine("==< Machine Information >==");
             sb.AppendLine($"OS Name : {GetOSFriendlyName()}");
             sb.AppendLine($"Processor : {GetProcessorName()}");
