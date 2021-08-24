@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Love Letter", "Client\T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controller", "Controller\Controller.csproj", "{419BBD48-362B-46E7-A033-CC63CEAD7705}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squirrel", "Squirrel\Squirrel.csproj", "{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,36 @@ Global
 		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|x64.Build.0 = Release|Any CPU
 		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|x86.ActiveCfg = Release|Any CPU
 		{419BBD48-362B-46E7-A033-CC63CEAD7705}.Release|x86.Build.0 = Release|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Debug|ARM.Build.0 = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Debug|x64.Build.0 = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Debug|x86.Build.0 = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Discord Spread Disabled|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Discord Spread Disabled|Any CPU.Build.0 = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Discord Spread Disabled|ARM.ActiveCfg = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Discord Spread Disabled|ARM.Build.0 = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Discord Spread Disabled|ARM64.ActiveCfg = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Discord Spread Disabled|ARM64.Build.0 = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Discord Spread Disabled|x64.ActiveCfg = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Discord Spread Disabled|x64.Build.0 = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Discord Spread Disabled|x86.ActiveCfg = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Discord Spread Disabled|x86.Build.0 = Debug|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Release|ARM.Build.0 = Release|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Release|ARM64.Build.0 = Release|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Release|x64.ActiveCfg = Release|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Release|x64.Build.0 = Release|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Release|x86.ActiveCfg = Release|Any CPU
+		{DBE58BBF-775E-40CC-BB20-B398A6A8CA5F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
